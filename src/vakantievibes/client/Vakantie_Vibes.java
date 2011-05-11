@@ -9,6 +9,5 @@ import com.google.gwt.core.client.EntryPoint;
 public class Vakantie_Vibes implements EntryPoint {
 
 	public void onModuleLoad() {
-/* some shit */
 	}
 }

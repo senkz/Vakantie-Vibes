@@ -1,0 +1,2 @@
+serviceClass: vakantievibes.client.GreetingService
+path: 12E4475EB3668341893715060170CC81.gwt.rpc

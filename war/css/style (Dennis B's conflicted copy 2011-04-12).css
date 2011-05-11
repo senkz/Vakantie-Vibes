@@ -1,0 +1,44 @@
+body {
+	background: #FF9E00;
+	margin:0;
+	padding:0;
+}
+
+#container {
+	width:800px;
+	min-height: 400px;
+	margin:0 auto;
+	padding:0;
+	background:white;
+}
+
+#header {
+	position: relative;
+	width:800px;
+	height:170px;
+	margin:0;
+	padding:0;
+	background: center center no-repeat url("../img/header.png");
+	border-bottom: 2px groove #FF9E00;
+}
+
+#login {
+	width:160px;
+	position: absolute;
+	right:0;
+	padding:0 auto;
+}
+
+#login form {
+	padding:0 auto;
+}
+
+#links {
+	width: 650px;
+	float: left;
+}
+
+#rechts {
+	width: 150px;
+	float: right;
+}

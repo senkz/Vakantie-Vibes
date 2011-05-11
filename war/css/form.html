@@ -1,0 +1,141 @@
+
+ 
+	
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml" > 
+<head> 
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+<title>Contact Form</title> 
+ 
+<link rel="stylesheet" type="text/css" href="assets/fonts/quicksand.css" /> 
+<link rel="stylesheet" type="text/css" href="assets/themes/dark/css/styles.css" /> 
+ 
+<!-- Customizations for the demo --> 
+ 
+<style type="text/css"> 
+#demoSelect{
+	color:#ccc;
+	width:160px;
+	background-color: rgba(0, 0, 0, 0.8) !important;
+	background: #333;
+	list-style:none;
+	padding:20px;
+	position:absolute;
+	top:-10px;
+	right:20px;
+	
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px;
+	border-radius:5px;
+}
+ 
+#demoSelect li.title{
+	padding: 5px 0;
+	color: #aaa;
+	font-size: 11px;
+	font-weight: normal;
+	text-align: center;
+}
+ 
+#demoSelect li a,
+#demoSelect li a:visited{
+	color: #45A9F0;
+	font-size: 12px;
+}
+</style> 
+ 
+<!-- Customizations end --> 
+ 
+<script type="text/javascript" src="assets/js/jquery.js"></script> 
+<script type="text/javascript" src="assets/js/forms.js"></script> 
+ 
+</head> 
+ 
+<body> 
+ 
+<!-- Modified for demo.zinescripts.com --> 
+ 
+<ul id="demoSelect"> 
+	<li class="title">Choose a demo:</li> 
+	<li><a href="?demo=1">Contact Form (dark theme)</a></li> 
+	<li><a href="?demo=2">Contact Form (light theme)</a></li> 
+    <li><a href="?demo=3">Request a Quote</a></li> 
+</ul> 
+ 
+ 
+<!-- End modifications --> 
+ 
+<div id="formContainer"> 
+ 
+    <h1>Contact Form</h1>		<form method="post" action="" class="formGen"> 
+    	
+		                
+                <div class="formRow"> 
+                
+                <label for="field0"> 
+                    Your name<span class="star">*</span>:                </label> 
+                                        <input type="text" name="field0" id="field0" class="textField required" /> 
+                                        
+                </div> 
+                
+                                
+                <div class="formRow"> 
+                
+                <label for="field1"> 
+                    Email<span class="star">*</span>:                </label> 
+                                        <input type="text" name="field1" id="field1" class="textField required email" /> 
+                                        
+                </div> 
+                
+                                
+                <div class="formRow"> 
+                
+                <label for="field2"> 
+                    Subject:                </label> 
+                                        
+                        <select name="field2" id="field2" class="select"> 
+                        
+                                                    	<option  value="0">Please Choose</option> 
+                                                        	<option  value="1">Business proposition</option> 
+                                                        	<option  value="2">Partnership</option> 
+                                                        	<option  value="3">General Inquiry</option> 
+                                                    
+                        </select> 
+                        
+                                        
+                </div> 
+                
+                                
+                <div class="formRow"> 
+                
+                <label for="field3"> 
+                    Message<span class="star">*</span>:                </label> 
+                                        <textarea name="field3" id="field3" rows="5" cols="40" class="textArea required"></textarea> 
+                                        
+                </div> 
+                
+                                
+                <div class="formRow"> 
+                
+                <label for="field4"> 
+                    1 + 7 =                </label> 
+                                        <input type="text" name="field4" id="field4" class="textField required captcha" /> 
+                                        
+                </div> 
+                
+                        <div class="formRow"> 
+           <input type="submit" value="Submit Form" id="submit" /> 
+        </div> 
+		</form> 
+ 
+		  
+</div> 
+   
+<div id="thankYou"> 
+    
+	<h1>Thank you!</h1> 
+	<h2>We will come back to you as soon as we can.</h2> 
+</div> 
+ 
+</body> 
+</html>

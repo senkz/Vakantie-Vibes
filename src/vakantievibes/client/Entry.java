@@ -15,17 +15,16 @@ import com.google.gwt.user.client.ui.TabPanel;
  */
 public class Entry implements EntryPoint {
 		protected VakantieVibes serviceImpl;
-		private TabBar myTabBar;
+		private TabBar myTabBar = new TabBar();
 		
 		@Override
 		public void onModuleLoad() {
 			serviceImpl = new VakantieVibes();
 			
 			TabPanel myTabPanel = new TabPanel();
-			myTabBar = new TabBar();
 			myTabBar = myTabPanel.getTabBar();
 			
-			myTabPanel.setSize("150px", "100px");
+			myTabPanel.setSize("800px", "100px");
 			myTabPanel.setAnimationEnabled(true);
 			myTabPanel.add(new RegistrerenGebruiker(serviceImpl), "Reg. gebruiker");
 			myTabPanel.add(new Reizen(serviceImpl), "Boek Reis");

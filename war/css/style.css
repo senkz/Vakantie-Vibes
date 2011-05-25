@@ -130,13 +130,12 @@ p.legend
 	  background:#FFD988; 
 	  border: outset #FED877; 
 	}
-#reis
+.reis
 	{ 
-	
 	  width: 700px;
-	  min-height: 250px;
 	  background:#FFD988; 
 	  border: outset #FED877; 
+	  margin: 10px 50px;
 	}
 div.pi
 	{
@@ -212,8 +211,4 @@ a.button
 	width: 160px;
 	border-bottom: 1px solid #000;
 	padding-bottom: 5px;
-}
-
-.gwt-TabPanel {
-	width:800px;
 }

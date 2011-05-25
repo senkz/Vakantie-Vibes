@@ -15,8 +15,7 @@ import com.google.gwt.user.client.ui.TabPanel;
  */
 public class Entry implements EntryPoint {
 		protected VakantieVibes serviceImpl;
-		private TabBar myTabBar = new TabBar();
-		
+
 		@Override
 		public void onModuleLoad() {
 			serviceImpl = new VakantieVibes();
@@ -28,6 +27,7 @@ public class Entry implements EntryPoint {
 			myTabPanel.setAnimationEnabled(true);
 			myTabPanel.add(new RegistrerenGebruiker(serviceImpl), "Reg. gebruiker");
 			myTabPanel.add(new Reizen(serviceImpl), "Boek Reis");
+			myTabPanel.add(new InloggenPage(serviceImpl), "Inloggen");
 			myTabPanel.selectTab(0);
 			
 			RootPanel.get("content").add(myTabPanel);

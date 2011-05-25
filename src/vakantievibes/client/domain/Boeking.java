@@ -1,13 +1,13 @@
 package vakantievibes.client.domain;
 
-import java.util.Calendar;
+import java.util.Date;
 
 public class Boeking {
 
-	private Calendar boekingDatum;
+	private Date boekingDatum;
 	private boolean heeftBetaald;
 
-	public Boeking(Calendar bd, Boolean hb) {
+	public Boeking(Date bd, Boolean hb) {
 		boekingDatum = bd;
 		heeftBetaald = hb;
 	}
@@ -20,7 +20,7 @@ public class Boeking {
 		heeftBetaald = hb;
 	}
 
-	public Calendar getBoekingDatum() {
+	public Date getBoekingDatum() {
 		return boekingDatum;
 	}
 

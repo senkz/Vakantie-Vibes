@@ -13,12 +13,12 @@ import com.google.gwt.user.client.ui.TabPanel;
  * Entry point classes define <code>onModuleLoad()</code>.
  */
 public class Entry implements EntryPoint {
-		static protected VakantieVibes serviceImpl;
+		protected VakantieVibes serviceImpl;
 		private TabBar myTabBar;
 		
 		@Override
 		public void onModuleLoad() {
-			
+			serviceImpl = new VakantieVibes();
 			
 			TabPanel myTabPanel = new TabPanel();
 			myTabBar = new TabBar();
@@ -26,7 +26,7 @@ public class Entry implements EntryPoint {
 			
 			myTabPanel.setSize("150px", "100px");
 			myTabPanel.setAnimationEnabled(true);
-			myTabPanel.add(new RegistrerenGebruiker(), "Reg. gebruiker");
+			myTabPanel.add(new RegistrerenGebruiker(serviceImpl), "Reg. gebruiker");
 			myTabPanel.selectTab(0);
 			
 			RootPanel.get("content").add(myTabPanel);

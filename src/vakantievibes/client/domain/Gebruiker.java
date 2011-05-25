@@ -3,6 +3,7 @@ public class Gebruiker{
 
 	private String gebruikersNaam, wachtWoord, voorNaam, achterNaam, email;
 	private int rechten;
+	private Adres a;
 
 	public Gebruiker(String gb, String ww, String vn, String an, String em) {
 		gebruikersNaam = gb;
@@ -56,5 +57,11 @@ public class Gebruiker{
 
 	public void setRechten(int rechten) {
 		this.rechten = rechten;
+	}
+	public void setAdres(Adres a) {
+		this.a = a;
+	}
+	public Adres getAdres() {
+		return a;
 	}
 }

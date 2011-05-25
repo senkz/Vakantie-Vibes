@@ -44,6 +44,7 @@ public class RegistrerenGebruiker extends FormPanel{
 		
 		vp.add(bpost);		vp.add(breset);
 		
+		
 		bpost.addClickHandler(new ClickHandler(){
 			@Override
 			public void onClick(ClickEvent event) {

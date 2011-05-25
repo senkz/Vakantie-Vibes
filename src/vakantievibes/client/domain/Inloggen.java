@@ -15,6 +15,13 @@ public class Inloggen {
 	}
 
 	public Gebruiker Login(String ww, String gb) {
+		System.out.println("*********************");
+		System.out.println("Gebruikersnaam:" + gb);
+		System.out.println("Wachtwoord pre-hash:" + ww);
+		System.out.println("Wachtwoord post-hash:" + hashWachtwoord(ww));
+		System.out.println("*********************");
+		
+		
 		Gebruiker g = ServiceImpl.zoekGebruiker(gb);
 		if(hashWachtwoord(g.getWachtWoord()).equals(ww)) {
 			return g;
@@ -23,6 +30,7 @@ public class Inloggen {
 	}
 	
 	public static String hashWachtwoord(String s) {
+		/**
 		MessageDigest m;
 		try {
 			m = MessageDigest.getInstance("MD5");
@@ -39,5 +47,7 @@ public class Inloggen {
 		  hashtext = "0"+hashtext;
 		}
 		return hashtext;
+		**/
+		return s;
 	}
 }

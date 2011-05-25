@@ -1,6 +1,8 @@
 package vakantievibes.client.domain;
 import java.util.ArrayList;
 
+import com.google.gwt.user.client.Window;
+
 public class VakantieVibes {
 	private ArrayList<Gebruiker> gebruikers = new ArrayList<Gebruiker>();
 	private ArrayList<Reis> reisen = new ArrayList<Reis>();
@@ -24,5 +26,9 @@ public class VakantieVibes {
 	
 	public void setLoginUser(Gebruiker g) {
 		loginUser = g;
+	}
+	
+	public ArrayList<Gebruiker> listGebruikers() {
+		return gebruikers;
 	}
 }

@@ -1,5 +1,10 @@
 package vakantievibes.client.pages;
 
+import vakantievibes.client.domain.Adres;
+import vakantievibes.client.domain.Gebruiker;
+
+import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.FormPanel;
 import com.google.gwt.user.client.ui.Label;
@@ -13,7 +18,7 @@ public class RegisterenGebruiker extends FormPanel{
 	private Label lbnaam, lbanaam, lbstraat, lbhn, lbemail, lbww, lbgb, lbpostcode, lbtelefoon, lbplaats, lbland;
 	private Button bpost, breset;
 	private PasswordTextBox tbww;
-	
+		
 	public RegisterenGebruiker(){
 		add(lbnaam);   add(tbnaam);
 		add(lbanaam);   add(tbanaam);
@@ -28,7 +33,20 @@ public class RegisterenGebruiker extends FormPanel{
 		add(lbland);   add(tbland);
 		add(bpost);		add(breset);
 		
-		
-		
+		bpost.addClickHandler(new ClickHandler(){
+			@Override
+			public void onClick(ClickEvent event) {
+					Gebruiker g = new Gebruiker(tbgb.getText(), tbww.getText(), tbnaam.getText(), tbanaam.getText(), tbemail.getText());
+					Adres a = new Adres(tbland.getText(), tbplaats.getText(),tbstraat.getText(), tbhn.getText(), tbpostcode.getText(), Integer.parseInt(tbtelefoon.getText()));
+			}});
+		breset.addClickHandler(new ClickHandler(){
+
+			@Override
+			public void onClick(ClickEvent event) {
+				tbnaam.setText(""); tbanaam.setText(""); tbstraat.setText(""); tbhn.setText(""); tbemail.setText(""); tbgb.setText(""); tbpostcode.setText(""); tbtelefoon.setText(""); tbplaats.setText(""); tbland.setText("");
+				
+			}
+			
+		});
 	}
 }

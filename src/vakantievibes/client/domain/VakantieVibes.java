@@ -5,7 +5,7 @@ public class VakantieVibes {
 	private ArrayList<Gebruiker> gebruikers = new ArrayList<Gebruiker>();
 	private ArrayList<Reis> reisen = new ArrayList<Reis>();
 	private ArrayList<Bestemming> bestemmingen = new ArrayList<Bestemming>();
-	private Gebruiker inlog;
+	private Gebruiker loginUser;
 
 	public VakantieVibes()	{
 	}
@@ -20,5 +20,9 @@ public class VakantieVibes {
 				return z;
 		}
 		return null;
+	}
+	
+	public void setLoginUser(Gebruiker g) {
+		loginUser = g;
 	}
 }

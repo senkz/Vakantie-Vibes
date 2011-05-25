@@ -1,3 +1,4 @@
+package vakantievibes.client.domain;
 public class Adres {
 	private String land, stad, straat, huisnummer, postcode;
 	private int telefoon;
@@ -6,7 +7,7 @@ public class Adres {
 		land = l;
 		stad = s;
 		straat = st;
-		huisnummer = hs;
+		huisnummer = hn;
 		postcode = pc;
 		telefoon = tf;
 	}

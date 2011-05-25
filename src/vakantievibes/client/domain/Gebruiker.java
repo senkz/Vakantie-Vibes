@@ -1,3 +1,4 @@
+package vakantievibes.client.domain;
 public class Gebruiker{
 
 	private String gebruikersNaam, wachtWoord, voorNaam, achterNaam, email;

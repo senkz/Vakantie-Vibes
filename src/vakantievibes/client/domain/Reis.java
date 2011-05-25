@@ -1,3 +1,4 @@
+package vakantievibes.client.domain;
 public class Reis {
 
 	private Calendar vertrekDatum, terugDatum;

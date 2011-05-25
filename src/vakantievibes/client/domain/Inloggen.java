@@ -1,3 +1,4 @@
+package vakantievibes.client.domain;
 public class Inloggen {
 
 	private String salt;

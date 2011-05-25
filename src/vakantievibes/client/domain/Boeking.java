@@ -1,3 +1,4 @@
+package vakantievibes.client.domain;
 public class Boeking {
 
 	private Calendar boekingDatum;

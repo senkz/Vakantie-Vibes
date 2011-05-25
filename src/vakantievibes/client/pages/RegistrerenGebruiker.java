@@ -2,6 +2,7 @@ package vakantievibes.client.pages;
 
 import vakantievibes.client.domain.Adres;
 import vakantievibes.client.domain.Gebruiker;
+import vakantievibes.client.domain.VakantieVibes;
 
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
@@ -18,8 +19,11 @@ public class RegistrerenGebruiker extends FormPanel{
 	private Label lbnaam, lbanaam, lbstraat, lbhn, lbemail, lbww, lbgb, lbpostcode, lbtelefoon, lbplaats, lbland;
 	private Button bpost, breset;
 	private PasswordTextBox tbww;
+	private VakantieVibes serviceImpl;
 		
-	public RegistrerenGebruiker(){
+	public RegistrerenGebruiker(VakantieVibes sI){
+		serviceImpl = sI;
+		
 		add(lbnaam);   add(tbnaam);
 		add(lbanaam);   add(tbanaam);
 		add(lbstraat);   add(tbstraat);
@@ -38,6 +42,9 @@ public class RegistrerenGebruiker extends FormPanel{
 			public void onClick(ClickEvent event) {
 					Gebruiker g = new Gebruiker(tbgb.getText(), tbww.getText(), tbnaam.getText(), tbanaam.getText(), tbemail.getText());
 					Adres a = new Adres(tbland.getText(), tbplaats.getText(),tbstraat.getText(), tbhn.getText(), tbpostcode.getText(), Integer.parseInt(tbtelefoon.getText()));
+					
+					g.setAdres(a);
+					serviceImpl.
 			}});
 		breset.addClickHandler(new ClickHandler(){
 

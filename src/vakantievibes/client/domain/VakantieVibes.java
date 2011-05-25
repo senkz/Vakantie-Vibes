@@ -6,9 +6,11 @@ public class VakantieVibes {
 	private ArrayList<Reis> reisen = new ArrayList<Reis>();
 	private ArrayList<Bestemming> bestemmingen = new ArrayList<Bestemming>();
 	private Gebruiker inlog;
-	private String username,password;
 
-	public VakantieVibes(String u, String p)	{
-		inlog = Inloggen.Login(u,p);
+	public VakantieVibes()	{
+	}
+	
+	private void addGebruiker(Gebruiker g) {
+		gebruikers.add(g);
 	}
 }

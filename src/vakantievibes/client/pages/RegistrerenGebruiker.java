@@ -12,14 +12,14 @@ import com.google.gwt.user.client.ui.PasswordTextBox;
 import com.google.gwt.user.client.ui.TextBox;
 
 
-public class RegisterenGebruiker extends FormPanel{
+public class RegistrerenGebruiker extends FormPanel{
 
 	private TextBox tbnaam, tbanaam, tbstraat, tbhn, tbemail, tbgb, tbpostcode, tbtelefoon, tbplaats, tbland;
 	private Label lbnaam, lbanaam, lbstraat, lbhn, lbemail, lbww, lbgb, lbpostcode, lbtelefoon, lbplaats, lbland;
 	private Button bpost, breset;
 	private PasswordTextBox tbww;
 		
-	public RegisterenGebruiker(){
+	public RegistrerenGebruiker(){
 		add(lbnaam);   add(tbnaam);
 		add(lbanaam);   add(tbanaam);
 		add(lbstraat);   add(tbstraat);

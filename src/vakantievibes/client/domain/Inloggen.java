@@ -1,11 +1,13 @@
 package vakantievibes.client.domain;
 public class Inloggen {
 
-	private String salt;
-	private VakantieVibes vb;
+	static String salt,wachtwoord,gebruikersNaam;
+	static VakantieVibes vb;
 
-	public boolean Login(String ww, String gb) {
+	public static Gebruiker Login(String ww, String gb) {
 		wachtwoord = ww;
 		gebruikersNaam = gb;
+		return null;
 	}
+	
 }

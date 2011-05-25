@@ -4,7 +4,7 @@ public class Gebruiker{
 	private String gebruikersNaam, wachtWoord, voorNaam, achterNaam, email;
 	private int rechten;
 
-	public boolean createGebruiker(String gb, String ww, String vn, String an, String em) {
+	public Gebruiker(String gb, String ww, String vn, String an, String em) {
 		gebruikersNaam = gb;
 		wachtWoord = ww;
 		voorNaam = vn;

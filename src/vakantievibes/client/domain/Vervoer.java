@@ -1,4 +1,7 @@
 package vakantievibes.client.domain;
+
+import java.util.ArrayList;
+
 public class Vervoer {
 	private int zitplaatsen;
 	private ArrayList<Gebruiker> meerijder = new ArrayList<Gebruiker>();

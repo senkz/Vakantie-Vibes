@@ -1,4 +1,7 @@
 package vakantievibes.client.domain;
+
+import java.util.Calendar;
+
 public class Boeking {
 
 	private Calendar boekingDatum;

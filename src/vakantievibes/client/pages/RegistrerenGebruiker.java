@@ -57,7 +57,7 @@ public class RegistrerenGebruiker extends FormPanel{
 
 			@Override
 			public void onClick(ClickEvent event) {
-				tbnaam.setText(""); tbanaam.setText(""); tbstraat.setText(""); tbhn.setText(""); tbemail.setText(""); tbgb.setText(""); tbpostcode.setText(""); tbtelefoon.setText(""); tbplaats.setText(""); tbland.setText("");
+				tbnaam.setText(""); tbanaam.setText(""); tbstraat.setText(""); tbww.setText(""); tbhn.setText(""); tbemail.setText(""); tbgb.setText(""); tbpostcode.setText(""); tbtelefoon.setText(""); tbplaats.setText(""); tbland.setText("");
 				
 			}
 			

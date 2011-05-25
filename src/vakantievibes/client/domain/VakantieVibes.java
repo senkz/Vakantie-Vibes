@@ -10,7 +10,7 @@ public class VakantieVibes {
 	public VakantieVibes()	{
 	}
 	
-	private void addGebruiker(Gebruiker g) {
+	public void addGebruiker(Gebruiker g) {
 		gebruikers.add(g);
 	}
 }

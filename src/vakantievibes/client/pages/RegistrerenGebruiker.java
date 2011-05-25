@@ -44,7 +44,7 @@ public class RegistrerenGebruiker extends FormPanel{
 					Adres a = new Adres(tbland.getText(), tbplaats.getText(),tbstraat.getText(), tbhn.getText(), tbpostcode.getText(), Integer.parseInt(tbtelefoon.getText()));
 					
 					g.setAdres(a);
-					serviceImpl.
+					serviceImpl.addGebruiker(g);
 			}});
 		breset.addClickHandler(new ClickHandler(){
 

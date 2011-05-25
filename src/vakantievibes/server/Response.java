@@ -1,13 +1,15 @@
+/*
 package vakantievibes.server;
 
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.user.client.ui.DeckPanel;
+import com.google.gwt.user.client.ui.RootPanel;
 
 
 
-/**
+**
  * Entry point classes define <code>onModuleLoad()</code>.
- */
+ *
 public class Response implements EntryPoint {
 	
 	private DeckPanel multiplePagesDeckPanel = new DeckPanel();
@@ -30,4 +32,4 @@ public class Response implements EntryPoint {
 		multiplePagesDeckPanel.showWidget(1);
 	}
 }
-
+*/

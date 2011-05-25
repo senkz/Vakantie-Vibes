@@ -3,6 +3,7 @@ package vakantievibes.client.pages;
 import vakantievibes.client.domain.Adres;
 import vakantievibes.client.domain.Gebruiker;
 import vakantievibes.client.domain.VakantieVibes;
+import vakantievibes.client.domain.Inloggen;
 
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
@@ -40,7 +41,7 @@ public class RegistrerenGebruiker extends FormPanel{
 		bpost.addClickHandler(new ClickHandler(){
 			@Override
 			public void onClick(ClickEvent event) {
-					Gebruiker g = new Gebruiker(tbgb.getText(), tbww.getText(), tbnaam.getText(), tbanaam.getText(), tbemail.getText());
+					Gebruiker g = new Gebruiker(tbgb.getText(), Inloggen.hashWachtwoord(tbww.getText()), tbnaam.getText(), tbanaam.getText(), tbemail.getText());
 					Adres a = new Adres(tbland.getText(), tbplaats.getText(),tbstraat.getText(), tbhn.getText(), tbpostcode.getText(), Integer.parseInt(tbtelefoon.getText()));
 					
 					g.setAdres(a);

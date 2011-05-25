@@ -1,29 +1,29 @@
 package vakantievibes.client.domain;
 
-import java.util.Calendar;
+import java.util.Date;
 
 public class Reis {
 
-	private Calendar vertrekDatum, terugDatum;
+	private Date vertrekDatum, terugDatum;
 
-	public Reis(Calendar vDat, Calendar tDat){
+	public Reis(Date vDat, Date tDat){
 		vertrekDatum = vDat;
 		terugDatum = tDat;
 	}
-	public Calendar getVertrekDatum() {
+	public Date getVertrekDatum() {
 		return vertrekDatum;
 	}
 
-	public Calendar getTerugDatum(){
+	public Date getTerugDatum(){
 		return terugDatum;
 	}
 
-	public void setVertrekDatum(Calendar vDat){
-			vertrekDatum = vDat.getInstance();
+	public void setVertrekDatum(Date vDat){
+			vertrekDatum = vDat;
 	}
 
-	public void setTerugDatum(Calendar tDat){
-			terugDatum = tDat.getInstance();
+	public void setTerugDatum(Date tDat){
+			terugDatum = tDat;
 	}
 
 }

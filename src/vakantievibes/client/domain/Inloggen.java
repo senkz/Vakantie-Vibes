@@ -8,19 +8,21 @@ public class Inloggen {
 	static String salt = "VakantieVibes";
 	static VakantieVibes ServiceImpl;
 	
+	public Inloggen() {}
+	
 	public Inloggen(VakantieVibes sI) {
 		ServiceImpl = sI;
 	}
 
-	public static Gebruiker Login(String ww, String gb) {
+	public Gebruiker Login(String ww, String gb) {
 		Gebruiker g = ServiceImpl.zoekGebruiker(gb);
 		if(hashWachtwoord(g.getWachtWoord()).equals(ww)) {
-			
+			return g;
 		}
 		return null;
 	}
 	
-	private static String hashWachtwoord(String s) {
+	public static String hashWachtwoord(String s) {
 		MessageDigest m;
 		try {
 			m = MessageDigest.getInstance("MD5");

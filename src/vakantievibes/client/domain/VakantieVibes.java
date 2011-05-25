@@ -13,4 +13,12 @@ public class VakantieVibes {
 	public void addGebruiker(Gebruiker g) {
 		gebruikers.add(g);
 	}
+	
+	public Gebruiker zoekGebruiker(String gnaam) {
+		for(Gebruiker z : gebruikers) {
+			if(z.getGebruikersNaam().equals(gnaam))
+				return z;
+		}
+		return null;
+	}
 }

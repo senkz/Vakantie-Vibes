@@ -2,12 +2,12 @@ package vakantievibes.client;
 
 
 import vakantievibes.client.domain.VakantieVibes;
+import vakantievibes.client.pages.InloggenPage;
 import vakantievibes.client.pages.RegistrerenGebruiker;
 import vakantievibes.client.pages.Reizen;
 
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.user.client.ui.RootPanel;
-import com.google.gwt.user.client.ui.TabBar;
 import com.google.gwt.user.client.ui.TabPanel;
 
 /**
@@ -21,7 +21,6 @@ public class Entry implements EntryPoint {
 			serviceImpl = new VakantieVibes();
 			
 			TabPanel myTabPanel = new TabPanel();
-			myTabBar = myTabPanel.getTabBar();
 			
 			myTabPanel.setSize("800px", "100px");
 			myTabPanel.setAnimationEnabled(true);

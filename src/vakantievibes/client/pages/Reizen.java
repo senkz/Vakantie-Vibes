@@ -50,7 +50,11 @@ public class Reizen extends VerticalPanel {
 		
 		@Override
 		public void onClick(ClickEvent event) {
-			pagina.boekReis(reis);
+			if(reis.equals("terug")){
+				pagina.naarHoofdPanel();
+			} else {
+				pagina.boekReis(reis);
+			}
 		}
 	};
 	
@@ -59,11 +63,13 @@ public class Reizen extends VerticalPanel {
 		boekReisPanel.add(new Label(r));
 		terug = new Button("Terug naar overzicht");
 		terug.addClickHandler(new MyClickHandler("terug",this));
+		boekReisPanel.add(terug);
 		add(boekReisPanel);
 	}
 	
 	public void naarHoofdPanel() {
 		remove(boekReisPanel);
+		boekReisPanel= new VerticalPanel();
 		add(hoofdPanel);
 	}
 }

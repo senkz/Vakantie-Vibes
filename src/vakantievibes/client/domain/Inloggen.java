@@ -1,8 +1,5 @@
 package vakantievibes.client.domain;
 
-import java.math.BigInteger;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 
 public class Inloggen {
 	static String salt = "VakantieVibes";

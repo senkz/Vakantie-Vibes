@@ -63,4 +63,6 @@ public class InloggenPage extends FormPanel {
 			}
 		});
 	}
+	
+	public void somefucntion() {}
 }

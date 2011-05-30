@@ -49,7 +49,7 @@ public class RegistrerenGebruiker extends FormPanel{
 			@Override
 			public void onClick(ClickEvent event) {
 					Gebruiker g = new Gebruiker(tbgb.getText(), Inloggen.hashWachtwoord(tbww.getText()), tbnaam.getText(), tbanaam.getText(), tbemail.getText());
-					Adres a = new Adres(tbland.getText(), tbplaats.getText(),tbstraat.getText(), tbhn.getText(), tbpostcode.getText(), Integer.parseInt(tbtelefoon.getText()));
+					Adres a = new Adres(tbland.getText(), tbplaats.getText(),tbstraat.getText(), tbhn.getText(), tbpostcode.getText(), tbtelefoon.getText());
 					g.setAdres(a);
 					serviceImpl.addGebruiker(g);
 					Window.alert("Gebruiker is geregistreerd");

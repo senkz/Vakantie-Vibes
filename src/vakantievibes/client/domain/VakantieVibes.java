@@ -3,7 +3,7 @@ import java.util.ArrayList;
 
 public class VakantieVibes {
 	private ArrayList<Gebruiker> gebruikers = new ArrayList<Gebruiker>();
-	private ArrayList<Reis> reisen = new ArrayList<Reis>();
+	private ArrayList<Reis> reizen = new ArrayList<Reis>();
 	private ArrayList<Bestemming> bestemmingen = new ArrayList<Bestemming>();
 	private Gebruiker loginUser;
 
@@ -32,5 +32,17 @@ public class VakantieVibes {
 
 	public Gebruiker getLoginUser() {
 		return loginUser;
+	}
+	
+	public ArrayList<Reis> getReizen() {
+		return reizen;
+	}
+	
+	public void addBestemming(Bestemming b) {
+		bestemmingen.add(b);
+	}
+	
+	public void addReis(Reis r) {
+		reizen.add(r);
 	}
 }

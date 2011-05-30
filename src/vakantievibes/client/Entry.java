@@ -1,7 +1,12 @@
 package vakantievibes.client;
 
 
+import java.util.Date;
+
+import vakantievibes.client.domain.Adres;
+import vakantievibes.client.domain.Bestemming;
 import vakantievibes.client.domain.Gebruiker;
+import vakantievibes.client.domain.Reis;
 import vakantievibes.client.domain.VakantieVibes;
 import vakantievibes.client.pages.AanpassenGebruiker;
 import vakantievibes.client.pages.InloggenPage;
@@ -64,6 +69,11 @@ public class Entry implements EntryPoint {
 			myTabPanel.selectTab(0);
 			
 			RootPanel.get("content").add(myTabPanel);
+			
+			Bestemming b = new Bestemming("Nederland","nl","Dit de freaking info",50);
+			serviceImpl.addBestemming(b);
+			serviceImpl.addReis(new Reis(new Date(), new Date(), "Naar de wallen", "Lekker batsen", b, new Adres("Nederland", "Amsterdam", "de wallen", "69", "1337SX" , "09005858")));
+			serviceImpl.addGebruiker(new Gebruiker("test", "test", "voornaam", "achternaam", "email@email.com"));
 		}
 	
 }

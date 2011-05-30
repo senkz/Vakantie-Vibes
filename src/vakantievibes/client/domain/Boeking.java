@@ -6,10 +6,14 @@ public class Boeking {
 
 	private Date boekingDatum;
 	private boolean heeftBetaald;
+	private Gebruiker boeker;
+	private Reis reis;
 
-	public Boeking(Date bd, Boolean hb) {
+	public Boeking(Date bd, Boolean hb, Reis s, Gebruiker g, Reis r) {
 		boekingDatum = bd;
 		heeftBetaald = hb;
+		boeker =  g;
+		reis = r;
 	}
 
 	public boolean getHeeftBetaald() {
@@ -22,6 +26,14 @@ public class Boeking {
 
 	public Date getBoekingDatum() {
 		return boekingDatum;
+	}
+
+	public Gebruiker getBoeker() {
+		return boeker;
+	}
+
+	public Reis getReis() {
+		return reis;
 	}
 
 }

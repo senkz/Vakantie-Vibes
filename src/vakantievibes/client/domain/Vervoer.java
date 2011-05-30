@@ -5,11 +5,15 @@ import java.util.ArrayList;
 public class Vervoer {
 	private int zitplaatsen;
 	private ArrayList<Gebruiker> meerijder = new ArrayList<Gebruiker>();
-	private String type;
+	private Gebruiker aanbieder;
 
-	public Vervoer(int zp, String tp) {
+	public Vervoer(int zp, Gebruiker g) {
 		zitplaatsen = zp;
-		type = tp;
+		aanbieder = g;
+	}
+	
+	public Gebruiker getAanbieder() {
+		return aanbieder;
 	}
 
 	public int getZitplaatsen()	{
@@ -19,12 +23,29 @@ public class Vervoer {
 	public void setZitplaatsen(int zp) {
 		zitplaatsen = zp;
 	}
-
-	public String getType()	{
-		return type;
+	
+	public Gebruiker getMeerijder(int i) {
+		return meerijder.get(i);
 	}
-
-	public void setType(String tp) {
-		type = tp;
+	
+	public void setMeerijder(Gebruiker g) {
+		if(!checkMeerijder(g)) {
+			meerijder.add(g);
+		}
+	}
+	
+	public boolean checkMeerijder(Gebruiker g) {
+		for(Gebruiker h:meerijder) {
+			if(h.getGebruikersNaam().equals(g.getGebruikersNaam())) return true;
+		}
+		return false;
+	}
+	
+	public void removeMeerijder(Gebruiker g) {
+		meerijder.remove(g);
+	}
+	
+	public int getAantalMeerijder() {
+		return meerijder.size();
 	}
 }

@@ -9,6 +9,7 @@ public class Inloggen {
 	
 	public Inloggen(VakantieVibes sI) {
 		ServiceImpl = sI;
+		
 	}
 
 	public Gebruiker Login(String ww, String gb) {

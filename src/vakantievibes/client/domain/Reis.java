@@ -5,8 +5,10 @@ import java.util.Date;
 public class Reis {
 
 	private Date vertrekDatum, terugDatum;
+	private String naam;
 
-	public Reis(Date vDat, Date tDat){
+	public Reis(String nm, Date vDat, Date tDat){
+		setNaam(nm);
 		vertrekDatum = vDat;
 		terugDatum = tDat;
 	}
@@ -24,6 +26,12 @@ public class Reis {
 
 	public void setTerugDatum(Date tDat){
 			terugDatum = tDat;
+	}
+	public void setNaam(String naam) {
+		this.naam = naam;
+	}
+	public String getNaam() {
+		return naam;
 	}
 
 }

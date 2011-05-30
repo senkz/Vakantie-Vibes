@@ -20,7 +20,7 @@ public class InloggenPage extends FormPanel {
 	private TextBox tbgbi = new TextBox();
 	private PasswordTextBox tbwwi = new PasswordTextBox();
 	private Label lnaam = new Label("gebruiker"); Label lww = new Label("wachtwoord");
-	private Button binlog = new Button("Inloggen"), show = new Button("Toon gebruikers");
+	private Button binlog = new Button("Inloggen"),  buitlog = new Button("uitloggen"), show = new Button("Toon gebruikers");
 	private VakantieVibes serviceImpl;
 	private final VerticalPanel vp = new VerticalPanel();
 	
@@ -42,10 +42,23 @@ public class InloggenPage extends FormPanel {
 				
 				if(g == null) {
 					Window.alert("Foute invoer!");
+					tbwwi.setText(""); tbgbi.setText("");
 				} else {
 					serviceImpl.setLoginUser(g);
 					Window.alert("Goed gedaan! " + g.getVoorNaam());
+					tbwwi.setText(""); tbgbi.setText("");
+					vp.add(buitlog);
+					vp.remove(binlog);
+					
 				}
+			}
+			
+		});
+		buitlog.addClickHandler(new ClickHandler(){
+
+			@Override
+			public void onClick(ClickEvent event) {
+				serviceImpl.setLoginUser(null);				
 			}
 			
 		});

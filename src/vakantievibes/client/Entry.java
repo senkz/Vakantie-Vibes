@@ -1,6 +1,7 @@
 package vakantievibes.client;
 
 
+import vakantievibes.client.domain.Gebruiker;
 import vakantievibes.client.domain.VakantieVibes;
 import vakantievibes.client.pages.AanpassenGebruiker;
 import vakantievibes.client.pages.InloggenPage;
@@ -24,6 +25,9 @@ public class Entry implements EntryPoint {
 		@Override
 		public void onModuleLoad() {
 			serviceImpl = new VakantieVibes();
+			Gebruiker admin1 = new Gebruiker("admin1", "admin", "henk", "klaas", "test@test.test");
+			serviceImpl.addGebruiker(admin1);
+			admin1.setRechten(1);
 			
 			final TabPanel myTabPanel = new TabPanel();
 			

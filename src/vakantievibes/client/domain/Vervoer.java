@@ -6,10 +6,16 @@ public class Vervoer {
 	private int zitplaatsen;
 	private ArrayList<Gebruiker> meerijder = new ArrayList<Gebruiker>();
 	private Gebruiker aanbieder;
+	private Reis reis;
 
-	public Vervoer(int zp, Gebruiker g) {
+	public Vervoer(int zp, Gebruiker g, Reis r) {
 		zitplaatsen = zp;
 		aanbieder = g;
+		reis = r;
+	}
+	
+	public Reis getReis() {
+		return reis;
 	}
 	
 	public Gebruiker getAanbieder() {

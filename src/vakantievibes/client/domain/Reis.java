@@ -7,24 +7,26 @@ public class Reis {
 	private Date vertrekDatum, terugDatum;
 	private String informatie,titel;
 	private Bestemming bestemming;
+	private Adres adres;
 	
 
-	public Reis(Date vDat, Date tDat,String t, Bestemming b){
+	public Reis(Date vDat, Date tDat,String t, Bestemming b, Adres a){
 		vertrekDatum = vDat;
 		terugDatum = tDat;
 		setTitel(t);
-		setInformatie(b.getInformation());
+		setInformatie(b.getInformatie());
 		setBestemming(b);
+		setAdres(a);
 	}
 	
-	public Reis(Date vDat, Date tDat,String t,String i, Bestemming b){
+	public Reis(Date vDat, Date tDat,String t,String i, Bestemming b, Adres a){
 		vertrekDatum = vDat;
 		terugDatum = tDat;
 		setTitel(t);
 		setBestemming(b);
 		setInformatie(i);
+		setAdres(a);
 	}
-	
 	
 	public Date getVertrekDatum() {
 		return vertrekDatum;
@@ -60,6 +62,14 @@ public class Reis {
 
 	public String getInformatie() {
 		return informatie;
+	}
+
+	public void setAdres(Adres adres) {
+		this.adres = adres;
+	}
+
+	public Adres getAdres() {
+		return adres;
 	}
 
 }

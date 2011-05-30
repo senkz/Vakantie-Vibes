@@ -33,4 +33,8 @@ public class VakantieVibes {
 	public Gebruiker getLoginUser() {
 		return loginUser;
 	}
+	
+	public ArrayList<Reis> getReizen() {
+		return reizen;
+	}
 }

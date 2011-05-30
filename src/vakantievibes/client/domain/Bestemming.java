@@ -1,12 +1,11 @@
 package vakantievibes.client.domain;
 public class Bestemming{
 
-	private String information;
-	private String locatie;
+	private String informatie,locatie;
 	private double prijsPerNacht;
 
 	public Bestemming(String loc,String info, double ppn){
-		setInformation(info);
+		setInformatie(info);
 		prijsPerNacht = ppn;
 		locatie=loc;
 	}
@@ -27,11 +26,11 @@ public class Bestemming{
 		return locatie;
 	}
 
-	public void setInformation(String information) {
-		this.information = information;
+	public void setInformatie(String informatie) {
+		this.informatie = informatie;
 	}
 
-	public String getInformation() {
-		return information;
+	public String getInformatie() {
+		return informatie;
 	}
 }

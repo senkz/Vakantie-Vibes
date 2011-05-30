@@ -51,9 +51,14 @@ public class Entry implements EntryPoint {
 							break;
 					}
 				}
-			});		
+			});
+			
 			myTabPanel.add(new HorizontalPanel(), "Reg. gebruiker");
-			myTabPanel.add(new HorizontalPanel(), "Inloggen");			
+			myTabPanel.add(new HorizontalPanel(), "Boek Reis");
+			myTabPanel.add(new HorizontalPanel(), "Inloggen");
+			myTabPanel.add(new HorizontalPanel(), "Aanpassen");
+			myTabPanel.selectTab(0);
+			
 			RootPanel.get("content").add(myTabPanel);
 		}
 	

@@ -9,9 +9,9 @@ import vakantievibes.client.domain.Gebruiker;
 import vakantievibes.client.domain.Reis;
 import vakantievibes.client.domain.VakantieVibes;
 import vakantievibes.client.pages.AanpassenGebruiker;
+import vakantievibes.client.pages.Bestemmingen;
 import vakantievibes.client.pages.InloggenPage;
 import vakantievibes.client.pages.RegistrerenGebruiker;
-import vakantievibes.client.pages.Reizen;
 
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.event.logical.shared.SelectionEvent;
@@ -50,7 +50,7 @@ public class Entry implements EntryPoint {
 							p.add(new RegistrerenGebruiker(serviceImpl));
 							break;
 						case 1:
-							p.add(new Reizen(serviceImpl));
+							p.add(new Bestemmingen(serviceImpl));
 							break;
 						case 2:
 							p.add(new InloggenPage(serviceImpl));
@@ -63,16 +63,18 @@ public class Entry implements EntryPoint {
 			});
 			
 			myTabPanel.add(new HorizontalPanel(), "Reg. gebruiker");
-			myTabPanel.add(new HorizontalPanel(), "Boek Reis");
+			myTabPanel.add(new HorizontalPanel(), "Overzicht Bestemmingen");
 			myTabPanel.add(new HorizontalPanel(), "Inloggen");
 			myTabPanel.add(new HorizontalPanel(), "Aanpassen");
 			myTabPanel.selectTab(0);
 			
 			RootPanel.get("content").add(myTabPanel);
 			
-			Bestemming b = new Bestemming("Nederland","nl","Dit de freaking info",50);
-			serviceImpl.addBestemming(b);
-			serviceImpl.addReis(new Reis(new Date(), new Date(), "Naar de wallen", "Lekker batsen", b, new Adres("Nederland", "Amsterdam", "de wallen", "69", "1337SX" , "09005858")));
+			Bestemming b = new Bestemming("Nederland","nl","Dit dbrvbrfvgbrg info",50);
+			Bestemming b1 = new Bestemming("Nederland","nl","Dit is de freaking info",50);
+			serviceImpl.addBestemming(b);serviceImpl.addBestemming(b1);
+			serviceImpl.addReis(new Reis(new Date(System.currentTimeMillis()), new Date(System.currentTimeMillis()+500000), "Naar de wallen", "Lekker batsen", b, new Adres("Nederland", "Amsterdam", "de wallen", "69", "1337SX" , "09005858")));
+			serviceImpl.addReis(new Reis(new Date(System.currentTimeMillis()), new Date(System.currentTimeMillis()+500000), "Naar dgrn", "Lekgvbrewgvrgv", b1, new Adres("Nederland", "Amsterdam", "de wallen", "69", "1337SX" , "09005858")));
 			serviceImpl.addGebruiker(new Gebruiker("test", "test", "voornaam", "achternaam", "email@email.com"));
 		}
 	

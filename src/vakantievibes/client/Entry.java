@@ -9,6 +9,7 @@ import vakantievibes.client.domain.Gebruiker;
 import vakantievibes.client.domain.Reis;
 import vakantievibes.client.domain.VakantieVibes;
 import vakantievibes.client.pages.AanpassenGebruiker;
+import vakantievibes.client.pages.AdminPage;
 import vakantievibes.client.pages.InloggenPage;
 import vakantievibes.client.pages.RegistrerenGebruiker;
 import vakantievibes.client.pages.Reizen;
@@ -58,6 +59,8 @@ public class Entry implements EntryPoint {
 						case 3:
 							p.add(new AanpassenGebruiker(serviceImpl));
 							break;
+						case 4:
+							p.add(new AdminPage());
 					}
 				}
 			});
@@ -66,6 +69,7 @@ public class Entry implements EntryPoint {
 			myTabPanel.add(new HorizontalPanel(), "Boek Reis");
 			myTabPanel.add(new HorizontalPanel(), "Inloggen");
 			myTabPanel.add(new HorizontalPanel(), "Aanpassen");
+			myTabPanel.add(new HorizontalPanel(), "admin");
 			myTabPanel.selectTab(0);
 			
 			RootPanel.get("content").add(myTabPanel);

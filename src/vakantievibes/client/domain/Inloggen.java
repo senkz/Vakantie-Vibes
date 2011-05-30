@@ -4,21 +4,12 @@ package vakantievibes.client.domain;
 public class Inloggen {
 	static String salt = "VakantieVibes";
 	static VakantieVibes ServiceImpl;
-	
-	public Inloggen() {}
-	
+
 	public Inloggen(VakantieVibes sI) {
 		ServiceImpl = sI;
 	}
 
-	public Gebruiker Login(String ww, String gb) {
-		System.out.println("*********************");
-		System.out.println("Gebruikersnaam:" + gb);
-		System.out.println("Wachtwoord pre-hash:" + ww);
-		System.out.println("Wachtwoord post-hash:" + hashWachtwoord(ww));
-		System.out.println("*********************");
-		
-		
+	public Gebruiker Login(String ww, String gb) {		
 		Gebruiker g = ServiceImpl.zoekGebruiker(gb);
 		if(hashWachtwoord(g.getWachtWoord()).equals(ww)) {
 			return g;

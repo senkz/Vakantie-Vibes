@@ -37,4 +37,12 @@ public class VakantieVibes {
 	public ArrayList<Reis> getReizen() {
 		return reizen;
 	}
+	
+	public void addBestemming(Bestemming b) {
+		bestemmingen.add(b);
+	}
+	
+	public void addReis(Reis r) {
+		reizen.add(r);
+	}
 }

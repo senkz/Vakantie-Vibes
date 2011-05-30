@@ -1,9 +1,8 @@
 package vakantievibes.client.domain;
 public class Adres {
-	private String land, stad, straat, huisnummer, postcode;
-	private int telefoon;
+	private String land, stad, straat, huisnummer, postcode, telefoon;
 
-	public Adres(String l, String s, String st, String hn, String pc ,int tf) {
+	public Adres(String l, String s, String st, String hn, String pc ,String tf) {
 		land = l;
 		stad = s;
 		straat = st;
@@ -32,7 +31,7 @@ public class Adres {
 		return straat;
 	}
 
-	public int getTelefoon() {
+	public String getTelefoon() {
 		return telefoon;
 	}
 
@@ -56,7 +55,7 @@ public class Adres {
 		this.straat = straat;
 	}
 
-	public void setTelefoon(int telefoon) {
+	public void setTelefoon(String telefoon) {
 		this.telefoon = telefoon;
 	}
 }

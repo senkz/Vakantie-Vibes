@@ -48,4 +48,8 @@ public class VakantieVibes {
 	public void addReis(Reis r) {
 		reizen.add(r);
 	}
+	
+	public ArrayList<Bestemming> getBestemming() {
+		return bestemmingen;
+	}
 }

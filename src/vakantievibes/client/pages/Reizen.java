@@ -2,6 +2,7 @@ package vakantievibes.client.pages;
 
 import java.util.ArrayList;
 
+import vakantievibes.client.domain.Bestemming;
 import vakantievibes.client.domain.Reis;
 import vakantievibes.client.domain.VakantieVibes;
 
@@ -18,20 +19,24 @@ public class Reizen extends VerticalPanel {
 	public DatePicker datum;
 	public Button boek,terug;
 	
-	public Reizen(VakantieVibes vv) {
+	public Reizen(VakantieVibes vv, Bestemming b) {
 		add(new Label("Kies een datum en een reis."));
 		ArrayList<Reis> reizen = vv.getReizen();
 		for(Reis r:reizen) {
-			VerticalPanel vp = new VerticalPanel();
-			vp.add(new Label(r.getInformatie()));
-			vp.setTitle(r.getTitel());
-			boek = new Button("Boek reis");
-			datum = new DatePicker();
-			boek.addClickHandler(new MyClickHandler(r,this));
-			vp.setStyleName("reis");
-			vp.add(datum);
-			vp.add(boek);
-			hoofdPanel.add(vp);
+			if(r.getBestemming()==b){
+				VerticalPanel vp = new VerticalPanel();
+				vp.add(new Label(r.getInformatie()));
+				vp.setTitle(r.getTitel());
+				boek = new Button("Boek reis");
+				datum = new DatePicker();
+				datum.setTransientEnabledOnDates(true, r.getVertrekDatum());
+				datum.setTransientEnabledOnDates(false, r.getTerugDatum());
+				boek.addClickHandler(new MyClickHandler(r,this));
+				vp.setStyleName("reis");
+				vp.add(datum);
+				vp.add(boek);
+				hoofdPanel.add(vp);
+			}
 		}
 		add(hoofdPanel);
 	}

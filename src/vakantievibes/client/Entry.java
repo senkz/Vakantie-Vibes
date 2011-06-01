@@ -10,6 +10,7 @@ import vakantievibes.client.domain.Reis;
 import vakantievibes.client.domain.VakantieVibes;
 import vakantievibes.client.pages.AanpassenGebruiker;
 import vakantievibes.client.pages.AdminPage;
+import vakantievibes.client.pages.Bestemmingen;
 import vakantievibes.client.pages.InloggenPage;
 import vakantievibes.client.pages.RegistrerenGebruiker;
 
@@ -73,8 +74,8 @@ public class Entry implements EntryPoint {
 			
 			RootPanel.get("content").add(myTabPanel);
 			
-			Bestemming b = new Bestemming("Nederland","nl","Dit dbrvbrfvgbrg info",50);
-			Bestemming b1 = new Bestemming("Nederland","nl","Dit is de freaking info",50);
+			Bestemming b = new Bestemming("Nederland","nl","Dit dbrvbrfvgbrg info");
+			Bestemming b1 = new Bestemming("Nederland","nl","Dit is de freaking info");
 			serviceImpl.addBestemming(b);serviceImpl.addBestemming(b1);
 			serviceImpl.addReis(new Reis(new Date(System.currentTimeMillis()), new Date(System.currentTimeMillis()+500000), "Naar de wallen", "Lekker batsen", b, new Adres("Nederland", "Amsterdam", "de wallen", "69", "1337SX" , "09005858")));
 			serviceImpl.addReis(new Reis(new Date(System.currentTimeMillis()), new Date(System.currentTimeMillis()+500000), "Naar dgrn", "Lekgvbrewgvrgv", b1, new Adres("Nederland", "Amsterdam", "de wallen", "69", "1337SX" , "09005858")));

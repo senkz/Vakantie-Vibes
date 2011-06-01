@@ -2,22 +2,12 @@ package vakantievibes.client.domain;
 public class Bestemming{
 
 	private String informatie,titel, locatie;
-	private double prijsPerNacht;
 
 
-	public Bestemming(String loc,String t,String info, double ppn){
+	public Bestemming(String loc,String t,String info){
 		setInformatie(info);
-		prijsPerNacht = ppn;
 		locatie=loc;
 		setTitel(t);
-	}
-
-	public void setPrijsPerNacht(double ppn){
-		prijsPerNacht = ppn;
-	}
-	
-	public double getPrijsPerNacht(){
-		return prijsPerNacht;
 	}
 
 	public void setLocatie(String locatie) {

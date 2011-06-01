@@ -1,6 +1,8 @@
 package vakantievibes.client.domain;
 import java.util.ArrayList;
 
+import com.google.gwt.user.client.Window;
+
 public class VakantieVibes {
 	private ArrayList<Gebruiker> gebruikers = new ArrayList<Gebruiker>();
 	private ArrayList<Reis> reizen = new ArrayList<Reis>();
@@ -44,12 +46,16 @@ public class VakantieVibes {
 	public void addBestemming(Bestemming b) {
 		bestemmingen.add(b);
 	}
+	public void removeBestemming(Bestemming b){
+		bestemmingen.remove(b);
+		Window.alert("uw heeft "+ b.getTitel() + " verwijderd");
+	}
 	
 	public void addReis(Reis r) {
 		reizen.add(r);
 	}
-	
-	public ArrayList<Bestemming> getBestemming() {
-		return bestemmingen;
+	public void removeReis(Reis r){
+		reizen.remove(r);
+		Window.alert("uw heeft " + r.getTitel() + " verwijderd");
 	}
 }

@@ -37,6 +37,9 @@ public class VakantieVibes {
 	public ArrayList<Reis> getReizen() {
 		return reizen;
 	}
+	public ArrayList<Bestemming> getBestemming(){
+		return bestemmingen;
+	}
 	
 	public void addBestemming(Bestemming b) {
 		bestemmingen.add(b);

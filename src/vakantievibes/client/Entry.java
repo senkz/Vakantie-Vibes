@@ -60,7 +60,7 @@ public class Entry implements EntryPoint {
 							p.add(new AanpassenGebruiker(serviceImpl));
 							break;
 						case 4:
-							p.add(new AdminPage());
+							p.add(new AdminPage(serviceImpl));
 					}
 				}
 			});

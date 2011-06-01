@@ -5,7 +5,9 @@ public class VakantieVibes {
 	private ArrayList<Gebruiker> gebruikers = new ArrayList<Gebruiker>();
 	private ArrayList<Reis> reizen = new ArrayList<Reis>();
 	private ArrayList<Bestemming> bestemmingen = new ArrayList<Bestemming>();
-	private Gebruiker loginUser;
+	private ArrayList<Vervoer> vervoer = new ArrayList<Vervoer>();
+	private ArrayList<Boeking> boeking = new ArrayList<Boeking>();
+	private Gebruiker loginUser = null;
 
 	public VakantieVibes()	{
 	}
@@ -48,8 +50,42 @@ public class VakantieVibes {
 	public void addReis(Reis r) {
 		reizen.add(r);
 	}
+
+	public boolean addVervoer(Vervoer vervoer) {
+		ArrayList<Vervoer> ver = loginUser.getVervoer();
+		for(Vervoer v:ver) {
+			if(v.getReis()==vervoer.getReis()) return false;
+		}
+		this.vervoer.add(vervoer);
+		return true;
+	}
+
+	public ArrayList<Vervoer> getVervoer() {
+		return vervoer;
+	}
 	
-	public ArrayList<Bestemming> getBestemming() {
-		return bestemmingen;
+	public ArrayList<Vervoer> getVervoer(Reis r) {
+		ArrayList<Vervoer> svervoer=new ArrayList<Vervoer>();
+		for(Vervoer v:vervoer) {
+			if(v.getReis()==r) {
+				svervoer.add(v);
+			}
+		}
+		if(svervoer.size()==0) return null;
+		return svervoer;
+	}
+
+	public boolean addBoeking(Boeking boeking) {
+		ArrayList<Boeking> boe = loginUser.getBoeking();
+		for(Boeking b:boe) {
+			if(b.getReis()==boeking.getReis()) return false;
+		}
+		this.boeking.add(boeking);
+		loginUser.addBoeking(boeking);
+		return true;
+	}
+
+	public ArrayList<Boeking> getBoeking() {
+		return boeking;
 	}
 }

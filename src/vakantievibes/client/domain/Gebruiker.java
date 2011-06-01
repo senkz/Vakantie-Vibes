@@ -1,9 +1,14 @@
 package vakantievibes.client.domain;
+
+import java.util.ArrayList;
+
 public class Gebruiker{
 
 	private String gebruikersNaam, wachtWoord, voorNaam, achterNaam, email;
 	private int rechten;
 	private Adres a;
+	private ArrayList<Boeking> boeking = new ArrayList<Boeking>();
+	private ArrayList<Vervoer> vervoer = new ArrayList<Vervoer>();
 
 	public Gebruiker(String gb, String ww, String vn, String an, String em) {
 		gebruikersNaam = gb;
@@ -63,5 +68,17 @@ public class Gebruiker{
 	}
 	public Adres getAdres() {
 		return a;
+	}
+	public void addBoeking(Boeking boeking) {
+		this.boeking.add(boeking);
+	}
+	public ArrayList<Boeking> getBoeking() {
+		return boeking;
+	}
+	public void addVervoer(Vervoer vervoer) {
+		this.vervoer.add(vervoer);
+	}
+	public ArrayList<Vervoer> getVervoer() {
+		return vervoer;
 	}
 }

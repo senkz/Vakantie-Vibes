@@ -9,7 +9,7 @@ public class Boeking {
 	private Gebruiker boeker;
 	private Reis reis;
 
-	public Boeking(Date bd, Boolean hb, Reis s, Gebruiker g, Reis r) {
+	public Boeking(Date bd, Boolean hb, Gebruiker g, Reis r) {
 		boekingDatum = bd;
 		heeftBetaald = hb;
 		boeker =  g;

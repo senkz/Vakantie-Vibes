@@ -231,7 +231,7 @@ public class AdminPage extends FormPanel implements ClickHandler {
 		@Override
 		public void onClick(ClickEvent event) {
 			serviceImpl.changeBestemming(bs, bestem,titel);
-			//refreshPanelBestem();
+			refreshPanelBestem();
 		}
 	};
 	public void refreshpanelreis(){

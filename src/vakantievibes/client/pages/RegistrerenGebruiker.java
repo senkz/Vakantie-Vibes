@@ -48,11 +48,78 @@ public class RegistrerenGebruiker extends FormPanel{
 		bpost.addClickHandler(new ClickHandler(){
 			@Override
 			public void onClick(ClickEvent event) {
+				String regex = "[A-z].*";
+				String regmail = "^[\\w-]+\\.*[\\w-]+@([\\w-]+\\.)+[\\w-]+";
+				String regpost = "[0-9]{4}[A-z]{2}";
+				String regtel = "[0-9]{10}";
+				String reghn = "[0-9].*[\\w]*";
+				String p = "";
+				if (!tbnaam.getText().matches(regex)) {
+					//Window.alert("geen valide voornaam");
+					p = "geen valide voornaam\n";
+				}
+				if (!tbanaam.getText().matches(regex)) {
+					//Window.alert("geen valide voornaam");
+					p += "geen valide achternaam\n";
+				}
+				if (!tbhn.getText().matches(reghn))
+				{
+					p += "geen valide huisnummer, begin met een nummer\n";
+				}
+				if(!tbemail.getText().matches(regmail))
+				{
+					//Window.alert("geen valide email");
+					p += "geen valide email\n";
+				}
+
+				if(!tbpostcode.getText().matches(regpost))
+				{
+					//Window.alert("geen valide postcode");
+					p += "geen valide postcode\n";
+				}
+
+				if(!tbtelefoon.getText().matches(regtel))
+				{
+					//Window.alert("geen valide telefoonnummer");
+					p += "geen valide telefoonnummer\n";
+				}
+
+				if (!tbstraat.getText().matches(regex))
+				{
+					//Window.alert("geen valide straatnaam");
+					p += "geen valide straatnaam\n";
+				}
+
+				if (!tbplaats.getText().matches(regex))
+				{
+					//Window.alert("geen valide plaatsnaam");
+					p += "geen valide plaatsnaam\n";
+				}
+			
+				if (!tbland.getText().matches(regex))
+				{
+					//Window.alert("hier moet een woord geen nummers");
+					p += "geen valide landnaam\n";
+				}
+				if (tbww.getText() == "") 
+				{
+					p += "geen wachtwoord ingevuld\n";
+				}
+				if (tbgb.getText() == "")
+				{
+					p += "geen gebruikersnaam ingevuld\n";
+				}
+				if(p != "")
+				{
+					Window.alert(p);	
+				}
+				else{
 					Gebruiker g = new Gebruiker(tbgb.getText(), Inloggen.hashWachtwoord(tbww.getText()), tbnaam.getText(), tbanaam.getText(), tbemail.getText());
 					Adres a = new Adres(tbland.getText(), tbplaats.getText(),tbstraat.getText(), tbhn.getText(), tbpostcode.getText(), tbtelefoon.getText());
 					g.setAdres(a);
 					serviceImpl.addGebruiker(g);
 					Window.alert("Gebruiker is geregistreerd");
+				}
 			}});
 		breset.addClickHandler(new ClickHandler(){
 

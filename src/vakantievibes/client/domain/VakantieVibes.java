@@ -99,4 +99,11 @@ public class VakantieVibes {
 		reizen.remove(r);
 		Window.alert("uw heeft " + r.getTitel() + " verwijderd");
 	}
+
+	public void changeBestemming(Bestemming bs, String bestem, String tl) {
+			bs.setInformatie(bestem);
+			System.out.println("informatie leeg");
+			
+
+	}
 }

@@ -2,17 +2,21 @@ package vakantievibes.client.pages;
 
 import java.util.ArrayList;
 
+import vakantievibes.client.domain.Adres;
 import vakantievibes.client.domain.Bestemming;
 import vakantievibes.client.domain.Gebruiker;
 import vakantievibes.client.domain.Reis;
 import vakantievibes.client.domain.VakantieVibes;
 
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.FormPanel;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
+import com.google.gwt.user.client.ui.ListBox;
+import com.google.gwt.user.client.ui.TextArea;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
@@ -22,7 +26,7 @@ public class AdminPage extends FormPanel implements ClickHandler {
 	private VakantieVibes serviceImpl;
 	private VerticalPanel mainvp, hrvp, hbvp;
 	private HorizontalPanel menuhp;
-	private Button breis, bbestem, edit, delete,bbestemtoe;
+	private Button breis, bbestem, edit, delete,bbestemtoe,breistoe;
 	private TextBox tbbnm, tbbinfo,tbloc, tbrnm, tbrvdat, tbrtdat,tbrinfo, tbrtp;
 	private Label lbloc, lbnm, lbinfo, lrnm, lrvdat, lrtdat,lrinfo, lrb, lrtp;
 	private TextBox tbrl, tbrs, tbrst, tbrhn, tbrpc, tbrtf;
@@ -53,8 +57,8 @@ public class AdminPage extends FormPanel implements ClickHandler {
 		tbrhn = new TextBox();		lrhn = new Label("huisnummer");
 		tbrpc = new TextBox();		lrpc = new Label("postcode");
 		tbrtf = new TextBox();		lrtf = new Label("telefoonnr");
-									lrb = new Label("bestemming");
-
+									lrb = new Label("bestemming");							
+										
 		mainvp  = new VerticalPanel();
 		menuhp = new HorizontalPanel();		mainvp.add(menuhp); 
 		hrvp  = new VerticalPanel();		mainvp.add(hrvp);	hrvp.setVisible(false);
@@ -64,6 +68,7 @@ public class AdminPage extends FormPanel implements ClickHandler {
 		breis = new Button("reis");			menuhp.add(breis);		breis.addClickHandler(this);
 		bbestem = new Button("bestemming");	menuhp.add(bbestem);	bbestem.addClickHandler(this);
 		bbestemtoe = new Button("toevoegen"); 						bbestemtoe.addClickHandler(this);
+		breistoe = new Button("toevoegen");							breistoe.addClickHandler(this);
 		
 		add(mainvp);
     	
@@ -82,7 +87,7 @@ public class AdminPage extends FormPanel implements ClickHandler {
 	    	hrvp.add(lrtp);hrvp.add(tbrtp);hrvp.add(lrl);hrvp.add(tbrl);hrvp.add(lrs);
 	    	hrvp.add(tbrs);hrvp.add(lrst);hrvp.add(tbrst);hrvp.add(lrhn);hrvp.add(tbrhn);
 	    	hrvp.add(lrpc);hrvp.add(tbrpc);hrvp.add(lrtf);hrvp.add(tbrtf);
-	    	hrvp.add(lrb);hrvp.add();
+	    	hrvp.add(lrb);//hrvp.add();
 	    	hrvp.setVisible(true);
 	    	hbvp.setVisible(false);
 			System.out.println("printbreis");
@@ -101,6 +106,7 @@ public class AdminPage extends FormPanel implements ClickHandler {
 				hrvp.add(hp2);
 	    }  
 	    if (sender == bbestem) {
+	    	refreshPanelBestem();
 	    	hplist.clear(); hbvp.clear();
 	    	hbvp.add(lbnm);hbvp.add(tbbnm);hbvp.add(lbinfo); hbvp.add(tbbinfo); 
 	    	  hbvp.add(lbloc);hbvp.add(tbloc);
@@ -109,15 +115,21 @@ public class AdminPage extends FormPanel implements ClickHandler {
 	    	hbvp.setVisible(true);
 			System.out.println("printbbestem");
 			for(Bestemming b : bestemmingen){
+					TextBox tbbed = new TextBox();
 					HorizontalPanel hp = new HorizontalPanel();
 					hp.add(new Label(b.getTitel()));
+					//String s = b.getInformatie();
+					String s = "kaas";
+					tbbed.setText(s);
+					hp.add(tbbed);
+					
 					edit = new Button("edit") ;
 					delete = new Button("X");
 					hp.add(delete);
 					hp.add(edit);
 					hplist.add(hp);
 					delete.addClickHandler(new Mydelete2(b));
-					edit.addClickHandler(new Myedit2());
+					edit.addClickHandler(new Myedit2(b, tbbed.getText(), b.getTitel()));
 
 			}
 			for(HorizontalPanel hp : hplist)
@@ -128,8 +140,42 @@ public class AdminPage extends FormPanel implements ClickHandler {
 	    	serviceImpl.addBestemming(b);
 	    	refreshPanelBestem();
 	    }
-	    
+	    if (sender == breistoe){
+	    	ListBox lb = new ListBox();
+			for(Bestemming b : bestemmingen){
+				lb.addItem(b.getTitel());
+			/*	DateFormat myDateFormat = new SimpleDateFormat(tbrvdat.getText());
+				Date myDate = null;
+				try {
+				     myDate = myDateFormat.parse(tbrvdat.getText());
+				}  catch (java.text.ParseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				DateFormat anotherDateFormat = new SimpleDateFormat(tbrtdat.getText());
+				Date myDate2 = null;
+				try {
+				     myDate2 = myDateFormat.parse(tbrtdat.getText());
+				}  catch (java.text.ParseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				*/
+			}
+			
+			
+				lb.setVisibleItemCount(bestemmingen.size());
+				//String bestemmingtoev = lb.getValue(lb.getSelectedIndex());
+				//double tp = Double.parseDouble(tbrtp.getText());
+				//String d = lb.getItemText(lb.getSelectedIndex());
+				//Adres a = new Adres(tbrl.getText(), tbrs.getText(), tbrst.getText(), tbrhn.getText(), tbrpc.getText(), lrtf.getText());
+				//Reis reizen = new Reis(tbrvdat.getText(), tbrtdat.getText(), tbrnm.getText(), tbrinfo.getText(), bestemmingtoev, a, tp);
+				//serviceImpl.addAdres(a);	
+				//serviceImpl.addReis(reizen);
+				refreshpanelreis();
+		}
 	}
+	    
 	
 	class Mydelete implements ClickHandler {
 		private Reis reisjes;
@@ -173,17 +219,19 @@ public class AdminPage extends FormPanel implements ClickHandler {
 		}
 	};
 	class Myedit2 implements ClickHandler {
-		public String reis;
+		public String bestem, titel;
+		public Bestemming bs;
 		
 		
-		public Myedit2() {
-			
-			
+		public Myedit2(Bestemming b, String s,String tl) {
+			bs = b;
+			bestem = s;
+			titel =tl;
 		}
-		
 		@Override
 		public void onClick(ClickEvent event) {
-
+			serviceImpl.changeBestemming(bs, bestem,titel);
+			//refreshPanelBestem();
 		}
 	};
 	public void refreshpanelreis(){
@@ -207,19 +255,26 @@ public class AdminPage extends FormPanel implements ClickHandler {
 	}
 	public void refreshPanelBestem(){
 		hplist.clear(); hbvp.clear();
+    	hbvp.add(lbnm);hbvp.add(tbbnm);hbvp.add(lbinfo); hbvp.add(tbbinfo); 
+  	  	hbvp.add(lbloc);hbvp.add(tbloc);
+  	  	hbvp.add(bbestemtoe);
     	hrvp.setVisible(false);
     	hbvp.setVisible(true);
 		System.out.println("printbbestem");
 		for(Bestemming b : bestemmingen){
+				TextBox tbbed = new TextBox();
 				HorizontalPanel hp = new HorizontalPanel();
 				hp.add(new Label(b.getTitel()));
+				//String s = b.getInformatie();
+				//tbbed.setText();
+				hp.add(tbbed);
 				edit = new Button("edit") ;
 				delete = new Button("X");
 				hp.add(delete);
 				hp.add(edit);
 				hplist.add(hp);
 				delete.addClickHandler(new Mydelete2(b));
-				edit.addClickHandler(new Myedit2());
+				edit.addClickHandler(new Myedit2(b, tbbed.getText(), b.getTitel()));
 
 		}
 		for(HorizontalPanel hp : hplist)

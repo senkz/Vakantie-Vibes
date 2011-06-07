@@ -21,6 +21,17 @@ public class Reis {
 		setTotaalPrijs(tp);
 	}
 	
+	public Reis(String verDat, String tergDat, String t, String i, String k, Adres a, double tp) {
+		//setVtDatum(verDat);
+		//setTgDatum(tergDat);
+		setTitel(t);
+		setInformatie(i);
+		//setBestemming(k);
+		setAdres(a);
+		setTotaalPrijs(tp);
+		
+	}
+	
 	private void setTotaalPrijs(double tp) {
 		totaalprijs = tp;	
 	}

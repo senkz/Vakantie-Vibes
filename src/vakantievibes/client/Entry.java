@@ -63,13 +63,14 @@ public class Entry implements EntryPoint {
 			});
 			
 			myTabPanel.add(new HorizontalPanel(), "Reg. gebruiker");
-			myTabPanel.add(new HorizontalPanel(), "Overzicht Bestemmingen");
+			myTabPanel.add(new HorizontalPanel(), "Bestemmingen");
 			myTabPanel.add(new HorizontalPanel(), "Aanpassen");
 			myTabPanel.add(new HorizontalPanel(), "admin");
 			myTabPanel.selectTab(0);
 			
-			RootPanel.get("content").add(myTabPanel);
 			RootPanel.get("login").add(new InloggenPage(serviceImpl));
+			RootPanel.get("menuhor").add(myTabPanel.getTabBar());
+			RootPanel.get("content").add(myTabPanel.getDeckPanel());
 			
 			Bestemming b = new Bestemming("Nederland","bezoek","Dit dbrvbrfvgbrg info");
 			Bestemming b1 = new Bestemming("Nederland","kijken","Dit is de freaking info");
@@ -77,6 +78,7 @@ public class Entry implements EntryPoint {
 			serviceImpl.addReis(new Reis(new Date(System.currentTimeMillis()), new Date(System.currentTimeMillis()+500000), "Naar de wallen", "Lekker batsen", b, new Adres("Nederland", "Amsterdam", "de wallen", "69", "1337SX" , "09005858")));
 			serviceImpl.addReis(new Reis(new Date(System.currentTimeMillis()), new Date(System.currentTimeMillis()+500000), "Naar dgrn", "Lekgvbrewgvrgv", b1, new Adres("Nederland", "Amsterdam", "de wallen", "69", "1337SX" , "09005858")));
 			serviceImpl.addGebruiker(new Gebruiker("test", "test", "voornaam", "achternaam", "email@email.com"));
+			serviceImpl.addGebruiker(new Gebruiker("test2", "test", "voornaam", "achternaam", "email@email.com"));
 		}
 	
 }

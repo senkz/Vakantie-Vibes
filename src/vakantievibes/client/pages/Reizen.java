@@ -59,11 +59,19 @@ public class Reizen extends VerticalPanel {
 		public Reis reis;
 		public Reizen pagina;
 		public int soortPagina;
+		public Vervoer vervoer;
 		
 		public PageClickHandler(Reis r, Reizen p, int i) {
 			reis=r;
 			pagina=p;
 			soortPagina=i;
+		}
+		
+		public PageClickHandler(Reis r, Reizen p, int i, Vervoer v) {
+			reis=r;
+			pagina=p;
+			soortPagina=i;
+			vervoer=v;
 		}
 		
 		@Override
@@ -88,6 +96,10 @@ public class Reizen extends VerticalPanel {
 				} else {
 					Window.alert("Geen numerieke waarde opgegeven");
 				}				
+				break;
+			case 4:
+				pagina.reisMeeMetVervoer(reis,vervoer);
+				pagina.paginaInfo.setText("Bevestig de Boeking.");
 				break;
 			}
 		}
@@ -120,13 +132,17 @@ public class Reizen extends VerticalPanel {
 			vervoerInfo.setText("Er is helaas geen vervoer aangeboden voor deze reis.");
 			boekReisPanel.add(vervoerInfo);
 		} else {
-			vervoerInfo.setText("Er word(en) "+vervoer.size()+" vervoers mogelijkheden aangeboden.");
+			vervoerInfo.setText("Er worden vervoers mogelijkheden aangeboden.");
 			boekReisPanel.add(vervoerInfo);
 			for (Vervoer v:vervoer) {
-				VerticalPanel temppane = new VerticalPanel();
-				temppane.add(new Label("Aanbieder: "+v.getAanbieder().getAchterNaam()+", "+v.getAanbieder().getVoorNaam()+" heeft nog "+v.getZitplaatsen()+" zitplaatsen over."));
-				temppane.add(new Button("bevestig"));
-				boekReisPanel.add(temppane);
+				if(v.getZitplaatsen()>0){
+					HorizontalPanel temppane = new HorizontalPanel();
+					Button tempb = new Button("Reis met deze aanbieder");
+					tempb.addClickHandler(new PageClickHandler(r,this,4,v));
+					temppane.add(new Label("Aanbieder: "+v.getAanbieder().getAchterNaam()+", "+v.getAanbieder().getVoorNaam()+" heeft nog "+v.getZitplaatsen()+" zitplaatsen over."));
+					temppane.add(tempb);
+					boekReisPanel.add(temppane);
+				}
 			}
 		}
 		reizen = new Button("Terug naar overzicht");
@@ -156,7 +172,28 @@ public class Reizen extends VerticalPanel {
 		Boeking b = new Boeking(new Date(), false,g,r); 
 		System.out.println(r.getTitel());
 		boekReisPanel = new VerticalPanel();
-		if(vv.addVervoer(v)&&vv.addBoeking(b)) {
+		if(vv.addVervoer(v)&&vv.addBoeking(b,v)) {
+			boekReisPanel.add(new Label("U heeft succesvol geboekt"));
+		} else {
+			boekReisPanel.add(new Label("De boeking faalde"));
+		}
+		add(boekReisPanel);
+	}
+	
+	public void reisMeeMetVervoer(Reis r,Vervoer v) {
+		remove(boekReisPanel);
+		Gebruiker g = vv.getLoginUser();
+		if(g==null) {
+			boekReisPanel= new VerticalPanel();
+			boekReisPanel.add(new Label("U bent niet ingelogd"));
+			add(boekReisPanel);
+			return;
+		}
+		v.addMeerijder(g);
+		Boeking b = new Boeking(new Date(), false,g,r); 
+		System.out.println(r.getTitel());
+		boekReisPanel = new VerticalPanel();
+		if(vv.addBoeking(b,v)) {
 			boekReisPanel.add(new Label("U heeft succesvol geboekt"));
 		} else {
 			boekReisPanel.add(new Label("De boeking faalde"));

@@ -118,15 +118,20 @@ public class Reizen extends VerticalPanel {
 		ArrayList<Vervoer> vervoer = vv.getVervoer(r);
 		if(vervoer==null){
 			vervoerInfo.setText("Er is helaas geen vervoer aangeboden voor deze reis.");
+			boekReisPanel.add(vervoerInfo);
 		} else {
 			vervoerInfo.setText("Er word(en) "+vervoer.size()+" vervoers mogelijkheden aangeboden.");
+			boekReisPanel.add(vervoerInfo);
+			for (Vervoer v:vervoer) {
+				VerticalPanel temppane = new VerticalPanel();
+				temppane.add(new Label("Aanbieder: "+v.getAanbieder().getAchterNaam()+", "+v.getAanbieder().getVoorNaam()+" heeft nog "+v.getZitplaatsen()+" zitplaatsen over."));
+				temppane.add(new Button("bevestig"));
+				boekReisPanel.add(temppane);
+			}
 		}
-		Button bevestig = new Button("Bevestig boeking");
 		reizen = new Button("Terug naar overzicht");
 		reizen.addClickHandler(new PageClickHandler(null,this,2));
-		boekReisPanel.add(vervoerInfo);
 		boekReisPanel.setStyleName("reis");		
-		boekReisPanel.add(bevestig);
 		add(boekReisPanel);
 		add(reizen);
 	}

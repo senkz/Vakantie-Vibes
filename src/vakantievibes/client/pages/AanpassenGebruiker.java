@@ -28,6 +28,7 @@ public class AanpassenGebruiker extends FormPanel{
 	public AanpassenGebruiker(VakantieVibes sI){
 		serviceImpl = sI;
 		user = serviceImpl.getLoginUser();
+		Adres a = user.getAdres();
 
 		VerticalPanel vp = new VerticalPanel();
 		this.add(vp);
@@ -37,19 +38,20 @@ public class AanpassenGebruiker extends FormPanel{
 			return;
 		}
 		
-		Adres a = user.getAdres();
 		
 		tbnaam.setText(user.getVoorNaam());
 		tbanaam.setText(user.getAchterNaam());
 		tbemail.setText(user.getEmail());
 		tbgb.setText(user.getGebruikersNaam());
 
-		tbstraat.setText(a.getStraat());
-		tbhn.setText(a.getHuisnummer());
-		tbpostcode.setText(a.getPostcode());
-		tbtelefoon.setText(String.valueOf(a.getTelefoon()));
-		tbplaats.setText(a.getStad());
-		tbland.setText(a.getLand());
+		if(a != null) {
+			if(a.getStraat() != null) {tbstraat.setText(a.getStraat());}
+			if(a.getHuisnummer() != null) {tbhn.setText(a.getHuisnummer());}
+			if(a.getPostcode() != null) {tbpostcode.setText(a.getPostcode());}
+			if(String.valueOf(a.getTelefoon()) != null) {tbtelefoon.setText(String.valueOf(a.getTelefoon()));}
+			if(a.getStad() != null) {tbplaats.setText(a.getStad());}
+			if(a.getLand() != null) {tbland.setText(a.getLand());}
+		}
 		
 		lbnaam 		= new Label("Voornaam");		vp.add(lbnaam);			vp.add(tbnaam);
 		lbanaam 	= new Label("Achternaam");		vp.add(lbanaam);		vp.add(tbanaam);
@@ -69,11 +71,7 @@ public class AanpassenGebruiker extends FormPanel{
 		bpost.addClickHandler(new ClickHandler(){
 			@Override
 			public void onClick(ClickEvent event) {
-					Gebruiker g = new Gebruiker(tbgb.getText(), Inloggen.hashWachtwoord(tbww.getText()), tbnaam.getText(), tbanaam.getText(), tbemail.getText());
-					Adres a = new Adres(tbland.getText(), tbplaats.getText(),tbstraat.getText(), tbhn.getText(), tbpostcode.getText(), tbtelefoon.getText());
-					g.setAdres(a);
-					serviceImpl.addGebruiker(g);
-					Window.alert("Gebruiker is geregistreerd");
+					Window.alert("Gebruiker is aangepast");
 			}});
 		breset.addClickHandler(new ClickHandler(){
 

@@ -1,7 +1,5 @@
 package vakantievibes.client.pages;
 
-import java.util.ArrayList;
-
 import vakantievibes.client.domain.Gebruiker;
 import vakantievibes.client.domain.Inloggen;
 import vakantievibes.client.domain.VakantieVibes;
@@ -19,10 +17,10 @@ import com.google.gwt.user.client.ui.VerticalPanel;
 public class InloggenPage extends FormPanel {
 	private TextBox tbgbi = new TextBox();
 	private PasswordTextBox tbwwi = new PasswordTextBox();
-	private Label lnaam = new Label("gebruiker"); Label lww = new Label("wachtwoord");
-	private Button binlog = new Button("Inloggen"),  buitlog = new Button("uitloggen"), show = new Button("Toon gebruikers");
+	private Label lnaam = new Label("gebruiker"), lww = new Label("wachtwoord"), luser = new Label();
+	private Button binlog = new Button("Inloggen"),  buitlog = new Button("uitloggen");
 	private VakantieVibes serviceImpl;
-	private final VerticalPanel vp = new VerticalPanel();
+	private final VerticalPanel vp = new VerticalPanel(), loggedin = new VerticalPanel();
 	
 	public InloggenPage(VakantieVibes sI){
 		serviceImpl = sI;
@@ -31,7 +29,9 @@ public class InloggenPage extends FormPanel {
 		vp.add(lnaam); vp.add(tbgbi);
 		vp.add(lww); vp.add(tbwwi);
 		vp.add(binlog);
-		vp.add(show);
+		
+		loggedin.add(luser);
+		loggedin.add(buitlog);
 		
 		binlog.addClickHandler(new ClickHandler(){
 
@@ -45,37 +45,21 @@ public class InloggenPage extends FormPanel {
 					tbwwi.setText(""); tbgbi.setText("");
 				} else {
 					serviceImpl.setLoginUser(g);
-					Window.alert("Goed gedaan! " + g.getVoorNaam());
 					tbwwi.setText(""); tbgbi.setText("");
-					vp.add(buitlog);
-					vp.remove(binlog);
-					
+					remove(vp);
+					luser.setText(g.getGebruikersNaam());
+					add(loggedin);
 				}
 			}
 			
 		});
 		buitlog.addClickHandler(new ClickHandler(){
-
 			@Override
 			public void onClick(ClickEvent event) {
-				serviceImpl.setLoginUser(null);				
-			}
-			
-		});
-		
-		show.addClickHandler(new ClickHandler() {
-			@Override
-			public void onClick(ClickEvent event) {
-				
-				ArrayList<Gebruiker> gebruikers = serviceImpl.listGebruikers();
-				String s = "Gebruikersnamen:\n";
-				for(Gebruiker b : gebruikers) {
-					s += b.getGebruikersNaam() + "\n";
-				}
-				Window.alert(s);
+				serviceImpl.setLoginUser(null);
+				remove(loggedin);
+				add(vp);
 			}
 		});
 	}
-	
-	public void somefucntion() {}
 }

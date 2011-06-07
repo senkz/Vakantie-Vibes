@@ -59,10 +59,13 @@ public class VakantieVibes {
 
 	public boolean addVervoer(Vervoer vervoer) {
 		ArrayList<Vervoer> ver = loginUser.getVervoer();
-		for(Vervoer v:ver) {
-			if(v.getReis()==vervoer.getReis()) return false;
+		for (Vervoer v : ver) {
+			if (v.getReis().equals(vervoer.getReis())) {
+				return false;
+			}
 		}
 		this.vervoer.add(vervoer);
+		loginUser.addVervoer(vervoer);
 		return true;
 	}
 
@@ -77,14 +80,17 @@ public class VakantieVibes {
 				svervoer.add(v);
 			}
 		}
-		if(svervoer.size()==0) return null;
+		System.out.println(svervoer.size()); 
+		if(svervoer.size()==0) {return null;}
 		return svervoer;
 	}
 
 	public boolean addBoeking(Boeking boeking) {
 		ArrayList<Boeking> boe = loginUser.getBoeking();
-		for(Boeking b:boe) {
-			if(b.getReis()==boeking.getReis()) return false;
+		for (Boeking b : boe) {
+			if (b.getReis().equals(boeking.getReis())) {
+				return false;
+			}
 		}
 		this.boeking.add(boeking);
 		loginUser.addBoeking(boeking);

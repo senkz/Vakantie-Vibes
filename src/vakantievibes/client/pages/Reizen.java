@@ -24,12 +24,14 @@ public class Reizen extends VerticalPanel {
 	
 	public VerticalPanel hoofdPanel = new VerticalPanel(), boekReisPanel= new VerticalPanel();
 	public DatePicker datum;
-	public Button terug;
+	public Button reizen,bestemmingen;
 	public VakantieVibes vv;
 	public TextBox ap;
+	public Label paginaInfo = new Label();
 	
 	public Reizen(VakantieVibes vv, Bestemming b) {
-		add(new Label("Kies een datum en een reis."));
+		paginaInfo.setText("Kies een datum en een reis.");
+		add(paginaInfo);
 		ArrayList<Reis> reizen = vv.getReizen();
 		this.vv=vv;
 		for(Reis r:reizen) {
@@ -68,17 +70,21 @@ public class Reizen extends VerticalPanel {
 		public void onClick(ClickEvent event) {
 			switch(soortPagina) {
 			case 0:
-				pagina.biedVervoerAan(reis);
+				pagina.bevestigVervoer(reis);
+				pagina.paginaInfo.setText("Bevestig je vervoers opgave");
 				break;
 			case 1:
 				pagina.zoekVervoer(reis);
+				pagina.paginaInfo.setText("Kies een vervoer hieronder uit");
 				break;
 			case 2:
 				pagina.naarHoofdPanel();
+				pagina.paginaInfo.setText("Kies een datum en een reis.");
 				break;
 			case 3:
 				if(ap.getValue().matches("^[0-9]+$")) {
 					pagina.biedtVervoerAan(reis);
+					pagina.paginaInfo.setText("Uitslag van je bevestiging:");
 				} else {
 					Window.alert("Geen numerieke waarde opgegeven");
 				}				
@@ -87,22 +93,22 @@ public class Reizen extends VerticalPanel {
 		}
 	};
 	
-	public void biedVervoerAan(Reis r) {
+	public void bevestigVervoer(Reis r) {
 		remove(hoofdPanel);
 		boekReisPanel.add(new Label(r.getInformatie()));
 		Label aantalPlaatsenInfo=new Label();
 		ap=new TextBox();
 		aantalPlaatsenInfo.setText("Hoeveel vervoersplekken biedt u aan?");
 		Button bevestig = new Button("Bevestig boeking");
-		bevestig.addClickHandler(new PageClickHandler(null,this,3));
-		terug = new Button("Terug naar overzicht");
-		terug.addClickHandler(new PageClickHandler(null,this,2));
+		bevestig.addClickHandler(new PageClickHandler(r,this,3));
+		reizen = new Button("Terug naar reis overzicht");
+		reizen.addClickHandler(new PageClickHandler(r,this,2));
 		boekReisPanel.setStyleName("reis");		
 		boekReisPanel.add(aantalPlaatsenInfo);
 		boekReisPanel.add(ap);
 		boekReisPanel.add(bevestig);
-		boekReisPanel.add(terug);
 		add(boekReisPanel);
+		add(reizen);
 	}
 	
 	public void zoekVervoer(Reis r) {
@@ -116,17 +122,18 @@ public class Reizen extends VerticalPanel {
 			vervoerInfo.setText("Er word(en) "+vervoer.size()+" vervoers mogelijkheden aangeboden.");
 		}
 		Button bevestig = new Button("Bevestig boeking");
-		terug = new Button("Terug naar overzicht");
-		terug.addClickHandler(new PageClickHandler(null,this,2));
+		reizen = new Button("Terug naar overzicht");
+		reizen.addClickHandler(new PageClickHandler(null,this,2));
 		boekReisPanel.add(vervoerInfo);
 		boekReisPanel.setStyleName("reis");		
 		boekReisPanel.add(bevestig);
-		boekReisPanel.add(terug);
 		add(boekReisPanel);
+		add(reizen);
 	}
 	
 	public void naarHoofdPanel() {
 		remove(boekReisPanel);
+		remove(reizen);
 		boekReisPanel= new VerticalPanel();
 		add(hoofdPanel);
 	}
@@ -142,8 +149,8 @@ public class Reizen extends VerticalPanel {
 		}
 		Vervoer v = new Vervoer(Integer.parseInt(ap.getValue()),g,r);
 		Boeking b = new Boeking(new Date(), false,g,r); 
-		
-		boekReisPanel= new VerticalPanel();
+		System.out.println(r.getTitel());
+		boekReisPanel = new VerticalPanel();
 		if(vv.addVervoer(v)&&vv.addBoeking(b)) {
 			boekReisPanel.add(new Label("U heeft succesvol geboekt"));
 		} else {

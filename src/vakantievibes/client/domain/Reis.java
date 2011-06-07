@@ -92,5 +92,12 @@ public class Reis {
 	public Adres getAdres() {
 		return adres;
 	}
+	
+	public boolean equals(Reis r) {
+		if(this.titel.equals(r.getTitel())&&this.informatie.equals(r.getInformatie())) {
+			return true;
+		}
+		return false;
+	}
 
 }

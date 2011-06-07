@@ -54,4 +54,8 @@ public class Vervoer {
 	public int getAantalMeerijder() {
 		return meerijder.size();
 	}
+	
+	public String toString() {
+		return reis.getTitel();
+	}
 }

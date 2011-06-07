@@ -54,12 +54,9 @@ public class Entry implements EntryPoint {
 							p.add(new Bestemmingen(serviceImpl));
 							break;
 						case 2:
-							p.add(new InloggenPage(serviceImpl));
-							break;
-						case 3:
 							p.add(new AanpassenGebruiker(serviceImpl));
 							break;
-						case 4:
+						case 3:
 							p.add(new AdminPage(serviceImpl));
 					}
 				}
@@ -67,12 +64,12 @@ public class Entry implements EntryPoint {
 			
 			myTabPanel.add(new HorizontalPanel(), "Reg. gebruiker");
 			myTabPanel.add(new HorizontalPanel(), "Overzicht Bestemmingen");
-			myTabPanel.add(new HorizontalPanel(), "Inloggen");
 			myTabPanel.add(new HorizontalPanel(), "Aanpassen");
 			myTabPanel.add(new HorizontalPanel(), "admin");
 			myTabPanel.selectTab(0);
 			
 			RootPanel.get("content").add(myTabPanel);
+			RootPanel.get("login").add(new InloggenPage(serviceImpl));
 			
 			Bestemming b = new Bestemming("Nederland","bezoek","Dit dbrvbrfvgbrg info");
 			Bestemming b1 = new Bestemming("Nederland","kijken","Dit is de freaking info");

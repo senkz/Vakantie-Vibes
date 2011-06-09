@@ -10,12 +10,13 @@ public class Inloggen {
 		
 	}
 
-	public Gebruiker Login(String ww, String gb) {		
+	public boolean Login(String ww, String gb) {		
 		Gebruiker g = ServiceImpl.zoekGebruiker(gb);
-		if(hashWachtwoord(g.getWachtWoord()).equals(ww)) {
-			return g;
+		if(hashWachtwoord(g.getWachtWoord()).equals(hashWachtwoord(ww))) {
+			ServiceImpl.setLoginUser(g);
+			return true;
 		}
-		return null;
+		return false;
 	}
 	
 	public static String hashWachtwoord(String s) {

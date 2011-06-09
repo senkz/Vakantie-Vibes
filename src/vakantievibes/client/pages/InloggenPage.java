@@ -1,6 +1,5 @@
 package vakantievibes.client.pages;
 
-import vakantievibes.client.domain.Gebruiker;
 import vakantievibes.client.domain.Inloggen;
 import vakantievibes.client.domain.VakantieVibes;
 
@@ -38,17 +37,16 @@ public class InloggenPage extends FormPanel {
 			@Override
 			public void onClick(ClickEvent event) {
 				Inloggen i = new Inloggen(serviceImpl);
-				Gebruiker g = i.Login(tbwwi.getText(), tbgbi.getText());
+				Boolean b = i.Login(tbwwi.getText(), tbgbi.getText());
 				
-				if(g == null) {
-					Window.alert("Foute invoer!");
-					tbwwi.setText(""); tbgbi.setText("");
-				} else {
-					serviceImpl.setLoginUser(g);
+				if(b) {
 					tbwwi.setText(""); tbgbi.setText("");
 					remove(vp);
-					luser.setText(g.getGebruikersNaam());
+					luser.setText(serviceImpl.getLoginUser().getGebruikersNaam());
 					add(loggedin);
+				} else {
+					Window.alert("Foute invoer!");
+					tbwwi.setText(""); tbgbi.setText("");
 				}
 			}
 			

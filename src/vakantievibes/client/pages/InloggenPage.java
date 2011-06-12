@@ -13,53 +13,61 @@ import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.PasswordTextBox;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
+import com.google.gwt.user.client.ui.Widget;
 
-public class InloggenPage extends FormPanel {
+public class InloggenPage extends FormPanel implements ClickHandler {
 	private TextBox tbgbi = new TextBox();
 	private PasswordTextBox tbwwi = new PasswordTextBox();
 	private Label lnaam = new Label("gebruiker"), lww = new Label("wachtwoord"), luser = new Label();
-	private Button binlog = new Button("Inloggen"),  buitlog = new Button("uitloggen");
+	private Button binlog, buitlog;
 	private VakantieVibes serviceImpl;
-	private final VerticalPanel vp = new VerticalPanel(), loggedin = new VerticalPanel();
+	private final VerticalPanel vp = new VerticalPanel(), loggedin = new VerticalPanel(), vvp = new VerticalPanel();
 	
 	public InloggenPage(VakantieVibes sI){
 		serviceImpl = sI;
 		
-		add(vp);
+		
 		vp.add(lnaam); vp.add(tbgbi);
 		vp.add(lww); vp.add(tbwwi);
+		binlog = new Button("inloggen");  binlog.addClickHandler(this);
 		vp.add(binlog);
+		vvp.add(vp);						
+		buitlog = new Button("uitloggen"); buitlog.addClickHandler(this);
 		
 		loggedin.add(luser);
 		loggedin.add(buitlog);
 		
-		binlog.addClickHandler(new ClickHandler(){
-
-			@Override
-			public void onClick(ClickEvent event) {
+		add(vvp);
+	}
+		
+	public void onClick(ClickEvent event) {
+		Widget sender = (Widget) event.getSource();
+		if(sender == binlog){
 				Inloggen i = new Inloggen(serviceImpl);
-				Gebruiker g = i.Login(tbwwi.getText(), tbgbi.getText());
+				final Gebruiker g = i.Login(tbwwi.getText(), tbgbi.getText());
 				
 				if(g == null) {
 					Window.alert("Foute invoer!");
 					tbwwi.setText(""); tbgbi.setText("");
-				} else {
+				} 
+				else{
 					serviceImpl.setLoginUser(g);
 					tbwwi.setText(""); tbgbi.setText("");
-					remove(vp);
+					vp.setVisible(false);
 					luser.setText(g.getGebruikersNaam());
-					add(loggedin);
+					vvp.add(loggedin);
+					loggedin.setVisible(true);
 				}
 			}
+		if (sender == buitlog){
+			vp.setVisible(true);
+			loggedin.setVisible(false);
+			Gebruiker k = serviceImpl.getLoginUser();
+			System.out.println("k is: " + k.getGebruikersNaam() + k.getWachtWoord());
+			serviceImpl.setLoginUser(null);
 			
-		});
-		buitlog.addClickHandler(new ClickHandler(){
-			@Override
-			public void onClick(ClickEvent event) {
-				serviceImpl.setLoginUser(null);
-				remove(loggedin);
-				add(vp);
-			}
-		});
+		}
 	}
+	
+	
 }

@@ -9,6 +9,7 @@ public class Reis {
 	private double totaalprijs;
 	private Bestemming bestemming;
 	private Adres adres;
+	private Bestemming locatie;
 	
 
 	public Reis(Date vDat, Date tDat,String t, Bestemming b, Adres a, double tp){
@@ -20,34 +21,33 @@ public class Reis {
 		setAdres(a);
 		setTotaalPrijs(tp);
 	}
-	
-	public Reis(String verDat, String tergDat, String t, String i, String k, Adres a, double tp) {
-		//setVtDatum(verDat);
-		//setTgDatum(tergDat);
-		setTitel(t);
-		setInformatie(i);
-		//setBestemming(k);
-		setAdres(a);
-		setTotaalPrijs(tp);
-		
-	}
-	
-	private void setTotaalPrijs(double tp) {
+
+	public void setTotaalPrijs(double tp) {
 		totaalprijs = tp;	
 	}
 	private double getTotaalPrijs(){
 		return totaalprijs;
 	}
 
-	public Reis(Date vDat, Date tDat,String t,String i, Bestemming b, Adres a){
+	public Reis(Date vDat, Date tDat,String t,String i, Bestemming b, Adres a, double tp){
 		vertrekDatum = vDat;
 		terugDatum = tDat;
 		setTitel(t);
 		setBestemming(b);
 		setInformatie(i);
 		setAdres(a);
+		setTotaalPrijs(tp);
+		System.out.println("alles is nu " + vertrekDatum + "" + terugDatum + "" +titel + " " +informatie + " " +adres.getHuisnummer() + " " +adres.getStad() +" " + tp + " " + bestemming.getTitel());
 	}
 	
+	public Reis(Date myDate, Date myDate2, String t, String i, double tp) {
+		vertrekDatum = myDate;
+		terugDatum = myDate2;
+		setInformatie(t);
+		setInformatie(i);
+		setTotaalPrijs(tp);
+	}
+
 	public Date getVertrekDatum() {
 		return vertrekDatum;
 	}
@@ -99,5 +99,16 @@ public class Reis {
 		}
 		return false;
 	}
+
+	public void setVertrekDatum(String vertdat) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public Bestemming getLocatie() {
+		return locatie;
+	}
+
+
 
 }

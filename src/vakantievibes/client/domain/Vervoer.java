@@ -34,9 +34,10 @@ public class Vervoer {
 		return meerijder.get(i);
 	}
 	
-	public void setMeerijder(Gebruiker g) {
+	public void addMeerijder(Gebruiker g) {
 		if(!checkMeerijder(g)) {
 			meerijder.add(g);
+			zitplaatsen-=1;
 		}
 	}
 	
@@ -49,6 +50,7 @@ public class Vervoer {
 	
 	public void removeMeerijder(Gebruiker g) {
 		meerijder.remove(g);
+		zitplaatsen+=1;
 	}
 	
 	public int getAantalMeerijder() {

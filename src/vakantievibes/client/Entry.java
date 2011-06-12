@@ -9,7 +9,6 @@ import vakantievibes.client.domain.Gebruiker;
 import vakantievibes.client.domain.Reis;
 import vakantievibes.client.domain.VakantieVibes;
 import vakantievibes.client.pages.AanpassenGebruiker;
-import vakantievibes.client.pages.AdminPage;
 import vakantievibes.client.pages.Bestemmingen;
 import vakantievibes.client.pages.InloggenPage;
 import vakantievibes.client.pages.RegistrerenGebruiker;

@@ -106,7 +106,7 @@ public class VakantieVibes {
 		return svervoer;
 	}
 
-	public boolean addBoeking(Boeking boeking) {
+	public boolean addBoeking(Boeking boeking,Vervoer v) {
 		ArrayList<Boeking> boe = loginUser.getBoeking();
 		for (Boeking b : boe) {
 			if (b.getReis().equals(boeking.getReis())) {
@@ -115,6 +115,7 @@ public class VakantieVibes {
 		}
 		this.boeking.add(boeking);
 		loginUser.addBoeking(boeking);
+		loginUser.addVervoer(v);
 		return true;
 	}
 

@@ -1,7 +1,5 @@
 package vakantievibes.client.domain;
 
-import com.google.gwt.dom.client.Element;
-
 public class Bestemming{
 
 	private String informatie,titel, locatie;

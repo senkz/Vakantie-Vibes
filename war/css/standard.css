@@ -783,8 +783,8 @@ a, a:visited, a:hover {
   height: 8px;
   overflow: hidden;
 }
-
 .gwt-TabBar {
+	padding:146px 0 0 0;	
 }
 .gwt-TabBar .gwt-TabBarFirst {
   width: 5px;  /* first tab distance from the left */
@@ -799,11 +799,11 @@ a, a:visited, a:hover {
   color: black;
   font-weight: bold;
   text-align: center;
-  background: #d0e4f6;
+  background-image: url('../img/menuknopje.png');
+  width:107px;
 }
 .gwt-TabBar .gwt-TabBarItem-selected {
   cursor: default;
-  background: #92c1f0;
 } 
 .gwt-TabBar .gwt-TabBarItem-disabled {
   cursor: default;

@@ -1,5 +1,9 @@
 package vakantievibes.client.domain;
 
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
 
 public class Inloggen {
 	static String salt = "VakantieVibes";
@@ -10,16 +14,16 @@ public class Inloggen {
 		
 	}
 
-	public Gebruiker Login(String ww, String gb) {		
+	public boolean Login(String ww, String gb) {		
 		Gebruiker g = ServiceImpl.zoekGebruiker(gb);
-		if(hashWachtwoord(g.getWachtWoord()).equals(ww)) {
-			return g;
+		if(hashWachtwoord(g.getWachtWoord()).equals(hashWachtwoord(ww))) {
+			ServiceImpl.setLoginUser(g);
+			return true;
 		}
-		return null;
+		return false;
 	}
 	
 	public static String hashWachtwoord(String s) {
-		/**
 		MessageDigest m;
 		try {
 			m = MessageDigest.getInstance("MD5");
@@ -36,7 +40,5 @@ public class Inloggen {
 		  hashtext = "0"+hashtext;
 		}
 		return hashtext;
-		**/
-		return s;
 	}
 }

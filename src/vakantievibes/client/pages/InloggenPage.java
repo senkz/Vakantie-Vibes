@@ -44,7 +44,7 @@ public class InloggenPage extends FormPanel implements ClickHandler {
 		Widget sender = (Widget) event.getSource();
 		if(sender == binlog){
 				Inloggen i = new Inloggen(serviceImpl);
-				final Gebruiker g = i.Login(tbwwi.getText(), tbgbi.getText());
+			/*	final Gebruiker g = i.Login(tbwwi.getText(), tbgbi.getText());
 				
 				if(g == null) {
 					Window.alert("Foute invoer!");
@@ -57,7 +57,7 @@ public class InloggenPage extends FormPanel implements ClickHandler {
 					luser.setText(g.getGebruikersNaam());
 					vvp.add(loggedin);
 					loggedin.setVisible(true);
-				}
+				}*/
 			}
 		if (sender == buitlog){
 			vp.setVisible(true);

@@ -10,6 +10,8 @@ import vakantievibes.client.domain.Reis;
 import vakantievibes.client.domain.VakantieVibes;
 import vakantievibes.client.pages.AanpassenGebruiker;
 import vakantievibes.client.pages.Bestemmingen;
+import vakantievibes.client.pages.ContactPage;
+import vakantievibes.client.pages.HomePage;
 import vakantievibes.client.pages.InloggenPage;
 import vakantievibes.client.pages.RegistrerenGebruiker;
 
@@ -47,23 +49,30 @@ public class Entry implements EntryPoint {
 					switch(event.getSelectedItem()) {
 						default:
 						case 0:
-							p.add(new RegistrerenGebruiker(serviceImpl));
+							p.add(new HomePage(serviceImpl));
 							break;
 						case 1:
-							p.add(new Bestemmingen(serviceImpl));
+							p.add(new RegistrerenGebruiker(serviceImpl));
 							break;
 						case 2:
+							p.add(new Bestemmingen(serviceImpl));
+							break;
+						case 3:
 							p.add(new AanpassenGebruiker(serviceImpl));
 							break;
-						//case 3:
+						case 4:
+							p.add(new ContactPage(serviceImpl));
+							break;
 						//	p.add(new AdminPage(serviceImpl));
 					}
 				}
 			});
 			
+			myTabPanel.add(new HorizontalPanel(), "Home");
 			myTabPanel.add(new HorizontalPanel(), "Reg. gebruiker");
 			myTabPanel.add(new HorizontalPanel(), "Overzicht Bestemmingen");
 			myTabPanel.add(new HorizontalPanel(), "Aanpassen");
+			myTabPanel.add(new HorizontalPanel(), "Contact");
 			//myTabPanel.add(new HorizontalPanel(), "admin");
 			myTabPanel.selectTab(0);
 			

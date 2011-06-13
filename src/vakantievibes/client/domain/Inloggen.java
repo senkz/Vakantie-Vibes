@@ -10,17 +10,16 @@ public class Inloggen {
 	static VakantieVibes ServiceImpl;
 
 	public Inloggen(VakantieVibes sI) {
-		ServiceImpl = sI;
-		
+		ServiceImpl = sI;	
 	}
 
-	public boolean Login(String ww, String gb) {		
+	public Gebruiker Login(String ww, String gb) {		
 		Gebruiker g = ServiceImpl.zoekGebruiker(gb);
 		if(hashWachtwoord(g.getWachtWoord()).equals(hashWachtwoord(ww))) {
 			ServiceImpl.setLoginUser(g);
-			return true;
+			return g;
 		}
-		return false;
+		return null;
 	}
 	
 	public static String hashWachtwoord(String s) {

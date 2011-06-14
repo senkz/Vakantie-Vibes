@@ -25,8 +25,6 @@ public class InloggenPage extends FormPanel implements ClickHandler {
 	
 	public InloggenPage(VakantieVibes sI){
 		serviceImpl = sI;
-		
-		
 		vp.add(lnaam); vp.add(tbgbi);
 		vp.add(lww); vp.add(tbwwi);
 		binlog = new Button("inloggen");  binlog.addClickHandler(this);
@@ -44,7 +42,7 @@ public class InloggenPage extends FormPanel implements ClickHandler {
 		Widget sender = (Widget) event.getSource();
 		if(sender == binlog){
 				Inloggen i = new Inloggen(serviceImpl);
-			/*	final Gebruiker g = i.Login(tbwwi.getText(), tbgbi.getText());
+				final Gebruiker g = i.Login(tbwwi.getText(), tbgbi.getText());
 				
 				if(g == null) {
 					Window.alert("Foute invoer!");
@@ -57,7 +55,7 @@ public class InloggenPage extends FormPanel implements ClickHandler {
 					luser.setText(g.getGebruikersNaam());
 					vvp.add(loggedin);
 					loggedin.setVisible(true);
-				}*/
+				}
 			}
 		if (sender == buitlog){
 			vp.setVisible(true);
@@ -65,7 +63,6 @@ public class InloggenPage extends FormPanel implements ClickHandler {
 			Gebruiker k = serviceImpl.getLoginUser();
 			System.out.println("k is: " + k.getGebruikersNaam() + k.getWachtWoord());
 			serviceImpl.setLoginUser(null);
-			
 		}
 	}
 	

@@ -1,9 +1,7 @@
 package vakantievibes.client.domain;
 import java.util.ArrayList;
-import java.util.Date;
 
 import vakantievibes.client.pages.AdminPage;
-import vakantievibes.client.pages.InloggenPage;
 
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.RootPanel;
@@ -176,6 +174,15 @@ public class VakantieVibes {
 						}
 						
 					}
-
+	}
+	
+	public ArrayList<Boeking> getBoekingenGebruiker(Gebruiker g) {
+		ArrayList<Boeking> gebruikerboeking = new ArrayList<Boeking>();
+		for(Boeking b:boeking) {
+			if(b.getBoeker()==g) {
+				gebruikerboeking.add(b);
 			}
+		}
+		return gebruikerboeking;
+	}
 }

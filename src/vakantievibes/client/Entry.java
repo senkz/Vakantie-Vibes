@@ -13,6 +13,7 @@ import vakantievibes.client.pages.Bestemmingen;
 import vakantievibes.client.pages.ContactPage;
 import vakantievibes.client.pages.HomePage;
 import vakantievibes.client.pages.InloggenPage;
+import vakantievibes.client.pages.MijnBoekingen;
 import vakantievibes.client.pages.RegistrerenGebruiker;
 
 import com.google.gwt.core.client.EntryPoint;
@@ -58,9 +59,12 @@ public class Entry implements EntryPoint {
 							p.add(new Bestemmingen(serviceImpl));
 							break;
 						case 3:
-							p.add(new AanpassenGebruiker(serviceImpl));
+							p.add(new MijnBoekingen(serviceImpl));
 							break;
 						case 4:
+							p.add(new AanpassenGebruiker(serviceImpl));
+							break;
+						case 5:
 							p.add(new ContactPage(serviceImpl));
 							break;
 						//	p.add(new AdminPage(serviceImpl));
@@ -70,14 +74,16 @@ public class Entry implements EntryPoint {
 			
 			myTabPanel.add(new HorizontalPanel(), "Home");
 			myTabPanel.add(new HorizontalPanel(), "Reg. gebruiker");
-			myTabPanel.add(new HorizontalPanel(), "Overzicht Bestemmingen");
+			myTabPanel.add(new HorizontalPanel(), "Bestemmingen");
+			myTabPanel.add(new HorizontalPanel(), "Mijn Boekingen");
 			myTabPanel.add(new HorizontalPanel(), "Aanpassen");
 			myTabPanel.add(new HorizontalPanel(), "Contact");
 			//myTabPanel.add(new HorizontalPanel(), "admin");
 			myTabPanel.selectTab(0);
 			
-			RootPanel.get("content").add(myTabPanel);
 			RootPanel.get("login").add(new InloggenPage(serviceImpl));
+			RootPanel.get("content").add(myTabPanel.getDeckPanel());
+			RootPanel.get("header").add(myTabPanel.getTabBar());
 			 
 			Bestemming b = new Bestemming("Nederland","bezoek","Dit dbrvbrfvgbrg info");
 			Bestemming b1 = new Bestemming("Nederland","kijken","Dit is de freaking info");

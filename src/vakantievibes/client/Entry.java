@@ -13,7 +13,6 @@ import vakantievibes.client.pages.Bestemmingen;
 import vakantievibes.client.pages.ContactPage;
 import vakantievibes.client.pages.HomePage;
 import vakantievibes.client.pages.InloggenPage;
-import vakantievibes.client.pages.MijnBoekingen;
 import vakantievibes.client.pages.RegistrerenGebruiker;
 
 import com.google.gwt.core.client.EntryPoint;

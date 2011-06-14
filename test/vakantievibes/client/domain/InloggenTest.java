@@ -23,7 +23,7 @@ public class InloggenTest extends TestCase {
 		
 		vv.addGebruiker(new Gebruiker("Tester", "geheim1", "Henk", "de Vries", "test@example.com"));
 		
-		assertTrue(i.Login("geheim1", "Tester"));
-		assertFalse(i.Login("geheim2", "Tester"));
+		assertNotNull(i.Login("geheim1", "Tester"));
+		assertNull(i.Login("geheim2", "Tester"));
 	}
 }

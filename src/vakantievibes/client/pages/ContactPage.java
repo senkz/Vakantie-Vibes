@@ -1,7 +1,5 @@
 package vakantievibes.client.pages;
 
-import vakantievibes.client.domain.VakantieVibes;
-
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.FormPanel;
 import com.google.gwt.user.client.ui.HorizontalPanel;
@@ -11,7 +9,6 @@ import com.google.gwt.user.client.ui.VerticalPanel;
 
 public class ContactPage extends FormPanel {
 	
-	private VakantieVibes serviceImpl;
 	private VerticalPanel vp, vpfield;
 	private HorizontalPanel hpe = new HorizontalPanel(),hpn = new HorizontalPanel(), hpo = new HorizontalPanel(), hpuv = new HorizontalPanel();
 	private Button b = new Button("verzenden");
@@ -19,8 +16,7 @@ public class ContactPage extends FormPanel {
 	private Label lemail = new Label("email"), lnaam = new Label("naam"), lonwp = new Label("onderwerp"), luv = new Label("uw vraag?");
 	private TextBox tbe = new TextBox(), tbn = new TextBox(), tbo = new TextBox(), tbuv = new TextBox();
 	
-	public ContactPage(VakantieVibes sI){
-		serviceImpl = sI;
+	public ContactPage(){
 		
 		vp = new VerticalPanel();
 		vpfield = new VerticalPanel();

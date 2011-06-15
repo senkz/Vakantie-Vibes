@@ -9,11 +9,12 @@ import vakantievibes.client.domain.Gebruiker;
 import vakantievibes.client.domain.Reis;
 import vakantievibes.client.domain.VakantieVibes;
 import vakantievibes.client.pages.AanpassenGebruiker;
+import vakantievibes.client.pages.AdminPage;
 import vakantievibes.client.pages.Bestemmingen;
 import vakantievibes.client.pages.ContactPage;
 import vakantievibes.client.pages.HomePage;
 import vakantievibes.client.pages.InloggenPage;
-import vakantievibes.client.pages.MijnBoekingen;
+//import vakantievibes.client.pages.MijnBoekingen;
 import vakantievibes.client.pages.RegistrerenGebruiker;
 
 import com.google.gwt.core.client.EntryPoint;
@@ -33,9 +34,6 @@ public class Entry implements EntryPoint {
 		@Override
 		public void onModuleLoad() {
 			serviceImpl = new VakantieVibes();
-			Gebruiker admin1 = new Gebruiker("admin1", "admin", "henk", "klaas", "test@test.test");
-			serviceImpl.addGebruiker(admin1);
-			admin1.setRechten(1);
 			
 			final TabPanel myTabPanel = new TabPanel();
 			
@@ -50,7 +48,7 @@ public class Entry implements EntryPoint {
 					switch(event.getSelectedItem()) {
 						default:
 						case 0:
-							p.add(new HomePage(serviceImpl));
+							p.add(new HomePage());
 							break;
 						case 1:
 							p.add(new RegistrerenGebruiker(serviceImpl));
@@ -58,16 +56,18 @@ public class Entry implements EntryPoint {
 						case 2:
 							p.add(new Bestemmingen(serviceImpl));
 							break;
-						case 3:
-							p.add(new MijnBoekingen(serviceImpl));
-							break;
+					//	case 3:
+					//		p.add(new MijnBoekingen(serviceImpl));
+					//		break;
 						case 4:
 							p.add(new AanpassenGebruiker(serviceImpl));
 							break;
 						case 5:
-							p.add(new ContactPage(serviceImpl));
+							p.add(new ContactPage());
 							break;
-						//	p.add(new AdminPage(serviceImpl));
+						case 6:
+							p.add(new AdminPage(serviceImpl));
+							break;
 					}
 				}
 			});
@@ -78,7 +78,7 @@ public class Entry implements EntryPoint {
 			myTabPanel.add(new HorizontalPanel(), "Mijn Boekingen");
 			myTabPanel.add(new HorizontalPanel(), "Aanpassen");
 			myTabPanel.add(new HorizontalPanel(), "Contact");
-			//myTabPanel.add(new HorizontalPanel(), "admin");
+			myTabPanel.add(new HorizontalPanel(), "admin");
 			myTabPanel.selectTab(0);
 			
 			RootPanel.get("login").add(new InloggenPage(serviceImpl));
@@ -91,6 +91,7 @@ public class Entry implements EntryPoint {
 			serviceImpl.addReis(new Reis(new Date(System.currentTimeMillis()), new Date(System.currentTimeMillis()+500000), "Naar de wallen", "Lekker batsen", b, new Adres("Nederland", "Amsterdam", "de wallen", "69", "1337SX" , "09005858"), 50.00));
 			serviceImpl.addReis(new Reis(new Date(System.currentTimeMillis()), new Date(System.currentTimeMillis()+500000), "Naar dgrn", "Lekgvbrewgvrgv", b1, new Adres("Nederland", "Amsterdam", "de wallen", "69", "1337SX" , "09005858"), 65.00));
 			serviceImpl.addGebruiker(new Gebruiker("test", "test", "voornaam", "achternaam", "email@email.com"));
+			serviceImpl.addGebruiker(new Gebruiker("admin1", "admin", "henk", "klaas", "test@test.test"));
 		}
 	
 }

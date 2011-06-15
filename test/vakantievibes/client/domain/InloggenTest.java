@@ -25,5 +25,6 @@ public class InloggenTest extends TestCase {
 		
 		assertTrue(i.Login("geheim1", "Tester"));
 		assertFalse(i.Login("geheim2", "Tester"));
+
 	}
 }

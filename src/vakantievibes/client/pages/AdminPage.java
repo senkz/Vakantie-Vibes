@@ -156,6 +156,7 @@ public class AdminPage extends FormPanel implements ClickHandler
 		{
 			Bestemming b = new Bestemming(tbloc.getText(),tbbnm.getText(),tbbinfo.getText());
 			serviceImpl.addBestemming(b);
+			tbloc.setText("");tbbnm.setText("");tbbinfo.setText("");
 			refreshPanelBestem();
 		}
 		if (sender == breistoe)
@@ -177,7 +178,7 @@ public class AdminPage extends FormPanel implements ClickHandler
 			for(Bestemming b: bestemmingen) {
 				if(bestemtoev.equals(b.getTitel())){
 								
-					Adres ad = new Adres(tbrl.getText(), tbrs.getText(), tbrst.getText(), tbrhn.getText(), tbrpc.getText(), lrtf.getText());
+					Adres ad = new Adres(tbrl.getText(), tbrs.getText(), tbrst.getText(), tbrhn.getText(), tbrpc.getText(), tbrtf.getText());
 					Bestemming best = b;
 					Reis reisjes = new Reis(myDate, myDate2, tbrnm.getText(), tbrinfo.getText(),b, ad, tp);	
 					serviceImpl.addReizen(reisjes, best, ad);
@@ -188,6 +189,8 @@ public class AdminPage extends FormPanel implements ClickHandler
 						refreshpanelreis();
 						teller--;
 					}
+					tbrl.setText("");tbrs.setText("");tbrst.setText("");tbrhn.setText("");tbrpc.setText("");tbrvdat.setText("");tbrtdat.setText("");
+					tbrnm.setText("");tbrinfo.setText("");tbrtf.setText("");tbrtp.setText("");
 					
 				}
 			}

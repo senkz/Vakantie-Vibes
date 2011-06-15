@@ -1,6 +1,8 @@
 package vakantievibes.client.domain;
 import java.util.ArrayList;
 
+import vakantievibes.client.Entry;
+import vakantievibes.client.pages.AanpassenGebruiker;
 import vakantievibes.client.pages.AdminPage;
 
 import com.google.gwt.user.client.Window;
@@ -14,6 +16,7 @@ public class VakantieVibes {
 	private ArrayList<Boeking> boeking = new ArrayList<Boeking>();
 	private ArrayList<Adres> adressen = new ArrayList<Adres>();
 	private Gebruiker loginUser = null;
+	private Entry entry;
 
 	public VakantieVibes()	{
 	}
@@ -44,6 +47,8 @@ public class VakantieVibes {
 		}
 		else{
 			loginUser = g;
+			//RootPanel.get("header").setTabBar.setTabEnabled(4, true);
+			//RootPanel.get("header").add(new AanpassenGebruiker(this));
 			System.out.println("logged in is nu: " + loginUser.getGebruikersNaam() + loginUser.getWachtWoord());
 			
 		}

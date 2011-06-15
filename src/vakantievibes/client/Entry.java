@@ -23,6 +23,7 @@ import com.google.gwt.event.logical.shared.SelectionHandler;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Panel;
 import com.google.gwt.user.client.ui.RootPanel;
+import com.google.gwt.user.client.ui.TabBar;
 import com.google.gwt.user.client.ui.TabPanel;
 
 /**
@@ -30,10 +31,14 @@ import com.google.gwt.user.client.ui.TabPanel;
  */
 public class Entry implements EntryPoint {
 		protected VakantieVibes serviceImpl;
+		public TabBar myTabBar;
 
 		@Override
 		public void onModuleLoad() {
 			serviceImpl = new VakantieVibes();
+			Gebruiker admin1 = new Gebruiker("admin1", "admin", "henk", "klaas", "text@text.nl");
+			serviceImpl.addGebruiker(admin1);
+			admin1.setRechten(2);
 			
 			final TabPanel myTabPanel = new TabPanel();
 			
@@ -65,12 +70,15 @@ public class Entry implements EntryPoint {
 						case 5:
 							p.add(new ContactPage());
 							break;
-						case 6:
-							p.add(new AdminPage(serviceImpl));
-							break;
+					//	case 6:
+					//		p.add(new AdminPage(serviceImpl));
+					//		break;
 					}
 				}
 			});
+
+			myTabBar = new TabBar();
+			myTabBar = myTabPanel.getTabBar();
 			
 			myTabPanel.add(new HorizontalPanel(), "Home");
 			myTabPanel.add(new HorizontalPanel(), "Reg. gebruiker");
@@ -78,8 +86,9 @@ public class Entry implements EntryPoint {
 			myTabPanel.add(new HorizontalPanel(), "Mijn Boekingen");
 			myTabPanel.add(new HorizontalPanel(), "Aanpassen");
 			myTabPanel.add(new HorizontalPanel(), "Contact");
-			myTabPanel.add(new HorizontalPanel(), "admin");
+			//myTabPanel.add(new HorizontalPanel(), "admin");
 			myTabPanel.selectTab(0);
+			//myTabBar.setTabEnabled(4, false);
 			
 			RootPanel.get("login").add(new InloggenPage(serviceImpl));
 			RootPanel.get("content").add(myTabPanel.getDeckPanel());
@@ -90,8 +99,19 @@ public class Entry implements EntryPoint {
 			serviceImpl.addBestemming(b);serviceImpl.addBestemming(b1);
 			serviceImpl.addReis(new Reis(new Date(System.currentTimeMillis()), new Date(System.currentTimeMillis()+500000), "Naar de wallen", "Lekker batsen", b, new Adres("Nederland", "Amsterdam", "de wallen", "69", "1337SX" , "09005858"), 50.00));
 			serviceImpl.addReis(new Reis(new Date(System.currentTimeMillis()), new Date(System.currentTimeMillis()+500000), "Naar dgrn", "Lekgvbrewgvrgv", b1, new Adres("Nederland", "Amsterdam", "de wallen", "69", "1337SX" , "09005858"), 65.00));
-			serviceImpl.addGebruiker(new Gebruiker("test", "test", "voornaam", "achternaam", "email@email.com"));
-			serviceImpl.addGebruiker(new Gebruiker("admin1", "admin", "henk", "klaas", "test@test.test"));
+			Gebruiker g1 = new Gebruiker("test", "test", "voornaam", "achternaam", "email@email.com");
+			Adres a1 = new Adres("Nederland","kaas","kaas","2e","3432ED","9393939339");
+			g1.setAdres(a1);
+			Gebruiker g2 = new Gebruiker("test1", "test1", "voornaam1", "achternaam1", "email1@email.com");
+			Adres a2 = new Adres("Nederland", "kasen","kase","3e","3421SO", "9030000320");
+			g2.setAdres(a2);
+			serviceImpl.addGebruiker(g1);
+			serviceImpl.addGebruiker(g2);
+			//serviceImpl.addGebruiker(new Gebruiker("admin1", "admin", "henk", "klaas", "test@test.test"));
 		}
+		
+		//public void setVeldaanpassenGebruiker(){
+		//	myTabBar.setTabEnabled(4, true);
+		//}
 	
 }

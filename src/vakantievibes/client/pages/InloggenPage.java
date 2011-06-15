@@ -60,9 +60,10 @@ public class InloggenPage extends FormPanel implements ClickHandler {
 		if (sender == buitlog){
 			vp.setVisible(true);
 			loggedin.setVisible(false);
-			Gebruiker k = serviceImpl.getLoginUser();
-			System.out.println("k is: " + k.getGebruikersNaam() + k.getWachtWoord());
+			//Gebruiker k = serviceImpl.getLoginUser();
 			serviceImpl.setLoginUser(null);
+			//System.out.println("k is: " + k.getGebruikersNaam() + k.getWachtWoord());
+			
 		}
 	}
 	

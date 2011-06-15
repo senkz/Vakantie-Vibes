@@ -13,6 +13,7 @@ import vakantievibes.client.domain.VakantieVibes;
 
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.FormPanel;
 import com.google.gwt.user.client.ui.HorizontalPanel;
@@ -154,13 +155,73 @@ public class AdminPage extends FormPanel implements ClickHandler
 		}
 		if (sender == bbestemtoe)
 		{
+			String regex = "[A-z].*";
+			String p ="";
+			if(!tbbnm.getText().matches(regex)){
+				p = "foutive naam\n";
+			}
+			if(!tbloc.getText().matches(regex)){
+				p+="foutive locatie\n";
+			}
+			if(tbbinfo.getText().equals("")){
+				p+="info is leeg\n";
+			}
+			if( p != ""){
+				Window.alert(p);
+			}
+			else{
 			Bestemming b = new Bestemming(tbloc.getText(),tbbnm.getText(),tbbinfo.getText());
 			serviceImpl.addBestemming(b);
-			refreshPanelBestem();
+			tbloc.setText("");tbbnm.setText("");tbbinfo.setText("");
+			refreshPanelBestem();}
 		}
 		if (sender == breistoe)
 		{
+			String regex = "[A-z].*";
+			String regdat = "[0-9]{2}+-+[0-1]{1}[0-9]{1}+-+[0-9]{4}";
+			String regpr ="[0-9].*\\.[0-9]{2}";
+			String regpost = "[0-9]{4}[A-z]{2}";
+			String regtel = "[0-9]{10}";
+			String reghn = "[0-9].*[\\w]*";
+			String p ="";
 			int teller = 0;
+			if(!tbrnm.getText().matches(regex)){
+				p = "foutive naam\n";
+			}
+			if(!tbrvdat.getText().matches(regdat)){
+				p+="Verkeerde vertrekdatum\n";
+			}
+			if(!tbrtdat.getText().matches(regdat)){
+				p+="verkeerde terugdatum\n";
+			}
+			if(!tbrtp.getText().matches(regpr)){
+				p+="de prijs is verkeert ingevult\n";
+			}
+			if(tbrinfo.equals("")){
+				p+="geen informatie ingevult\n";
+			}
+			if(!tbrl.getText().matches(regex)){
+				p += "foutief ingevulde locatie\n";
+			}
+			if(!tbrs.getText().matches(regex)){
+				p += "foutive plaats\n";
+			}
+			if(!tbrst.getText().matches(regex)){
+				p += "foutive straat\n";
+			}
+			if(!tbrhn.getText().matches(reghn)){
+				p += "foutive huisnummer\n";
+			}
+			if(!tbrpc.getText().matches(regpost)){
+				p += "foutive  postcode\n";
+			}
+			if(!tbrtf.getText().matches(regtel)){
+				p += "ingevulde telefoon nummer bestaat niet uit 10 cijfers\n";
+			}
+			if( p != ""){
+				Window.alert(p);
+			}
+			else{
 			String bestemtoev = lb.getValue(lb.getSelectedIndex());
 			DateFormat myDateFormat = new SimpleDateFormat("dd-MM-yyyy");
 			Date myDate = null;
@@ -177,7 +238,7 @@ public class AdminPage extends FormPanel implements ClickHandler
 			for(Bestemming b: bestemmingen) {
 				if(bestemtoev.equals(b.getTitel())){
 								
-					Adres ad = new Adres(tbrl.getText(), tbrs.getText(), tbrst.getText(), tbrhn.getText(), tbrpc.getText(), lrtf.getText());
+					Adres ad = new Adres(tbrl.getText(), tbrs.getText(), tbrst.getText(), tbrhn.getText(), tbrpc.getText(), tbrtf.getText());
 					Bestemming best = b;
 					Reis reisjes = new Reis(myDate, myDate2, tbrnm.getText(), tbrinfo.getText(),b, ad, tp);	
 					serviceImpl.addReizen(reisjes, best, ad);
@@ -188,11 +249,12 @@ public class AdminPage extends FormPanel implements ClickHandler
 						refreshpanelreis();
 						teller--;
 					}
+					tbrl.setText("");tbrs.setText("");tbrst.setText("");tbrhn.setText("");tbrpc.setText("");tbrvdat.setText("");tbrtdat.setText("");
+					tbrnm.setText("");tbrinfo.setText("");tbrtf.setText("");tbrtp.setText("");
 					
 				}
 			}
-
-			
+			}			
 		}
 	}
 	class Mydelete implements ClickHandler 
@@ -257,7 +319,13 @@ public class AdminPage extends FormPanel implements ClickHandler
 			{
 				int teller = 0;
 				String info = tfinfo.getText();
+				String regpr ="[0-9].*\\.[0-9]{2}";
+				if(tftpr.getText().matches(regpr)){
+					Window.alert("verkeerde prijs invoer");
+				}
+				else{
 				double totpr = Double.parseDouble(tftpr.getText());
+				
 
 				serviceImpl.changeReis(r, info, totpr);
 				teller++;
@@ -266,7 +334,7 @@ public class AdminPage extends FormPanel implements ClickHandler
 					refreshpanelreis();
 					teller--;
 				}
-
+				}
 			}
 
 		});

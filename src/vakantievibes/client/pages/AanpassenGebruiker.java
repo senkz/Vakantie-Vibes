@@ -2,7 +2,6 @@ package vakantievibes.client.pages;
 
 import vakantievibes.client.domain.Adres;
 import vakantievibes.client.domain.Gebruiker;
-import vakantievibes.client.domain.Inloggen;
 import vakantievibes.client.domain.VakantieVibes;
 
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -18,8 +17,8 @@ import com.google.gwt.user.client.ui.VerticalPanel;
 
 public class AanpassenGebruiker extends FormPanel{
 
-	private TextBox tbnaam = new TextBox(), tbanaam = new TextBox(), tbstraat = new TextBox(), tbhn = new TextBox(), tbemail = new TextBox(), tbgb = new TextBox(), tbpostcode = new TextBox(), tbtelefoon = new TextBox(), tbplaats = new TextBox(), tbland = new TextBox();
-	private Label lbnaam, lbanaam, lbstraat, lbhn, lbemail, lbww, lbgb, lbpostcode, lbtelefoon, lbplaats, lbland;
+	private TextBox tbnaam = new TextBox(), tbanaam = new TextBox(), tbstraat = new TextBox(), tbhn = new TextBox(), tbemail = new TextBox(), tbpostcode = new TextBox(), tbtelefoon = new TextBox(), tbplaats = new TextBox(), tbland = new TextBox();
+	private Label lbnaam, lbanaam, lbstraat, lbhn, lbemail, lbww, lbpostcode, lbtelefoon, lbplaats, lbland;
 	private Button bpost = new Button("Verzenden"), breset = new Button("reset");
 	private PasswordTextBox tbww = new PasswordTextBox();
 	private VakantieVibes serviceImpl;
@@ -28,9 +27,9 @@ public class AanpassenGebruiker extends FormPanel{
 	public AanpassenGebruiker(VakantieVibes sI){
 		serviceImpl = sI;
 		user = serviceImpl.getLoginUser();
-		Adres a = user.getAdres();
+		final Adres a = user.getAdres();
 
-		VerticalPanel vp = new VerticalPanel();
+		final VerticalPanel vp = new VerticalPanel();
 		this.add(vp);
 		
 		if(user == null) {
@@ -42,7 +41,6 @@ public class AanpassenGebruiker extends FormPanel{
 		tbnaam.setText(user.getVoorNaam());
 		tbanaam.setText(user.getAchterNaam());
 		tbemail.setText(user.getEmail());
-		tbgb.setText(user.getGebruikersNaam());
 
 		if(a != null) {
 			if(a.getStraat() != null) {tbstraat.setText(a.getStraat());}
@@ -59,7 +57,6 @@ public class AanpassenGebruiker extends FormPanel{
 		lbhn 		= new Label("Huisnummer");		vp.add(lbhn);			vp.add(tbhn);
 		lbemail 	= new Label("e-mail");			vp.add(lbemail);		vp.add(tbemail);
 		lbww 		= new Label("Wachtwoord");		vp.add(lbww);			vp.add(tbww);
-		lbgb 		= new Label("Gebruikersnaam");	vp.add(lbgb);			vp.add(tbgb);
 		lbpostcode	= new Label("Postcode");		vp.add(lbpostcode);		vp.add(tbpostcode);
 		lbtelefoon 	= new Label("Telefoonnr");		vp.add(lbtelefoon);		vp.add(tbtelefoon);
 		lbplaats 	= new Label("Plaats");			vp.add(lbplaats);		vp.add(tbplaats);
@@ -71,13 +68,74 @@ public class AanpassenGebruiker extends FormPanel{
 		bpost.addClickHandler(new ClickHandler(){
 			@Override
 			public void onClick(ClickEvent event) {
-					Window.alert("Gebruiker is aangepast");
+				String regex = "[A-z].*";
+				String regmail = "^[\\w-]+\\.*[\\w-]+@([\\w-]+\\.)+[\\w-]+";
+				String regpost = "[0-9]{4}[A-z]{2}";
+				String regtel = "[0-9]{10}";
+				String reghn = "[0-9].*[\\w]*";
+				String p = "";
+				if (!tbnaam.getText().matches(regex)) {
+					//Window.alert("geen valide voornaam");
+					p = "geen valide voornaam\n";
+				}
+				if (!tbanaam.getText().matches(regex)) {
+					//Window.alert("geen valide voornaam");
+					p += "geen valide achternaam\n";
+				}
+				if (!tbhn.getText().matches(reghn))
+				{
+					p += "geen valide huisnummer, begin met een nummer\n";
+				}
+				if(!tbemail.getText().matches(regmail))
+				{
+					//Window.alert("geen valide email");
+					p += "geen valide email\n";
+				}
+
+				if(!tbpostcode.getText().matches(regpost))
+				{
+					//Window.alert("geen valide postcode");
+					p += "geen valide postcode\n";
+				}
+
+				if(!tbtelefoon.getText().matches(regtel))
+				{
+					//Window.alert("geen valide telefoonnummer");
+					p += "geen valide telefoonnummer\n";
+				}
+
+				if (!tbstraat.getText().matches(regex))
+				{
+					//Window.alert("geen valide straatnaam");
+					p += "geen valide straatnaam\n";
+				}
+
+				if (!tbplaats.getText().matches(regex))
+				{
+					//Window.alert("geen valide plaatsnaam");
+					p += "geen valide plaatsnaam\n";
+				}
+			
+				if (!tbland.getText().matches(regex))
+				{
+					//Window.alert("hier moet een woord geen nummers");
+					p += "geen valide landnaam\n";
+				}
+				if(p != "")
+				{
+					Window.alert(p);	
+				}
+				else{
+				user.setVoorNaam(tbnaam.getText());user.setAchterNaam(tbanaam.getText());a.setPostcode(tbpostcode.getText());
+				a.setHuisnummer(tbhn.getText());a.setLand(tbland.getText());a.setStad(tbplaats.getText());a.setTelefoon(tbtelefoon.getText());
+				user.setWachtWoord(tbww.getText());user.setGebruikersNaam(tbemail.getText());
+					Window.alert("Gebruiker is aangepast");}
 			}});
 		breset.addClickHandler(new ClickHandler(){
 
 			@Override
 			public void onClick(ClickEvent event) {
-				tbnaam.setText(""); tbanaam.setText(""); tbstraat.setText(""); tbww.setText(""); tbhn.setText(""); tbemail.setText(""); tbgb.setText(""); tbpostcode.setText(""); tbtelefoon.setText(""); tbplaats.setText(""); tbland.setText("");
+				tbnaam.setText(""); tbanaam.setText(""); tbstraat.setText(""); tbww.setText(""); tbhn.setText(""); tbemail.setText(""); tbpostcode.setText(""); tbtelefoon.setText(""); tbplaats.setText(""); tbland.setText("");
 				
 			}
 			

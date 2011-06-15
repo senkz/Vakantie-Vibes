@@ -101,11 +101,11 @@ public class RegistrerenGebruiker extends FormPanel{
 					//Window.alert("hier moet een woord geen nummers");
 					p += "geen valide landnaam\n";
 				}
-				if (tbww.getText() == "") 
+				if (tbww.getText().equals("")) 
 				{
 					p += "geen wachtwoord ingevuld\n";
 				}
-				if (tbgb.getText() == "")
+				if (tbgb.getText().equals(""))
 				{
 					p += "geen gebruikersnaam ingevuld\n";
 				}

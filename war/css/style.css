@@ -194,19 +194,18 @@ a.button
 	
 /** ADMIN **/
 #admin, #gebruiker {
-	height: 635px;
-	  background-color: #FFA007;
-	  position: fixed;
-	  right: 15px;
-	  padding: 0px 15px 15px;
+    background-color: #FFA007;
+    height: 635px;
+    padding: 0 15px 15px;
+    right: -265px;
 }
 
 #gebruiker 	{top: 15px;}
-#admin 		{top: 15px; position absolute;}
+#admin 		{top: 15px; position: absolute;}
 
 /*#admin p:first-child, #gebruiker p:first-child {
 	text-align: center;
-	width: 160px;
+	width: 250px;
 	border-bottom: 1px solid #000;
 	padding-bottom: 5px;
 }*/

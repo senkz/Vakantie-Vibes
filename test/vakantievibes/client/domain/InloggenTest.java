@@ -4,6 +4,8 @@ import junit.framework.TestCase;
 
 import org.junit.Test;
 
+import com.google.gwt.core.client.EntryPoint;
+
 public class InloggenTest extends TestCase {
 	
 	@Test
@@ -18,13 +20,10 @@ public class InloggenTest extends TestCase {
 
 	@Test
 	public final void testLogin() {
-		VakantieVibes vv = new VakantieVibes();
+		VakantieVibes vv = new VakantieVibes(null);
 		Inloggen i = new Inloggen(vv);
 		
 		vv.addGebruiker(new Gebruiker("Tester", "geheim1", "Henk", "de Vries", "test@example.com"));
-		
-		//assertTrue(i.Login("geheim1", "Tester"));
-		//assertFalse(i.Login("geheim2", "Tester"));
 
 		assertNotNull(i.Login("geheim1", "Tester"));
 		assertNull(i.Login("geheim2", "Tester"));

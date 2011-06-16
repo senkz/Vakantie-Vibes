@@ -18,7 +18,12 @@ public class VakantieVibes {
 	private Gebruiker loginUser = null;
 	private Entry entry;
 
-	public VakantieVibes()	{
+	public VakantieVibes(Entry e)	{
+		this.entry = e;
+	}
+	
+	public void goHome() {
+		this.entry.myTabBar.selectTab(0);
 	}
 
 	public void addGebruiker(Gebruiker g) {
@@ -34,24 +39,13 @@ public class VakantieVibes {
 	}
 
 	public void setLoginUser(Gebruiker g) {
-		if(g.getGebruikersNaam().equals("admin1")){
-			if(g.getWachtWoord().equals("admin"))
-			{
-				g.setRechten(2);
-				if(g.getRechten() == 2){
-
-					RootPanel.get("admin").add(new AdminPage(this));
-				}
-			}
-
-		}
-		else{
-			loginUser = g;
-			//RootPanel.get("header").setTabBar.setTabEnabled(4, true);
-			//RootPanel.get("header").add(new AanpassenGebruiker(this));
-			System.out.println("logged in is nu: " + loginUser.getGebruikersNaam() + loginUser.getWachtWoord());
-			
-		}
+		loginUser = g;
+		if(g != null && g.getRechten() == 2)
+			RootPanel.get("admin").add(new AdminPage(this));
+		else
+			RootPanel.get("admin").clear();
+		
+		entry.changeTab(g);
 	}
 
 	public ArrayList<Gebruiker> listGebruikers() {
@@ -164,23 +158,23 @@ public class VakantieVibes {
 	}
 	public void addReizen(Reis reisjes, Bestemming best, Adres ad)
 	{
-		
-					if(best.equals(reisjes.getBestemming()))
-					{
-						System.out.println("bestem is : " + best.getLocatie());
-						
-						reizen.add(reisjes);
-						if(best.getTitel().equals(reisjes.getTitel())){
-	
-						reisjes.setAdres(ad);
-						reisjes.setBestemming(best);
-						System.out.println("bestem reisjes is : " + reisjes.getLocatie());
-						
-						}
-						
-					}
+
+		if(best.equals(reisjes.getBestemming()))
+		{
+			System.out.println("bestem is : " + best.getLocatie());
+
+			reizen.add(reisjes);
+			if(best.getTitel().equals(reisjes.getTitel())){
+
+				reisjes.setAdres(ad);
+				reisjes.setBestemming(best);
+				System.out.println("bestem reisjes is : " + reisjes.getLocatie());
+
+			}
+
+		}
 	}
-	
+
 	public ArrayList<Boeking> getBoekingenGebruiker(Gebruiker g) {
 		ArrayList<Boeking> gebruikerboeking = new ArrayList<Boeking>();
 		for(Boeking b:boeking) {

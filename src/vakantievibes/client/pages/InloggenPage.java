@@ -49,7 +49,6 @@ public class InloggenPage extends FormPanel implements ClickHandler {
 					tbwwi.setText(""); tbgbi.setText("");
 				} 
 				else{
-					serviceImpl.setLoginUser(g);
 					tbwwi.setText(""); tbgbi.setText("");
 					vp.setVisible(false);
 					luser.setText(g.getGebruikersNaam());
@@ -60,10 +59,8 @@ public class InloggenPage extends FormPanel implements ClickHandler {
 		if (sender == buitlog){
 			vp.setVisible(true);
 			loggedin.setVisible(false);
-			//Gebruiker k = serviceImpl.getLoginUser();
 			serviceImpl.setLoginUser(null);
-			//System.out.println("k is: " + k.getGebruikersNaam() + k.getWachtWoord());
-			
+			serviceImpl.goHome();
 		}
 	}
 	

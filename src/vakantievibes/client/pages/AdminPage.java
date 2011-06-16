@@ -76,7 +76,7 @@ public class AdminPage extends FormPanel implements ClickHandler
 		bbestem = new Button("bestemming");	menuhp.add(bbestem);	bbestem.addClickHandler(this);
 		bbestemtoe = new Button("toevoegen"); 						bbestemtoe.addClickHandler(this);
 		breistoe = new Button("toevoegen");							breistoe.addClickHandler(this);
-		
+
 		add(mainvp);
 
 	}
@@ -131,8 +131,7 @@ public class AdminPage extends FormPanel implements ClickHandler
 			hrvp.setVisible(false);
 			hbvp.setVisible(true);
 			System.out.println("printbbestem");
-			for(Bestemming b : bestemmingen)
-			{
+			for(Bestemming b : bestemmingen) {
 				HorizontalPanel hp = new HorizontalPanel();
 				hp.add(new Label(b.getTitel()));
 				lab = new Label(b.getInformatie());
@@ -153,8 +152,7 @@ public class AdminPage extends FormPanel implements ClickHandler
 				hbvp.add(hp);   
 			}
 		}
-		if (sender == bbestemtoe)
-		{
+		if (sender == bbestemtoe) {
 			String regex = "[A-z].*";
 			String p ="";
 			if(!tbbnm.getText().matches(regex)){
@@ -170,10 +168,10 @@ public class AdminPage extends FormPanel implements ClickHandler
 				Window.alert(p);
 			}
 			else{
-			Bestemming b = new Bestemming(tbloc.getText(),tbbnm.getText(),tbbinfo.getText());
-			serviceImpl.addBestemming(b);
-			tbloc.setText("");tbbnm.setText("");tbbinfo.setText("");
-			refreshPanelBestem();}
+				Bestemming b = new Bestemming(tbloc.getText(),tbbnm.getText(),tbbinfo.getText());
+				serviceImpl.addBestemming(b);
+				tbloc.setText("");tbbnm.setText("");tbbinfo.setText("");
+				refreshPanelBestem();}
 		}
 		if (sender == breistoe)
 		{
@@ -185,8 +183,20 @@ public class AdminPage extends FormPanel implements ClickHandler
 			String reghn = "[0-9].*[\\w]*";
 			String p ="";
 			int teller = 0;
+			
+			ArrayList<Reis> reizen = serviceImpl.getReizen();
+			boolean exists = false;
+			for(Reis r : reizen) {
+				if(tbrnm.getText().equals(r.getTitel())) {
+					exists = true;
+					break;
+				}
+			}
+			if(exists)
+				p += "Titel word reeds gebruikt\n";
+			
 			if(!tbrnm.getText().matches(regex)){
-				p = "foutive naam\n";
+				p += "foutive naam\n";
 			}
 			if(!tbrvdat.getText().matches(regdat)){
 				p+="Verkeerde vertrekdatum\n";
@@ -222,70 +232,59 @@ public class AdminPage extends FormPanel implements ClickHandler
 				Window.alert(p);
 			}
 			else{
-			String bestemtoev = lb.getValue(lb.getSelectedIndex());
-			DateFormat myDateFormat = new SimpleDateFormat("dd-MM-yyyy");
-			Date myDate = null;
-			Date myDate2 = null;
-			try {
-			     myDate = myDateFormat.parse(tbrvdat.getText());
-			     myDate2 = myDateFormat.parse(tbrtdat.getText());
-			}  catch (java.text.ParseException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			double tp = Double.parseDouble(tbrtp.getText());
-		
-			for(Bestemming b: bestemmingen) {
-				if(bestemtoev.equals(b.getTitel())){
-								
-					Adres ad = new Adres(tbrl.getText(), tbrs.getText(), tbrst.getText(), tbrhn.getText(), tbrpc.getText(), tbrtf.getText());
-					Bestemming best = b;
-					Reis reisjes = new Reis(myDate, myDate2, tbrnm.getText(), tbrinfo.getText(),b, ad, tp);	
-					serviceImpl.addReizen(reisjes, best, ad);
-					teller++;
-					if(teller == 1)
-					{
-						System.out.println("teller is " + teller);
-						refreshpanelreis();
-						teller--;
-					}
-					tbrl.setText("");tbrs.setText("");tbrst.setText("");tbrhn.setText("");tbrpc.setText("");tbrvdat.setText("");tbrtdat.setText("");
-					tbrnm.setText("");tbrinfo.setText("");tbrtf.setText("");tbrtp.setText("");
-					
+				String bestemtoev = lb.getValue(lb.getSelectedIndex());
+				DateFormat myDateFormat = new SimpleDateFormat("dd-MM-yyyy");
+				Date myDate = null;
+				Date myDate2 = null;
+				try {
+					myDate = myDateFormat.parse(tbrvdat.getText());
+					myDate2 = myDateFormat.parse(tbrtdat.getText());
+				}  catch (java.text.ParseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
 				}
-			}
+				double tp = Double.parseDouble(tbrtp.getText());
+
+				for(Bestemming b: bestemmingen) {
+					if(bestemtoev.equals(b.getTitel())) {
+						Adres ad = new Adres(tbrl.getText(), tbrs.getText(), tbrst.getText(), tbrhn.getText(), tbrpc.getText(), tbrtf.getText());
+						Bestemming best = b;
+						Reis reisjes = new Reis(myDate, myDate2, tbrnm.getText(), tbrinfo.getText(),b, ad, tp);	
+						serviceImpl.addReizen(reisjes, best, ad);
+						teller++;
+						if(teller == 1)	{
+							refreshpanelreis();
+							teller--;
+						}
+						tbrl.setText("");tbrs.setText("");tbrst.setText("");tbrhn.setText("");tbrpc.setText("");tbrvdat.setText("");tbrtdat.setText("");
+						tbrnm.setText("");tbrinfo.setText("");tbrtf.setText("");tbrtp.setText("");
+
+					}
+				}
 			}			
 		}
 	}
-	class Mydelete implements ClickHandler 
-	{
+	class Mydelete implements ClickHandler {
 		private Reis reisjes;
 
-		public Mydelete(Reis r) 
-		{
+		public Mydelete(Reis r) {
 			reisjes = r;
 		}
 
 		@Override
-		public void onClick(ClickEvent event) 
-		{
+		public void onClick(ClickEvent event) {
 			int teller = 0;
 			serviceImpl.removeReis(reisjes);
 			teller++;
 			if(teller == 1)
-			{
 				refreshpanelreis();
-			}			
 		}
 	};
 
-	class Myedit implements ClickHandler 
-	{
+	class Myedit implements ClickHandler {
 		public Reis reis;
 
-
-		public Myedit(Reis r)
-		{
+		public Myedit(Reis r) {
 			reis = r;
 		}
 
@@ -295,8 +294,7 @@ public class AdminPage extends FormPanel implements ClickHandler
 		}
 	};
 
-	private void showEditAdresMenu(Reis reis) 
-	{
+	private void showEditAdresMenu(Reis reis) {
 		HorizontalPanel hp3 = new HorizontalPanel();
 		HorizontalPanel hp4 = new HorizontalPanel();
 		final TextBox tfinfo =  new TextBox();
@@ -311,8 +309,7 @@ public class AdminPage extends FormPanel implements ClickHandler
 		hrvp.add(hp3);
 
 		final Reis r = reis;
-		bt.addClickHandler(new ClickHandler() 
-		{
+		bt.addClickHandler(new ClickHandler() {
 
 			@Override
 			public void onClick(ClickEvent event) 
@@ -324,16 +321,15 @@ public class AdminPage extends FormPanel implements ClickHandler
 					Window.alert("verkeerde prijs invoer");
 				}
 				else{
-				double totpr = Double.parseDouble(tftpr.getText());
-				
+					double totpr = Double.parseDouble(tftpr.getText());
 
-				serviceImpl.changeReis(r, info, totpr);
-				teller++;
-				if(teller == 1) 
-				{
-					refreshpanelreis();
-					teller--;
-				}
+
+					serviceImpl.changeReis(r, info, totpr);
+					teller++;
+					if(teller == 1) {
+						refreshpanelreis();
+						teller--;
+					}
 				}
 			}
 
@@ -343,37 +339,31 @@ public class AdminPage extends FormPanel implements ClickHandler
 	class Mydelete2 implements ClickHandler {
 		private Bestemming bestem;
 
-		public Mydelete2(Bestemming b) 
-		{
+		public Mydelete2(Bestemming b) {
 			bestem = b;
 		}
 
 		@Override
-		public void onClick(ClickEvent event) 
-		{
+		public void onClick(ClickEvent event) {
 			serviceImpl.removeBestemming(bestem);
 			refreshPanelBestem();
 		}
 	};
-	class Myedit2 implements ClickHandler 
-	{
+
+	class Myedit2 implements ClickHandler {
 		public Bestemming bs;
 
-
-		public Myedit2(Bestemming b) 
-		{
+		public Myedit2(Bestemming b) {
 			bs = b;
 		}
 
 		@Override
-		public void onClick(ClickEvent event) 
-		{
+		public void onClick(ClickEvent event) {
 			showeditmenu(bs);
 		}
 	};
 
-	public void showeditmenu(Bestemming bs) 
-	{
+	public void showeditmenu(Bestemming bs) {
 		HorizontalPanel hp2 = new HorizontalPanel();
 		final TextBox tf =  new TextBox();
 		Button bt = new Button("voer in");
@@ -381,20 +371,16 @@ public class AdminPage extends FormPanel implements ClickHandler
 		hp2.setVisible(true);
 		hbvp.add(hp2);
 
-
 		final Bestemming b = bs;
-		bt.addClickHandler(new ClickHandler() 
-		{
+		bt.addClickHandler(new ClickHandler() {
 
 			@Override
-			public void onClick(ClickEvent event) 
-			{
+			public void onClick(ClickEvent event) {
 				int teller = 0;
 				String bestem = tf.getText();
 				serviceImpl.changeBestemming(b, bestem);
 				teller++;
-				if(teller == 1) 
-				{
+				if(teller == 1) {
 					refreshPanelBestem();
 					teller--;
 				}
@@ -402,13 +388,12 @@ public class AdminPage extends FormPanel implements ClickHandler
 			}
 		});
 	}
-	public void refreshpanelreis()
-	{
+
+	public void refreshpanelreis() {
 		hplist2.clear(); hrvp.clear();
 		lb = new ListBox(); 
-		for(Bestemming b : bestemmingen){
+		for(Bestemming b : bestemmingen) {
 			lb.addItem(b.getTitel());
-
 		}
 		lb.setVisibleItemCount(3);
 
@@ -421,9 +406,7 @@ public class AdminPage extends FormPanel implements ClickHandler
 		hrvp.setVisible(true);
 		hbvp.setVisible(false);
 
-
-		for(Reis r : reizen)
-		{
+		for(Reis r : reizen) {
 			HorizontalPanel hp2 = new HorizontalPanel();
 			hp2.add(new Label(r.getTitel()));
 			edit = new Button("edit") ;
@@ -434,22 +417,18 @@ public class AdminPage extends FormPanel implements ClickHandler
 			delete.addClickHandler(new Mydelete(r));
 			edit.addClickHandler(new Myedit(r));
 		}
-		for(HorizontalPanel hp2 : hplist2)
-		{
+		for(HorizontalPanel hp2 : hplist2) {
 			hrvp.add(hp2); 
 		} 
 	}
-	public void refreshPanelBestem()
-	{
+	public void refreshPanelBestem() {
 		hplist.clear(); hbvp.clear();
 		hbvp.add(lbnm);hbvp.add(tbbnm);hbvp.add(lbinfo); hbvp.add(tbbinfo); 
 		hbvp.add(lbloc);hbvp.add(tbloc);
 		hbvp.add(bbestemtoe);
 		hrvp.setVisible(false);
 		hbvp.setVisible(true);
-		//System.out.println("printbbestem");
-		for(Bestemming b : bestemmingen)
-		{
+		for(Bestemming b : bestemmingen) {
 			HorizontalPanel hp = new HorizontalPanel();
 			hp.add(new Label(b.getTitel()));
 			lab = new Label(b.getInformatie());
@@ -465,10 +444,8 @@ public class AdminPage extends FormPanel implements ClickHandler
 			edit.addClickHandler(new Myedit2(b));
 
 		}
-		for(HorizontalPanel hp : hplist)
-		{
+		for(HorizontalPanel hp : hplist) {
 			hbvp.add(hp);
 		}
 	}
 }
-

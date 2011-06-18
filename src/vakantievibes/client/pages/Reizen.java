@@ -41,9 +41,6 @@ public class Reizen extends VerticalPanel {
 				HorizontalPanel buttonHolder = new HorizontalPanel();
 				Button zoekVervoer=new Button("Zoek vervoer"), biedtAan=new Button("Biedt vervoer aan");
 				biedtAan.addClickHandler(new PageClickHandler(r,this,0)); zoekVervoer.addClickHandler(new PageClickHandler(r,this,1));
-				datum = new DatePicker();
-				datum.setTransientEnabledOnDates(true, r.getVertrekDatum());
-				datum.setTransientEnabledOnDates(false, r.getTerugDatum());
 				if(vv.getLoginUser()==null) {
 					buttonHolder.add(new Label("U moet eerst inloggen voordat u een boeking kunt plaatsen."));
 				} else {
@@ -53,10 +50,12 @@ public class Reizen extends VerticalPanel {
 						buttonHolder.add(zoekVervoer); buttonHolder.add(biedtAan);
 					}
 				}
-				vp.add(new Label(r.getInformatie()));
-				vp.setTitle(r.getTitel());
+				vp.add(new Label("Titel: "+r.getTitel()));
+				vp.add(new Label("Stad: "+r.getAdres().getStad()));
+				vp.add(new Label("Informatie: "+r.getInformatie()));
+				vp.add(new Label("Vertrek datum: "+r.getVertrekDatum()));
+				vp.add(new Label("Terugkeer datum: "+r.getTerugDatum()));
 				vp.setStyleName("reis2");
-				vp.add(datum);
 				vp.add(buttonHolder);
 				hoofdPanel.add(vp);
 			}

@@ -51,7 +51,7 @@ public class InloggenPage extends FormPanel implements ClickHandler {
 				else{
 					tbwwi.setText(""); tbgbi.setText("");
 					vp.setVisible(false);
-					luser.setText(g.getGebruikersNaam());
+					luser.setText("Ingelogged als: "+g.getGebruikersNaam());
 					vvp.add(loggedin);
 					loggedin.setVisible(true);
 				}

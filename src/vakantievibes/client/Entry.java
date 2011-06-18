@@ -94,8 +94,8 @@ public class Entry implements EntryPoint {
 		Bestemming b = new Bestemming("Nederland","bezoek","Dit dbrvbrfvgbrg info");
 		Bestemming b1 = new Bestemming("Nederland","kijken","Dit is de freaking info");
 		serviceImpl.addBestemming(b);serviceImpl.addBestemming(b1);
-		serviceImpl.addReis(new Reis(new Date(System.currentTimeMillis()), new Date(System.currentTimeMillis()+500000), "Naar de wallen", "Lekker batsen", b, new Adres("Nederland", "Amsterdam", "de wallen", "69", "1337SX" , "09005858"), 50.00));
-		serviceImpl.addReis(new Reis(new Date(System.currentTimeMillis()), new Date(System.currentTimeMillis()+500000), "Naar dgrn", "Lekgvbrewgvrgv", b1, new Adres("Nederland", "Amsterdam", "de wallen", "69", "1337SX" , "09005858"), 65.00));
+		serviceImpl.addReis(new Reis(new Date(System.currentTimeMillis()+5000000), new Date(System.currentTimeMillis()+50000000), "Naar de wallen", "Lekker batsen", b, new Adres("Nederland", "Amsterdam", "de wallen", "69", "1337SX" , "09005858"), 50.00));
+		serviceImpl.addReis(new Reis(new Date(System.currentTimeMillis()+5000000), new Date(System.currentTimeMillis()+50000000), "Naar dgrn", "Lekgvbrewgvrgv", b1, new Adres("Nederland", "Amsterdam", "de wallen", "69", "1337SX" , "09005858"), 65.00));
 		Gebruiker g1 = new Gebruiker("test", "test", "voornaam", "achternaam", "email@email.com");
 		Adres a1 = new Adres("Nederland","kaas","kaas","2e","3432ED","9393939339");
 		g1.setAdres(a1);

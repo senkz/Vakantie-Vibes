@@ -22,8 +22,9 @@ public class Bestemmingen extends VerticalPanel {
 		ArrayList<Bestemming> bestemmingen = vv.getBestemming();
 		for(Bestemming b:bestemmingen) {
 			VerticalPanel vp = new VerticalPanel();
-			vp.add(new Label(b.getInformatie()));
-			vp.setTitle(b.getTitel());
+			vp.add(new Label("Titel: "+b.getTitel()));
+			vp.add(new Label("Locatie: "+b.getLocatie()));
+			vp.add(new Label("Informatie: "+b.getInformatie()));
 			bestemming = new Button("Zie de reizen");
 			bestemming.addClickHandler(new MyClickHandler(b,this));
 			vp.setStyleName("reis2");

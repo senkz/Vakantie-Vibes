@@ -31,7 +31,7 @@ public class AdminPage extends FormPanel implements ClickHandler
 	private HorizontalPanel menuhp;
 	private Button breis, bbestem, edit, delete,bbestemtoe,breistoe;
 	private TextBox tbbnm, tbbinfo,tbloc, tbrnm, tbrvdat, tbrtdat,tbrinfo, tbrtp, tbrb;
-	private Label lbloc, lbnm, lbinfo, lrnm, lrvdat, lrtdat,lrinfo, lrb, lrtp;
+	private Label lbloc, lbnm, lbinfo, lrnm, lrvdat, lrtdat,lrinfo, lrb, lrtp, lrdatf;
 	private TextBox tbrl, tbrs, tbrst, tbrhn, tbrpc, tbrtf;
 	private Label lrl, lrs, lrst, lrhn, lrpc, lrtf, lab;
 	private ListBox lb;
@@ -42,20 +42,16 @@ public class AdminPage extends FormPanel implements ClickHandler
 
 	public AdminPage(VakantieVibes sI)
 	{
-		setStyleName("reis");
-
 		serviceImpl = sI;
 		bestemmingen = serviceImpl.getBestemming();
 		reizen = serviceImpl.getReizen();
-
-
 
 		tbbnm = new TextBox();		lbnm = new Label("titel bestemming");
 		tbbinfo = new TextBox();	lbinfo = new Label("info");
 		tbloc = new TextBox();		lbloc = new Label("locatie");
 
 		tbrnm = new TextBox();		lrnm = new Label("titel reis");
-		tbrvdat = new TextBox();	lrvdat = new Label("vertrek datum");
+		tbrvdat = new TextBox();	lrvdat = new Label("vertrek datum"); 
 		tbrtdat = new TextBox();	lrtdat = new Label("terugkomst datum");
 		tbrinfo	= new TextBox();	lrinfo = new Label("informatie");
 		tbrtp = new TextBox();		lrtp = new Label("totaal prijs");
@@ -65,7 +61,8 @@ public class AdminPage extends FormPanel implements ClickHandler
 		tbrhn = new TextBox();		lrhn = new Label("huisnummer");
 		tbrpc = new TextBox();		lrpc = new Label("postcode");
 		tbrtf = new TextBox();		lrtf = new Label("telefoonnr");
-		tbrb = new TextBox();		lrb = new Label("bestemming");							
+		tbrb = new TextBox();		lrb = new Label("bestemming");	
+		lrdatf = new Label("Date format: dd-MM-yyyy HH:mm");
 
 		mainvp  = new VerticalPanel();
 		menuhp = new HorizontalPanel();		mainvp.add(menuhp); 
@@ -92,11 +89,10 @@ public class AdminPage extends FormPanel implements ClickHandler
 			lb = new ListBox(); 
 			for(Bestemming b : bestemmingen){
 				lb.addItem(b.getTitel());
-
 			}
 			lb.setVisibleItemCount(3);
 
-			hrvp.add(lrnm);hrvp.add(tbrnm);hrvp.add(lrvdat);hrvp.add(tbrvdat);
+			hrvp.add(lrnm);hrvp.add(tbrnm);hrvp.add(lrdatf);hrvp.add(lrvdat);hrvp.add(tbrvdat);
 			hrvp.add(lrtdat);hrvp.add(tbrtdat);hrvp.add(lrinfo);hrvp.add(tbrinfo);
 			hrvp.add(lrtp);hrvp.add(tbrtp);hrvp.add(lrl);hrvp.add(tbrl);hrvp.add(lrs);
 			hrvp.add(tbrs);hrvp.add(lrst);hrvp.add(tbrst);hrvp.add(lrhn);hrvp.add(tbrhn);
@@ -177,7 +173,7 @@ public class AdminPage extends FormPanel implements ClickHandler
 		if (sender == breistoe)
 		{
 			String regex = "[A-z].*";
-			String regdat = "[0-9]{2}+-+[0-1]{1}[0-9]{1}+-+[0-9]{4}";
+			String regdat = "[0-9]{2}-[0-1]{1}[0-9]{1}-[0-9]{4}\040[0-9]{2}:[0-9]{2}";
 			String regpr ="[0-9].*\\.[0-9]{2}";
 			String regpost = "[0-9]{4}[A-z]{2}";
 			String regtel = "[0-9]{10}";
@@ -234,7 +230,7 @@ public class AdminPage extends FormPanel implements ClickHandler
 			}
 			else{
 				String bestemtoev = lb.getValue(lb.getSelectedIndex());
-				DateFormat myDateFormat = new SimpleDateFormat("dd-MM-yyyy");
+				DateFormat myDateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm");
 				Date myDate = null;
 				Date myDate2 = null;
 				try {
@@ -398,7 +394,7 @@ public class AdminPage extends FormPanel implements ClickHandler
 		}
 		lb.setVisibleItemCount(3);
 
-		hrvp.add(lrnm);hrvp.add(tbrnm);hrvp.add(lrvdat);hrvp.add(tbrvdat);
+		hrvp.add(lrnm);hrvp.add(tbrnm);hrvp.add(lrdatf);hrvp.add(lrvdat);hrvp.add(tbrvdat);
 		hrvp.add(lrtdat);hrvp.add(tbrtdat);hrvp.add(lrinfo);hrvp.add(tbrinfo);
 		hrvp.add(lrtp);hrvp.add(tbrtp);hrvp.add(lrl);hrvp.add(tbrl);hrvp.add(lrs);
 		hrvp.add(tbrs);hrvp.add(lrst);hrvp.add(tbrst);hrvp.add(lrhn);hrvp.add(tbrhn);

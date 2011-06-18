@@ -26,6 +26,7 @@ public class RegistrerenGebruiker extends FormPanel{
 		
 	public RegistrerenGebruiker(VakantieVibes sI){
 		serviceImpl = sI;
+		setStyleName("reis");
 		
 		VerticalPanel vp = new VerticalPanel();
 		this.add(vp);

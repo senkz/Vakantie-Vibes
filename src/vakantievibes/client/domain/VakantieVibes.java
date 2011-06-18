@@ -2,7 +2,6 @@ package vakantievibes.client.domain;
 import java.util.ArrayList;
 
 import vakantievibes.client.Entry;
-import vakantievibes.client.pages.AanpassenGebruiker;
 import vakantievibes.client.pages.AdminPage;
 
 import com.google.gwt.user.client.Window;
@@ -83,7 +82,6 @@ public class VakantieVibes {
 			}
 		}
 		this.vervoer.add(vervoer);
-		loginUser.addVervoer(vervoer);
 		return true;
 	}
 
@@ -183,5 +181,25 @@ public class VakantieVibes {
 			}
 		}
 		return gebruikerboeking;
+	}
+	
+	public void removeBoekingVanAanbieder(Boeking b,Vervoer v) {
+		v.removeMeerijders();
+		boeking.remove(b);
+		vervoer.remove(v);
+		loginUser.removeBoeking(b);
+		loginUser.removeVervoer(v);
+	}
+	
+	public void removeBoekingMeerijder(Boeking b,Vervoer v) {
+		boeking.remove(b);
+		v.removeMeerijder(loginUser);
+		loginUser.removeBoeking(b);
+		loginUser.removeVervoer(v);
+	}
+	
+	public void removeBoekingMeerijder(Boeking b) {
+		boeking.remove(b);
+		loginUser.removeBoeking(b);
 	}
 }

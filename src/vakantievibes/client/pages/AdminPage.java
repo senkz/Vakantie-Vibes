@@ -42,6 +42,7 @@ public class AdminPage extends FormPanel implements ClickHandler
 
 	public AdminPage(VakantieVibes sI)
 	{
+		setStyleName("reis");
 
 		serviceImpl = sI;
 		bestemmingen = serviceImpl.getBestemming();

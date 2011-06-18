@@ -41,11 +41,9 @@ input, textarea {
 	font-size: 10pt;
 	color: #000000;
 	font-family: Verdana, Arial, Helvetica, sans-serif;
-}
- 
-input, textarea {
- 	border: 1px solid black;
+	border: 1px solid #999;
 	background-color: #FEFEFE;
+	margin:3px;
 }
 
 /** VERTICAL MENU **/

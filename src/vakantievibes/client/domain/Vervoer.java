@@ -30,6 +30,14 @@ public class Vervoer {
 		zitplaatsen = zp;
 	}
 	
+	public ArrayList<Gebruiker> getMeerijders() {
+		if(meerijder.isEmpty()){
+			return null;
+		} else {
+			return meerijder;	
+		}
+	}
+	
 	public Gebruiker getMeerijder(int i) {
 		return meerijder.get(i);
 	}
@@ -59,5 +67,24 @@ public class Vervoer {
 	
 	public String toString() {
 		return reis.getTitel();
+	}
+	
+	public String gebruikerStatus(Gebruiker g) {
+		if(g==aanbieder) {
+			return "aanbieder";
+		} else {
+			for(Gebruiker mr:meerijder) {
+				if(g==mr) {
+					return "meerijder";
+				}
+			}
+		}
+		return "nietoplijst";
+	}
+
+	public void removeMeerijders() {
+		for(Gebruiker g:meerijder) {
+			g.removeVervoer(this);
+		}
 	}
 }

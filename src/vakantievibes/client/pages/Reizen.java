@@ -31,10 +31,11 @@ public class Reizen extends VerticalPanel {
 	
 	public Reizen(VakantieVibes vv, Bestemming b) {
 		paginaInfo.setText("Kies een datum en een reis.");
+		paginaInfo.setStyleName("labelextra");
 		add(paginaInfo);
-		ArrayList<Reis> reizen = vv.getReizen();
+		ArrayList<Reis> reizen2 = vv.getReizen();
 		this.vv=vv;
-		for(Reis r:reizen) {
+		for(Reis r:reizen2) {
 			if(r.getBestemming()==b){
 				VerticalPanel vp = new VerticalPanel();
 				HorizontalPanel buttonHolder = new HorizontalPanel();
@@ -43,15 +44,26 @@ public class Reizen extends VerticalPanel {
 				datum = new DatePicker();
 				datum.setTransientEnabledOnDates(true, r.getVertrekDatum());
 				datum.setTransientEnabledOnDates(false, r.getTerugDatum());
-				buttonHolder.add(zoekVervoer); buttonHolder.add(biedtAan);
+				if(vv.getLoginUser()==null) {
+					buttonHolder.add(new Label("U moet eerst inloggen voordat u een boeking kunt plaatsen."));
+				} else {
+					if(vv.getLoginUser().heeftReis(r)) {
+						buttonHolder.add(new Label("U heeft al geboekt voor deze reis, de boeking kunt u aanpassen in 'Mijn Boekingen'."));
+					} else {
+						buttonHolder.add(zoekVervoer); buttonHolder.add(biedtAan);
+					}
+				}
 				vp.add(new Label(r.getInformatie()));
 				vp.setTitle(r.getTitel());
-				vp.setStyleName("reis");
+				vp.setStyleName("reis2");
 				vp.add(datum);
 				vp.add(buttonHolder);
 				hoofdPanel.add(vp);
 			}
 		}
+		reizen = new Button("Terug naar reis overzicht");
+		reizen.addStyleName("specialeButton");
+		reizen.addClickHandler(new PageClickHandler(2));
 		add(hoofdPanel);
 	}
 		
@@ -74,6 +86,10 @@ public class Reizen extends VerticalPanel {
 			vervoer=v;
 		}
 		
+		public PageClickHandler(int i) {
+			soortPagina=i;
+		}
+		
 		@Override
 		public void onClick(ClickEvent event) {
 			switch(soortPagina) {
@@ -86,7 +102,7 @@ public class Reizen extends VerticalPanel {
 				pagina.paginaInfo.setText("Kies een vervoer hieronder uit");
 				break;
 			case 2:
-				pagina.naarHoofdPanel();
+				naarHoofdPanel();
 				pagina.paginaInfo.setText("Kies een datum en een reis.");
 				break;
 			case 3:
@@ -113,9 +129,7 @@ public class Reizen extends VerticalPanel {
 		aantalPlaatsenInfo.setText("Hoeveel vervoersplekken biedt u aan?");
 		Button bevestig = new Button("Bevestig boeking");
 		bevestig.addClickHandler(new PageClickHandler(r,this,3));
-		reizen = new Button("Terug naar reis overzicht");
-		reizen.addClickHandler(new PageClickHandler(r,this,2));
-		boekReisPanel.setStyleName("reis");		
+		boekReisPanel.setStyleName("reis2");		
 		boekReisPanel.add(aantalPlaatsenInfo);
 		boekReisPanel.add(ap);
 		boekReisPanel.add(bevestig);
@@ -145,9 +159,7 @@ public class Reizen extends VerticalPanel {
 				}
 			}
 		}
-		reizen = new Button("Terug naar overzicht");
-		reizen.addClickHandler(new PageClickHandler(null,this,2));
-		boekReisPanel.setStyleName("reis");		
+		boekReisPanel.setStyleName("reis2");		
 		add(boekReisPanel);
 		add(reizen);
 	}
@@ -155,12 +167,12 @@ public class Reizen extends VerticalPanel {
 	public void naarHoofdPanel() {
 		remove(boekReisPanel);
 		remove(reizen);
-		boekReisPanel= new VerticalPanel();
+		boekReisPanel = new VerticalPanel();
 		add(hoofdPanel);
 	}
 	
 	public void biedtVervoerAan(Reis r) {
-		remove(boekReisPanel);
+		boekReisPanel.clear();
 		Gebruiker g = vv.getLoginUser();
 		if(g==null) {
 			boekReisPanel= new VerticalPanel();
@@ -171,17 +183,15 @@ public class Reizen extends VerticalPanel {
 		Vervoer v = new Vervoer(Integer.parseInt(ap.getValue()),g,r);
 		Boeking b = new Boeking(new Date(), false,g,r); 
 		System.out.println(r.getTitel());
-		boekReisPanel = new VerticalPanel();
 		if(vv.addVervoer(v)&&vv.addBoeking(b,v)) {
 			boekReisPanel.add(new Label("U heeft succesvol geboekt"));
 		} else {
 			boekReisPanel.add(new Label("De boeking faalde"));
 		}
-		add(boekReisPanel);
 	}
 	
 	public void reisMeeMetVervoer(Reis r,Vervoer v) {
-		remove(boekReisPanel);
+		boekReisPanel.clear();
 		Gebruiker g = vv.getLoginUser();
 		if(g==null) {
 			boekReisPanel= new VerticalPanel();
@@ -192,12 +202,11 @@ public class Reizen extends VerticalPanel {
 		v.addMeerijder(g);
 		Boeking b = new Boeking(new Date(), false,g,r); 
 		System.out.println(r.getTitel());
-		boekReisPanel = new VerticalPanel();
+		boekReisPanel.clear();
 		if(vv.addBoeking(b,v)) {
 			boekReisPanel.add(new Label("U heeft succesvol geboekt"));
 		} else {
 			boekReisPanel.add(new Label("De boeking faalde"));
 		}
-		add(boekReisPanel);
 	}
 }

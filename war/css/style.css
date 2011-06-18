@@ -135,7 +135,16 @@ p.legend
 	  width: 700px;
 	  background:#FFD988; 
 	  border: outset #FED877; 
+	  margin: 10px auto;
+	  padding: 10px;
+	}
+.reis2
+	{ 
+	  width: 700px;
+	  background:#FFD988; 
+	  border: outset #FED877; 
 	  margin: 10px 50px;
+	  padding: 10px;
 	}
 div.pi
 	{

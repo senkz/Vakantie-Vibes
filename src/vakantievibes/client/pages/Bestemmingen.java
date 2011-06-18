@@ -26,7 +26,7 @@ public class Bestemmingen extends VerticalPanel {
 			vp.setTitle(b.getTitel());
 			bestemming = new Button("Zie de reizen");
 			bestemming.addClickHandler(new MyClickHandler(b,this));
-			vp.setStyleName("reis");
+			vp.setStyleName("reis2");
 			vp.add(bestemming);
 			hoofdPanel.add(vp);
 		}
@@ -57,6 +57,7 @@ public class Bestemmingen extends VerticalPanel {
 		reisPanel.add(new Reizen(vv, b));
 		terug = new Button("Terug naar Bestemmingen");
 		terug.addClickHandler(new MyClickHandler(null,this));
+		terug.addStyleName("specialeButton");
 		reisPanel.add(terug);
 		add(reisPanel);
 	}

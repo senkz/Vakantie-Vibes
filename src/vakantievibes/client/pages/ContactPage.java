@@ -18,6 +18,7 @@ public class ContactPage extends FormPanel {
 	
 	public ContactPage(){
 		
+		setStyleName("reis");
 		ltext1 = new Label("U kunt ons bellen. Houdt u uw bestellingsnummer gereed als u een vraag heeft over uw vakantie. ");
 		ltext4 = new Label("Wij zullen u dan zo snel mogelijk proberen te helpen.");
 		ltext2 = new Label("Telefoon: 0800 - 1234");

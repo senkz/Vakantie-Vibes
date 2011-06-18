@@ -25,6 +25,7 @@ public class AanpassenGebruiker extends FormPanel{
 	private Gebruiker user;
 		
 	public AanpassenGebruiker(VakantieVibes sI){
+		setStyleName("reis");
 		serviceImpl = sI;
 		user = serviceImpl.getLoginUser();
 		final Adres a = user.getAdres();

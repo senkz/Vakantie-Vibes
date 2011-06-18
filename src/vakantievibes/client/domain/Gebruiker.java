@@ -81,4 +81,51 @@ public class Gebruiker{
 	public ArrayList<Vervoer> getVervoer() {
 		return vervoer;
 	}
+	
+	public Boolean heeftReis(Reis r) {
+		for(Boeking b:boeking) {
+			if(b.getReis()==r) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public Vervoer getVervoerBijReis(Reis r) {
+		for(Vervoer v:vervoer) {
+			if(v.getReis()==r) {
+				return v;
+			}
+		}
+		return null;
+	}
+	
+	public String vervoersStatus(Reis r) {
+		for(Vervoer v:vervoer) {
+			if(v.getReis()==r) {
+				return v.gebruikerStatus(this);
+			}
+		}
+		return "null";
+	}
+	
+	public ArrayList<Gebruiker> getMeeRijders(Reis r) {
+		for(Vervoer v:vervoer) {
+			if(v.getReis()==r) {
+				return v.getMeerijders();
+			}
+		}
+		return null;
+	}
+	
+	public void removeVervoer(Vervoer v) {
+		vervoer.remove(v);
+		for (Vervoer v2:vervoer) {
+			System.out.println(v2.getReis().getTitel());
+		}
+	}
+	
+	public void removeBoeking(Boeking b) {
+		boeking.remove(b);
+	}
 }

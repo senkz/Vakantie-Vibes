@@ -74,7 +74,7 @@ public class Entry implements EntryPoint {
 		myTabBar = myTabPanel.getTabBar();
 
 		myTabPanel.add(new HorizontalPanel(), "Home");
-		myTabPanel.add(new HorizontalPanel(), "Registreren Gebruiker");
+		myTabPanel.add(new HorizontalPanel(), "Registreren");
 		myTabPanel.add(new HorizontalPanel(), "Bestemmingen");
 		myTabPanel.add(new HorizontalPanel(), "Mijn Boekingen");
 		myTabPanel.add(new HorizontalPanel(), "Contact");
@@ -109,10 +109,10 @@ public class Entry implements EntryPoint {
 	public void changeTab(Gebruiker g) {
 		if(g == null) {
 			myTabBar.setTabEnabled(3, false);
-			myTabBar.setTabText(1, "Registreren Gebruiker");
+			myTabBar.setTabText(1, "Registreren");
 		} else {
 			myTabBar.setTabEnabled(3, true);
-			myTabBar.setTabText(1, "Aanpassen Gebruiker");
+			myTabBar.setTabText(1, "Instellingen");
 		}
 	}
 }

@@ -37,6 +37,16 @@ a, a:visited, a:hover {
 }
 
 .gwt-Button {
+	font-family: verdana;
+	font-size: 10px;
+	display: block;
+	float: left;
+	margin: 3px;
+	border: 1px solid #999;
+	background-color: whiteSmoke;
+	padding: 3px 15px 7px;
+	
+  /* DEFAULT:
   margin: 0;
   padding: 3px 5px;
   text-decoration: none;
@@ -44,13 +54,18 @@ a, a:visited, a:hover {
   cursor: pointer;
   cursor: hand;
   background: url("images/hborder.png") repeat-x 0px -27px;
-  border: 1px outset #ccc;
+  border: 1px outset #ccc; */
 }
+
+.specialeButton {
+	margin-left: 50px;	
+}
+	
 .gwt-Button:active {
-  border: 1px inset #ccc;
+  border: 1px inset #999;
 }
 .gwt-Button:hover {
-  border-color: #9cf #69e #69e #7af;
+  border-color: #F5B54C;
 }
 .gwt-Button[disabled] {
   cursor: default;
@@ -243,6 +258,22 @@ a, a:visited, a:hover {
 }
 
 .gwt-Label {
+	display: block;
+	margin: 3px;
+	line-height:1.4em;
+}
+
+.labelextra {
+margin-left: 50px;
+font-size: 16px;
+font-weight: bold;
+}
+
+.gwt-TabBarItem .gwt-Label{
+	-webkit-margin-before: 0;
+	-webkit-margin-after: 0;
+	-webkit-margin-start: 0;
+	-webkit-margin-end: 0;
 }
 
 .gwt-ListBox {
@@ -799,7 +830,6 @@ a, a:visited, a:hover {
   margin-left: 6px;
   padding: 3px 6px 3px 6px;
   cursor: pointer;
-  cursor: hand;
   color: black;
   font-weight: bold;
   text-align: center;
@@ -816,9 +846,6 @@ a, a:visited, a:hover {
 .gwt-TabPanel {
 }
 .gwt-TabPanelBottom {
-  border-color: #92c1f0;
-  border-style: solid;
-  border-width: 3px 2px 2px;
   overflow: hidden;
   padding: 6px;
 }

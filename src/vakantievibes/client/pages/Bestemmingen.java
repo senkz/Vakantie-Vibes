@@ -8,6 +8,7 @@ import vakantievibes.client.domain.VakantieVibes;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.ui.Button;
+import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
@@ -22,9 +23,12 @@ public class Bestemmingen extends VerticalPanel {
 		ArrayList<Bestemming> bestemmingen = vv.getBestemming();
 		for(Bestemming b:bestemmingen) {
 			VerticalPanel vp = new VerticalPanel();
-			vp.add(new Label("Titel: "+b.getTitel()));
-			vp.add(new Label("Locatie: "+b.getLocatie()));
-			vp.add(new Label("Informatie: "+b.getInformatie()));
+			FlexTable t=new FlexTable();
+			t.setCellSpacing(5);
+			t.setText(0, 0,"Titel: ");				t.setText(0, 1, b.getTitel());
+			t.setText(1, 0, "Locatie: ");				t.setText(1, 1, b.getLocatie());
+			t.setText(2, 0, "Informatie: ");		t.setText(2, 1, b.getInformatie());
+			vp.add(t);
 			bestemming = new Button("Zie de reizen");
 			bestemming.addClickHandler(new MyClickHandler(b,this));
 			vp.setStyleName("reis2");

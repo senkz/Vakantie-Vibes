@@ -22,13 +22,6 @@ public class Reis {
 		setTotaalPrijs(tp);
 	}
 
-	public void setTotaalPrijs(double tp) {
-		totaalprijs = tp;	
-	}
-	private double getTotaalPrijs(){
-		return totaalprijs;
-	}
-
 	public Reis(Date vDat, Date tDat,String t,String i, Bestemming b, Adres a, double tp){
 		vertrekDatum = vDat;
 		terugDatum = tDat;
@@ -46,6 +39,14 @@ public class Reis {
 		setInformatie(t);
 		setInformatie(i);
 		setTotaalPrijs(tp);
+	}
+	
+	public void setTotaalPrijs(double tp) {
+		totaalprijs = tp;	
+	}
+	
+	public double getTotaalPrijs(){
+		return totaalprijs;
 	}
 
 	public Date getVertrekDatum() {

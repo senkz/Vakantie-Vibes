@@ -14,6 +14,7 @@ import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Button;
+import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.TextBox;
@@ -50,11 +51,15 @@ public class Reizen extends VerticalPanel {
 						buttonHolder.add(zoekVervoer); buttonHolder.add(biedtAan);
 					}
 				}
-				vp.add(new Label("Titel: "+r.getTitel()));
-				vp.add(new Label("Stad: "+r.getAdres().getStad()));
-				vp.add(new Label("Informatie: "+r.getInformatie()));
-				vp.add(new Label("Vertrek datum: "+r.getVertrekDatum()));
-				vp.add(new Label("Terugkeer datum: "+r.getTerugDatum()));
+				FlexTable t=new FlexTable();
+				t.setCellSpacing(5);
+				t.setText(0, 0,"Titel: ");				t.setText(0, 1, r.getTitel());
+				t.setText(1, 0, "Stad: ");				t.setText(1, 1, r.getAdres().getStad());
+				t.setText(2, 0, "Informatie: ");		t.setText(2, 1, r.getInformatie());
+				t.setText(3, 0, "Vertrek datum: ");		t.setText(3, 1, r.getVertrekDatum()+"");
+				t.setText(4, 0, "Terugkeer datum: ");	t.setText(4, 1, r.getTerugDatum()+"");
+				t.setText(5, 0, "Prijs: ");				t.setText(5, 1, r.getTotaalPrijs()+"");
+				vp.add(t);
 				vp.setStyleName("reis2");
 				vp.add(buttonHolder);
 				hoofdPanel.add(vp);

@@ -14,6 +14,8 @@ body {
 	padding:0;
 	background:white;
 	min-height: 100%;
+	-webkit-box-shadow: 1px 0 15px  #262626,  -1px 0 15px #262626;   
+	-moz-box-shadow: 1px 0 15px #262626,  -1px 0 15px #262626;   
 }
 
 #header {
@@ -133,18 +135,24 @@ p.legend
 .reis
 	{ 
 	  width: 700px;
-	  background:#FFD988; 
-	  border: outset #FED877; 
+	  background:#FCF7C0; 
+	  border: solid #FCC947 2px; 
 	  margin: 10px auto;
 	  padding: 10px;
+	  -moz-border-radius: 8px;
+	  -webkit-border-radius: 8px;
+	  border-radius: 8px;
 	}
 .reis2
 	{ 
 	  width: 700px;
-	  background:#FFD988; 
-	  border: outset #FED877; 
+	  background:#FCF7C0; 
+	  border: solid #FCC947 2px;  
 	  margin: 10px 50px;
 	  padding: 10px;
+	  -moz-border-radius: 8px;
+	  -webkit-border-radius: 8px;
+	  border-radius: 8px;
 	}
 div.pi
 	{

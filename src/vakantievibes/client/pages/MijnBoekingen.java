@@ -32,12 +32,15 @@ public class MijnBoekingen extends VerticalPanel {
 			add(new Label("U bent niet ingelogd"));
 			return;
 		}
-		Label temp=new Label("Uw boekingen:");
-		temp.setStyleName("labelextra");
-		hoofdPanel.add(temp);
+		Label templ=new Label("Uw boekingen:");
+		templ.setStyleName("labelextra");
+		hoofdPanel.add(templ);
 		boekingen=vv.getBoekingenGebruiker(gebruiker);
 		if(boekingen.isEmpty()) {
-			hoofdPanel.add(new Label("Geen boekingen op dit moment"));
+			HorizontalPanel tempp=new HorizontalPanel();
+			tempp.add(new Label("Geen boekingen op dit moment"));
+			tempp.setStyleName("reis2");
+			hoofdPanel.add(tempp);
 		} else{
 			for (Boeking b:boekingen) {
 				HorizontalPanel boeking=new HorizontalPanel();

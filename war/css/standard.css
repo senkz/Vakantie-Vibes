@@ -815,7 +815,7 @@ font-weight: bold;
   overflow: hidden;
 }
 .gwt-TabBar {
-	padding:146px 0 0 0;	
+	padding:135px 0 0 0;	
 }
 .gwt-TabBarItem-wrapper-disabled {
 	display: none;
@@ -828,14 +828,33 @@ font-weight: bold;
 }
 .gwt-TabBar .gwt-TabBarItem {
   margin-left: 6px;
-  padding: 3px 6px 3px 6px;
+  margin-top: 3px;
+  padding: 3px 20px;
   cursor: pointer;
   color: black;
   font-weight: bold;
   text-align: center;
-  background-image: url('../img/menuknopje.png');
-  width:130px;
+  background:#FFBE33; 
+  border: solid #DBA10B 1px;
+  -moz-border-radius-topleft: 10px;
+-webkit-border-top-left-radius: 10px;
+-o-border-top-left-radius: 10px;
+-ms-border-top-left-radius: 10px;
+-khtml-border-top-left-radius: 10px;
+border-top-left-radius: 10px;
+-moz-border-radius-topright: 10px;
+-webkit-border-top-right-radius: 10px;
+-o-border-top-right-radius: 10px;
+-ms-border-top-right-radius: 10px;
+-khtml-border-top-right-radius: 10px;
+border-top-right-radius: 10px;
 }
+
+.gwt-TabBar .gwt-TabBarItem:hover {
+  margin-top: 0;
+  padding-bottom: 6px;
+}
+
 .gwt-TabBar .gwt-TabBarItem-selected {
   cursor: default;
 } 

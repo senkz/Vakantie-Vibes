@@ -31,7 +31,7 @@ public class Reizen extends VerticalPanel {
 	public Label paginaInfo = new Label();
 	
 	public Reizen(VakantieVibes vv, Bestemming b) {
-		paginaInfo.setText("Kies een datum en een reis.");
+		paginaInfo.setText("Kies een datum en een reis");
 		paginaInfo.setStyleName("labelextra");
 		add(paginaInfo);
 		ArrayList<Reis> reizen2 = vv.getReizen();
@@ -107,7 +107,7 @@ public class Reizen extends VerticalPanel {
 				break;
 			case 2:
 				naarHoofdPanel();
-				pagina.paginaInfo.setText("Kies een datum en een reis.");
+				paginaInfo.setText("Kies een datum en een reis");
 				break;
 			case 3:
 				if(ap.getValue().matches("^[0-9]+$")) {

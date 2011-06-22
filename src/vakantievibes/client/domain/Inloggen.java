@@ -14,8 +14,8 @@ public class Inloggen {
 	}
 
 	public Gebruiker Login(String ww, String gb) {		
-		Gebruiker g = ServiceImpl.zoekGebruiker(gb);
-		if(hashWachtwoord(g.getWachtWoord()).equals(hashWachtwoord(ww))) {
+		Gebruiker g = ServiceImpl.zoekGebruiker(gb);	
+		if(g != null && hashWachtwoord(g.getWachtWoord()).equals(hashWachtwoord(ww))) {
 			ServiceImpl.setLoginUser(g);
 			return g;
 		}

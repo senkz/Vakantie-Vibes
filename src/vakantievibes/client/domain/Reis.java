@@ -30,7 +30,6 @@ public class Reis {
 		setInformatie(i);
 		setAdres(a);
 		setTotaalPrijs(tp);
-		System.out.println("alles is nu " + vertrekDatum + "" + terugDatum + "" +titel + " " +informatie + " " +adres.getHuisnummer() + " " +adres.getStad() +" " + tp + " " + bestemming.getTitel());
 	}
 	
 	public Reis(Date myDate, Date myDate2, String t, String i, double tp) {
@@ -99,11 +98,6 @@ public class Reis {
 			return true;
 		}
 		return false;
-	}
-
-	public void setVertrekDatum(String vertdat) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	public Bestemming getLocatie() {

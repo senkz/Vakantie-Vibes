@@ -76,11 +76,9 @@ public class AanpassenGebruiker extends FormPanel{
 				String reghn = "[0-9].*[\\w]*";
 				String p = "";
 				if (!tbnaam.getText().matches(regex)) {
-					//Window.alert("geen valide voornaam");
 					p = "geen valide voornaam\n";
 				}
 				if (!tbanaam.getText().matches(regex)) {
-					//Window.alert("geen valide voornaam");
 					p += "geen valide achternaam\n";
 				}
 				if (!tbhn.getText().matches(reghn))
@@ -89,37 +87,31 @@ public class AanpassenGebruiker extends FormPanel{
 				}
 				if(!tbemail.getText().matches(regmail))
 				{
-					//Window.alert("geen valide email");
 					p += "geen valide email\n";
 				}
 
 				if(!tbpostcode.getText().matches(regpost))
 				{
-					//Window.alert("geen valide postcode");
 					p += "geen valide postcode\n";
 				}
 
 				if(!tbtelefoon.getText().matches(regtel))
 				{
-					//Window.alert("geen valide telefoonnummer");
 					p += "geen valide telefoonnummer\n";
 				}
 
 				if (!tbstraat.getText().matches(regex))
 				{
-					//Window.alert("geen valide straatnaam");
 					p += "geen valide straatnaam\n";
 				}
 
 				if (!tbplaats.getText().matches(regex))
 				{
-					//Window.alert("geen valide plaatsnaam");
 					p += "geen valide plaatsnaam\n";
 				}
 			
 				if (!tbland.getText().matches(regex))
 				{
-					//Window.alert("hier moet een woord geen nummers");
 					p += "geen valide landnaam\n";
 				}
 				if(p != "")
@@ -128,8 +120,9 @@ public class AanpassenGebruiker extends FormPanel{
 				}
 				else{
 				user.setVoorNaam(tbnaam.getText());user.setAchterNaam(tbanaam.getText());a.setPostcode(tbpostcode.getText());
-				a.setHuisnummer(tbhn.getText());a.setLand(tbland.getText());a.setStad(tbplaats.getText());a.setTelefoon(tbtelefoon.getText());
-				user.setWachtWoord(tbww.getText());user.setGebruikersNaam(tbemail.getText());
+				a.setStraat(tbstraat.getText());a.setHuisnummer(tbhn.getText());a.setLand(tbland.getText());a.setStad(tbplaats.getText());a.setTelefoon(tbtelefoon.getText());
+				if (! tbww.getText().equals("")){user.setWachtWoord(tbww.getText()); System.out.println("door");}
+				user.setEmail(tbemail.getText());
 					Window.alert("Gebruiker is aangepast");}
 			}});
 		breset.addClickHandler(new ClickHandler(){

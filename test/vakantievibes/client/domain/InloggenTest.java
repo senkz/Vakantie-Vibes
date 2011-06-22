@@ -4,8 +4,6 @@ import junit.framework.TestCase;
 
 import org.junit.Test;
 
-import com.google.gwt.core.client.EntryPoint;
-
 public class InloggenTest extends TestCase {
 	
 	@Test

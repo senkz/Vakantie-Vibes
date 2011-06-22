@@ -11,6 +11,7 @@ import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.FormPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.PasswordTextBox;
+import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
@@ -54,6 +55,13 @@ public class InloggenPage extends FormPanel implements ClickHandler {
 					luser.setText("Ingelogged als: "+g.getGebruikersNaam());
 					vvp.add(loggedin);
 					loggedin.setVisible(true);
+
+					serviceImpl.changeTab(g);
+					
+					if(g.getRechten() == 2)
+						RootPanel.get("admin").add(new AdminPage(serviceImpl));
+					else
+						RootPanel.get("admin").clear();
 				}
 			}
 		if (sender == buitlog){

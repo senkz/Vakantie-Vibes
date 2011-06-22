@@ -153,7 +153,7 @@ public class VakantieVibes {
 
 				reisjes.setAdres(ad);
 				reisjes.setBestemming(best);
-				System.out.println("bestem reisjes is : " + reisjes.getLocatie());
+				System.out.println("bestem reisjes is : " + reisjes.getBestemming());
 
 			}
 

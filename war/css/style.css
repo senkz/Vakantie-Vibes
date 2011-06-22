@@ -21,7 +21,6 @@ body {
 #header {
 	position: relative;
 	width:800px;
-	height:170px;
 	margin:0;
 	padding:0;
 	background: center center no-repeat url("../img/header.png");
@@ -29,11 +28,20 @@ body {
 }
 
 #login {
-	width:180px;
+	width:260px;
 	position: absolute;
 	right:0;
 }
 
+#login button {
+	float: right;
+	margin: 0 8px 0 0;
+}
+
+#login table {
+	float: right;
+}
+	
 #login form {
 }
 
@@ -153,6 +161,10 @@ p.legend
 	  -moz-border-radius: 8px;
 	  -webkit-border-radius: 8px;
 	  border-radius: 8px;
+	}
+	
+.reis2 td {
+	vertical-align: top;
 	}
 div.pi
 	{

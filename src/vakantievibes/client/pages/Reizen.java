@@ -113,13 +113,14 @@ public class Reizen extends VerticalPanel {
 				if(ap.getValue().matches("^[0-9]+$")) {
 					pagina.biedtVervoerAan(reis);
 					pagina.paginaInfo.setText("Uitslag van je bevestiging:");
+					pagina.reizen.setVisible(false);
 				} else {
 					Window.alert("Geen numerieke waarde opgegeven");
 				}				
 				break;
 			case 4:
 				pagina.reisMeeMetVervoer(reis,vervoer);
-				pagina.paginaInfo.setText("Bevestig de Boeking.");
+				pagina.paginaInfo.setText("Bevestig de Boeking");
 				break;
 			}
 		}

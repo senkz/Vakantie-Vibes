@@ -8,6 +8,7 @@ import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Button;
+import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.FormPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.PasswordTextBox;
@@ -25,9 +26,12 @@ public class InloggenPage extends FormPanel implements ClickHandler {
 	private final VerticalPanel vp = new VerticalPanel(), loggedin = new VerticalPanel(), vvp = new VerticalPanel();
 	
 	public InloggenPage(VakantieVibes sI){
+		FlexTable t=new FlexTable();
+		t.setCellSpacing(5);
+		t.setWidget(0, 0, lnaam);	t.setWidget(0, 1, tbgbi);
+		t.setWidget(1, 0, lww);	t.setWidget(1, 1, tbwwi);
+		vp.add(t);
 		serviceImpl = sI;
-		vp.add(lnaam); vp.add(tbgbi);
-		vp.add(lww); vp.add(tbwwi);
 		binlog = new Button("inloggen");  binlog.addClickHandler(this);
 		vp.add(binlog);
 		vvp.add(vp);						

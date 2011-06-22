@@ -9,7 +9,6 @@ public class Reis {
 	private double totaalprijs;
 	private Bestemming bestemming;
 	private Adres adres;
-	private Bestemming locatie;
 	
 
 	public Reis(Date vDat, Date tDat,String t, Bestemming b, Adres a, double tp){
@@ -104,10 +103,6 @@ public class Reis {
 	public void setVertrekDatum(String vertdat) {
 		// TODO Auto-generated method stub
 		
-	}
-
-	public Bestemming getLocatie() {
-		return locatie;
 	}
 
 

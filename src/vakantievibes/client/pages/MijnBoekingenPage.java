@@ -16,7 +16,7 @@ import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
-public class MijnBoekingen extends VerticalPanel {
+public class MijnBoekingenPage extends VerticalPanel {
 	
 	private VakantieVibes vv;
 	private Gebruiker gebruiker;
@@ -25,7 +25,7 @@ public class MijnBoekingen extends VerticalPanel {
 	private TextBox vrijplekken;
 	private HorizontalPanel refBoekingsPanel;
 	
-	public MijnBoekingen(VakantieVibes sI){
+	public MijnBoekingenPage(VakantieVibes sI){
 		vv=sI;
 		gebruiker = vv.getLoginUser();
 		if(gebruiker==null) {

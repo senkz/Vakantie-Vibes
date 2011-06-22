@@ -30,7 +30,7 @@ public class AdminPage extends FormPanel implements ClickHandler
 	private VerticalPanel mainvp, hrvp, hbvp;
 	private HorizontalPanel menuhp;
 	private Button breis, bbestem, edit, delete,bbestemtoe,breistoe;
-	private TextBox tbbnm, tbbinfo,tbloc, tbrnm, tbrvdat, tbrtdat,tbrinfo, tbrtp, tbrb;
+	private TextBox tbbnm, tbbinfo,tbloc, tbrnm, tbrvdat, tbrtdat,tbrinfo, tbrtp;
 	private Label lbloc, lbnm, lbinfo, lrnm, lrvdat, lrtdat,lrinfo, lrb, lrtp, lrdatf;
 	private TextBox tbrl, tbrs, tbrst, tbrhn, tbrpc, tbrtf;
 	private Label lrl, lrs, lrst, lrhn, lrpc, lrtf, lab;
@@ -61,7 +61,7 @@ public class AdminPage extends FormPanel implements ClickHandler
 		tbrhn = new TextBox();		lrhn = new Label("huisnummer");
 		tbrpc = new TextBox();		lrpc = new Label("postcode");
 		tbrtf = new TextBox();		lrtf = new Label("telefoonnr");
-		tbrb = new TextBox();		lrb = new Label("bestemming");	
+		new TextBox();		lrb = new Label("bestemming");	
 		lrdatf = new Label("Date format: dd-MM-yyyy HH:mm");
 
 		mainvp  = new VerticalPanel();
@@ -127,11 +127,10 @@ public class AdminPage extends FormPanel implements ClickHandler
 			hbvp.add(bbestemtoe);
 			hrvp.setVisible(false);
 			hbvp.setVisible(true);
-			System.out.println("printbbestem");
 			for(Bestemming b : bestemmingen) {
 				HorizontalPanel hp = new HorizontalPanel();
 				hp.add(new Label(b.getTitel()));
-				lab = new Label(b.getInformatie());
+				lab = new Label(b.getInformatie().substring(0, 50) + "...");
 
 				hp.add(lab);
 
@@ -237,7 +236,6 @@ public class AdminPage extends FormPanel implements ClickHandler
 					myDate = myDateFormat.parse(tbrvdat.getText());
 					myDate2 = myDateFormat.parse(tbrtdat.getText());
 				}  catch (java.text.ParseException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 				double tp = Double.parseDouble(tbrtp.getText());
@@ -428,7 +426,7 @@ public class AdminPage extends FormPanel implements ClickHandler
 		for(Bestemming b : bestemmingen) {
 			HorizontalPanel hp = new HorizontalPanel();
 			hp.add(new Label(b.getTitel()));
-			lab = new Label(b.getInformatie());
+			lab = new Label(b.getInformatie().substring(0, 50) + "...");
 
 			hp.add(lab);
 

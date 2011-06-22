@@ -21,7 +21,7 @@ import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.datepicker.client.DatePicker;
 
-public class Reizen extends VerticalPanel {
+public class ReizenPage extends VerticalPanel {
 	
 	public VerticalPanel hoofdPanel = new VerticalPanel(), boekReisPanel= new VerticalPanel();
 	public DatePicker datum;
@@ -30,7 +30,7 @@ public class Reizen extends VerticalPanel {
 	public TextBox ap;
 	public Label paginaInfo = new Label();
 	
-	public Reizen(VakantieVibes vv, Bestemming b) {
+	public ReizenPage(VakantieVibes vv, Bestemming b) {
 		paginaInfo.setText("Kies een datum en een reis");
 		paginaInfo.setStyleName("labelextra");
 		add(paginaInfo);
@@ -73,17 +73,17 @@ public class Reizen extends VerticalPanel {
 		
 	class PageClickHandler implements ClickHandler {
 		public Reis reis;
-		public Reizen pagina;
+		public ReizenPage pagina;
 		public int soortPagina;
 		public Vervoer vervoer;
 		
-		public PageClickHandler(Reis r, Reizen p, int i) {
+		public PageClickHandler(Reis r, ReizenPage p, int i) {
 			reis=r;
 			pagina=p;
 			soortPagina=i;
 		}
 		
-		public PageClickHandler(Reis r, Reizen p, int i, Vervoer v) {
+		public PageClickHandler(Reis r, ReizenPage p, int i, Vervoer v) {
 			reis=r;
 			pagina=p;
 			soortPagina=i;
@@ -187,7 +187,6 @@ public class Reizen extends VerticalPanel {
 		}
 		Vervoer v = new Vervoer(Integer.parseInt(ap.getValue()),g,r);
 		Boeking b = new Boeking(new Date(), false,g,r); 
-		System.out.println(r.getTitel());
 		if(vv.addVervoer(v)&&vv.addBoeking(b,v)) {
 			boekReisPanel.add(new Label("U heeft succesvol geboekt"));
 		} else {
@@ -205,8 +204,7 @@ public class Reizen extends VerticalPanel {
 			return;
 		}
 		v.addMeerijder(g);
-		Boeking b = new Boeking(new Date(), false,g,r); 
-		System.out.println(r.getTitel());
+		Boeking b = new Boeking(new Date(), false,g,r);
 		boekReisPanel.clear();
 		if(vv.addBoeking(b,v)) {
 			boekReisPanel.add(new Label("U heeft succesvol geboekt"));

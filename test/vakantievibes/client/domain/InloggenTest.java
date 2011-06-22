@@ -21,7 +21,7 @@ public class InloggenTest extends TestCase {
 		VakantieVibes vv = new VakantieVibes(null);
 		Inloggen i = new Inloggen(vv);
 		
-		vv.addGebruiker(new Gebruiker("Tester", "geheim1", "Henk", "de Vries", "test@example.com"));
+		vv.addGebruiker(new Gebruiker("Tester", Inloggen.hashWachtwoord("geheim1"), "Henk", "de Vries", "test@example.com"));
 
 		assertNotNull(i.Login("Tester", "geheim1"));
 		assertNull(i.Login("Tester", "geheim2"));

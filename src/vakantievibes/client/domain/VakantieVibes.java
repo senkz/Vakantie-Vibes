@@ -11,7 +11,6 @@ public class VakantieVibes {
 	private ArrayList<Bestemming> bestemmingen = new ArrayList<Bestemming>();
 	private ArrayList<Vervoer> vervoer = new ArrayList<Vervoer>();
 	private ArrayList<Boeking> boeking = new ArrayList<Boeking>();
-	private ArrayList<Adres> adressen = new ArrayList<Adres>();
 	private Gebruiker loginUser = null;
 	private Entry entry;
 
@@ -92,7 +91,7 @@ public class VakantieVibes {
 				svervoer.add(v);
 			}
 		}
-		System.out.println(svervoer.size()); 
+		 
 		if(svervoer.size()==0) {return null;}
 		return svervoer;
 	}
@@ -146,14 +145,11 @@ public class VakantieVibes {
 
 		if(best.equals(reisjes.getBestemming()))
 		{
-			System.out.println("bestem is : " + best.getLocatie());
-
 			reizen.add(reisjes);
 			if(best.getTitel().equals(reisjes.getTitel())){
 
 				reisjes.setAdres(ad);
 				reisjes.setBestemming(best);
-				System.out.println("bestem reisjes is : " + reisjes.getBestemming());
 
 			}
 

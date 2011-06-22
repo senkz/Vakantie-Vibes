@@ -9,16 +9,15 @@ import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.FlexTable;
-import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
-public class Bestemmingen extends VerticalPanel {
+public class BestemmingenPage extends VerticalPanel {
 	
 	public VerticalPanel hoofdPanel = new VerticalPanel(), reisPanel= new VerticalPanel();
 	public Button bestemming,terug;
 	public VakantieVibes vv;
 	
-	public Bestemmingen(VakantieVibes vv) {
+	public BestemmingenPage(VakantieVibes vv) {
 		this.vv = vv;
 		ArrayList<Bestemming> bestemmingen = vv.getBestemming();
 		for(Bestemming b:bestemmingen) {
@@ -40,9 +39,9 @@ public class Bestemmingen extends VerticalPanel {
 		
 	class MyClickHandler implements ClickHandler {
 		public Bestemming bestemming;
-		public Bestemmingen pagina;
+		public BestemmingenPage pagina;
 		
-		public MyClickHandler(Bestemming b, Bestemmingen p) {
+		public MyClickHandler(Bestemming b, BestemmingenPage p) {
 			bestemming=b;
 			pagina=p;
 		}
@@ -59,7 +58,7 @@ public class Bestemmingen extends VerticalPanel {
 	
 	public void naarReis(Bestemming b) {
 		remove(hoofdPanel);
-		reisPanel.add(new Reizen(vv, b));
+		reisPanel.add(new ReizenPage(vv, b));
 		terug = new Button("Terug naar Bestemmingen");
 		terug.addClickHandler(new MyClickHandler(null,this));
 		terug.addStyleName("specialeButton");

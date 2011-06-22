@@ -9,7 +9,6 @@ public class Reis {
 	private double totaalprijs;
 	private Bestemming bestemming;
 	private Adres adres;
-	private Bestemming locatie;
 	
 
 	public Reis(Date vDat, Date tDat,String t, Bestemming b, Adres a, double tp){
@@ -101,7 +100,7 @@ public class Reis {
 	}
 
 	public Bestemming getLocatie() {
-		return locatie;
+		return bestemming;
 	}
 
 

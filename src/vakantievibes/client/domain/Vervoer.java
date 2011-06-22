@@ -23,7 +23,7 @@ public class Vervoer {
 	}
 
 	public int getZitplaatsen()	{
-		return zitplaatsen;
+		return zitplaatsen - meerijder.size();
 	}
 
 	public void setZitplaatsen(int zp) {
@@ -42,11 +42,12 @@ public class Vervoer {
 		return meerijder.get(i);
 	}
 	
-	public void addMeerijder(Gebruiker g) {
-		if(!checkMeerijder(g)) {
+	public boolean addMeerijder(Gebruiker g) {
+		if(!checkMeerijder(g) && zitplaatsen > meerijder.size()) {
 			meerijder.add(g);
-			zitplaatsen-=1;
-		}
+			return true;
+		} else
+			return false;
 	}
 	
 	public boolean checkMeerijder(Gebruiker g) {
@@ -58,7 +59,6 @@ public class Vervoer {
 	
 	public void removeMeerijder(Gebruiker g) {
 		meerijder.remove(g);
-		zitplaatsen+=1;
 	}
 	
 	public int getAantalMeerijder() {

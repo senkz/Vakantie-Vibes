@@ -65,6 +65,7 @@ public class MijnBoekingen extends VerticalPanel {
 		remove(wijzigPanel);
 		wijzigPanel= new VerticalPanel();
 		hp.clear();
+		hp.removeStyleName("reis2");
 		add(hoofdPanel);
 	}
 	
@@ -105,7 +106,7 @@ public class MijnBoekingen extends VerticalPanel {
 			Button annuleer = new Button("Annuleer uw Boeking");
 			annuleer.addClickHandler(new annuleerBoeking(gebruiker.getVervoerBijReis(b.getReis()),b,0));
 			wijzigPanel.add(annuleer);
-			Button terug = new Button("Terug naar mijnboekingen");
+			Button terug = new Button("Terug naar mijn boekingen");
 			terug.addClickHandler(new PageClickHandler(b,1));
 			wijzigPanel.add(terug);		
 		} else if(gebruiker.vervoersStatus(b.getReis()).equals("meerijder")) {
@@ -114,7 +115,7 @@ public class MijnBoekingen extends VerticalPanel {
 			Button annuleer = new Button("Annuleer uw Boeking");
 			annuleer.addClickHandler(new annuleerBoeking(gebruiker.getVervoerBijReis(b.getReis()),b,1));
 			wijzigPanel.add(annuleer);
-			Button terug = new Button("Terug naar mijnboekingen");
+			Button terug = new Button("Terug naar mijn boekingen");
 			terug.addClickHandler(new PageClickHandler(b,1));
 			wijzigPanel.add(terug);	
 		} else if(gebruiker.vervoersStatus(b.getReis()).equals("nietoplijst")){
@@ -122,7 +123,7 @@ public class MijnBoekingen extends VerticalPanel {
 			Button annuleer = new Button("Annuleer uw Boeking");
 			annuleer.addClickHandler(new annuleerBoeking(gebruiker.getVervoerBijReis(b.getReis()),b,1));
 			wijzigPanel.add(annuleer);
-			Button terug = new Button("Terug naar mijnboekingen");
+			Button terug = new Button("Terug naar mijn boekingen");
 			terug.addClickHandler(new PageClickHandler(b,1));
 			wijzigPanel.add(terug);	
 		} else if(gebruiker.vervoersStatus(b.getReis()).equals("null")){
@@ -130,7 +131,7 @@ public class MijnBoekingen extends VerticalPanel {
 			Button annuleer = new Button("Annuleer uw Boeking");
 			annuleer.addClickHandler(new annuleerBoeking(gebruiker.getVervoerBijReis(b.getReis()),b,2));
 			wijzigPanel.add(annuleer);
-			Button terug = new Button("Terug naar mijnboekingen");
+			Button terug = new Button("Terug naar mijn boekingen");
 			terug.addClickHandler(new PageClickHandler(b,1));
 			wijzigPanel.add(terug);	
 		} else {
@@ -138,7 +139,7 @@ public class MijnBoekingen extends VerticalPanel {
 			Button annuleer = new Button("Annuleer uw Boeking");
 			annuleer.addClickHandler(new annuleerBoeking(gebruiker.getVervoerBijReis(b.getReis()),b,2));
 			wijzigPanel.add(annuleer);
-			Button terug = new Button("Terug naar mijnboekingen");
+			Button terug = new Button("Terug naar mijn boekingen");
 			terug.addClickHandler(new PageClickHandler(b,1));
 			wijzigPanel.add(terug);	
 		}

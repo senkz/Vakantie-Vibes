@@ -16,7 +16,6 @@ public class Gebruiker{
 		voorNaam = vn;
 		achterNaam = an;
 		email = em;
-
 	}
 	public String getAchterNaam() {
 		return achterNaam;
@@ -120,9 +119,8 @@ public class Gebruiker{
 	
 	public void removeVervoer(Vervoer v) {
 		vervoer.remove(v);
-		for (Vervoer v2:vervoer) {
-			System.out.println(v2.getReis().getTitel());
-		}
+		if(v.getAanbieder().getGebruikersNaam().equals(this.getGebruikersNaam()))
+			v.removeMeerijders();
 	}
 	
 	public void removeBoeking(Boeking b) {

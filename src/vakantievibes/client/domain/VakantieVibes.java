@@ -2,10 +2,8 @@ package vakantievibes.client.domain;
 import java.util.ArrayList;
 
 import vakantievibes.client.Entry;
-import vakantievibes.client.pages.AdminPage;
 
 import com.google.gwt.user.client.Window;
-import com.google.gwt.user.client.ui.RootPanel;
 
 public class VakantieVibes {
 	private ArrayList<Gebruiker> gebruikers = new ArrayList<Gebruiker>();
@@ -39,12 +37,10 @@ public class VakantieVibes {
 
 	public void setLoginUser(Gebruiker g) {
 		loginUser = g;
-		if(g != null && g.getRechten() == 2)
-			RootPanel.get("admin").add(new AdminPage(this));
-		else
-			RootPanel.get("admin").clear();
-		
-		entry.changeTab(g);
+	}
+	
+	public void changeTab(Gebruiker g) {
+		this.entry.changeTab(g);
 	}
 
 	public ArrayList<Gebruiker> listGebruikers() {
@@ -124,17 +120,8 @@ public class VakantieVibes {
 	}
 
 	public void changeBestemming(Bestemming b, String bestem) {
-		//System.out.println("bs: "+ bs.getInformatie()+ bs.getTitel());
-		//System.out.println("bestem : " + bestem);
-		for (Bestemming bs: bestemmingen)
-		{
-			if(bs.getInformatie().equals(bestem))
-			{
-				System.out.println("zelfde info");
-
-			}
-			if (bs.getTitel().equals(b.getTitel()))
-			{
+		for (Bestemming bs: bestemmingen) {
+			if (bs.getTitel().equals(b.getTitel())) {
 				if(bs.getLocatie().equals(b.getLocatie()))
 					bs.setInformatie(bestem);
 			}
@@ -166,7 +153,7 @@ public class VakantieVibes {
 
 				reisjes.setAdres(ad);
 				reisjes.setBestemming(best);
-				System.out.println("bestem reisjes is : " + reisjes.getLocatie());
+				System.out.println("bestem reisjes is : " + reisjes.getBestemming());
 
 			}
 

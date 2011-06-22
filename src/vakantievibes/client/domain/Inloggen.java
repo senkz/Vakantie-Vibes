@@ -13,7 +13,7 @@ public class Inloggen {
 		ServiceImpl = sI;	
 	}
 
-	public Gebruiker Login(String ww, String gb) {		
+	public Gebruiker Login(String gb, String ww) {		
 		Gebruiker g = ServiceImpl.zoekGebruiker(gb);
 		if(g==null) return null;
 		if(hashWachtwoord(g.getWachtWoord()).equals(hashWachtwoord(ww))) {
